@@ -1,8 +1,10 @@
 package rs.flightbooking;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,15 +12,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import rs.flightbooking.SlidingMenuAdapter;
-import rs.flightbooking.ItemSlideMenu;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -39,9 +39,10 @@ public class MainActivity extends ActionBarActivity {
 //        mainContent= (android.widget.RelativeLayout)findViewById(R.id.main_content);
         listSliding= new ArrayList<>();
 
-        listSliding.add(new ItemSlideMenu(R.drawable.flight,"Letovi"));
-        listSliding.add(new ItemSlideMenu(R.drawable.company,"Avio kompanije"));
-        listSliding.add(new ItemSlideMenu(R.mipmap.ic_launcher,"Android"));
+        listSliding.add(new ItemSlideMenu(R.drawable.reservation,"Reservations"));
+        listSliding.add(new ItemSlideMenu(R.drawable.flights,"Flights"));
+        listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
+
         adapter= new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
 
@@ -55,17 +56,13 @@ public class MainActivity extends ActionBarActivity {
 
         replaceFragment(0);
 
-        listViewSliding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
+        listViewSliding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
-                setTitle(listSliding.get(position).getTitle());
-
-
+            setTitle(listSliding.get(position).getTitle());
             listViewSliding.setItemChecked(position, true);
-                replaceFragment(position);
-
+            replaceFragment(position);
             drawerLayout.closeDrawer(listViewSliding);
             }
         });
@@ -115,16 +112,14 @@ public class MainActivity extends ActionBarActivity {
         Fragment fragment = null;
         switch(pos) {
             case 0:
-                fragment=new Fragment1();
+                fragment=new Reservations();
                 break;
-            case 1:
-                fragment=new Fragment2();
+            /*case 1:
                 break;
             case 2:
                 fragment=new Fragment3();
-                break;
+                break;*/
             default:
-                fragment=new Fragment1();
                 break;
         }
 

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Reservations"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/townFromLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Town from"
+        android:textSize="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_alignTop="@+id/townFrom"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/townToLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Town to"
+        android:textSize="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_alignTop="@+id/townTo"
+        android:layout_alignLeft="@+id/townFromLabel"
+        android:layout_alignStart="@+id/townFromLabel" />
+
+    <Spinner
+        android:id="@+id/townTo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/townFrom"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:id="@+id/townFrom"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/Output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/dateFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="Date of departure"
+        android:layout_below="@+id/townToLabel"
+        android:layout_alignLeft="@+id/townToLabel"
+        android:layout_alignStart="@+id/townToLabel" />
+
+    <Button
+        android:id="@+id/dateTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/dateFrom"
+        android:layout_alignLeft="@+id/dateFrom"
+        android:layout_alignRight="@+id/dateFrom"
+        android:layout_alignStart="@+id/dateFrom"
+        android:layout_below="@+id/dateFrom"
+        android:layout_marginTop="34dp"
+        android:text="Date of arrival" />
+
+    <Button
+        android:id="@+id/Find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginTop="53dp"
+        android:text="Find"
+        android:layout_below="@+id/dateTextTo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/townTo"
+        android:layout_alignStart="@+id/townTo" />
+
+    <TextView
+        android:id="@+id/dateTextFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dateTo"
+        android:layout_alignEnd="@+id/Find"
+        android:layout_alignLeft="@+id/townTo"
+        android:layout_alignRight="@+id/Find"
+        android:layout_alignStart="@+id/townTo"
+        android:layout_alignTop="@+id/dateFrom"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:textSize="20dp"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/dateTextTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dateTo"
+        android:layout_alignLeft="@+id/dateTextFrom"
+        android:layout_alignStart="@+id/dateTextFrom"
+        android:layout_alignTop="@+id/dateTo"
+        android:layout_alignRight="@+id/dateTextFrom"
+        android:layout_alignEnd="@+id/dateTextFrom"
+        android:textSize="20dp"
+        android:gravity="center_vertical"/>
+
+</RelativeLayout>
