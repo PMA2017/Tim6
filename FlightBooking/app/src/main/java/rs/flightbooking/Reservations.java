@@ -60,7 +60,7 @@ public class Reservations extends Fragment {
         ArrayList<String> items = new ArrayList<>();
         items.add("");
         items.add("Amsterdam");
-        items.add("Belgrad");
+        items.add("Belgrade");
         items.add("Berlin");
         items.add("Copenhagen");
         items.add("Paris");

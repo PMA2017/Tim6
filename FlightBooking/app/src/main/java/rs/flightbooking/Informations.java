@@ -10,14 +10,14 @@ import android.view.ViewGroup;
  * Created by Rale on 4/23/2017.
  */
 
-public class Fragment3 extends Fragment {
-    public Fragment3() {
+public class Informations extends Fragment {
+    public Informations() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View rootView = inflater.inflate(R.layout.activity_three, container, false);
+        View rootView = inflater.inflate(R.layout.activity_informations, container, false);
         return rootView;
     }
 
