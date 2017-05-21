@@ -73,3 +73,4 @@ Ticket.sync({force: false}).then(() => {
 Drive_Ticket_Connection.sync({force: false}).then(() => {
 
 });
+
