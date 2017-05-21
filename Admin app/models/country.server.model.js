@@ -1,7 +1,7 @@
 /**
  * Created by Nemanja on 5/21/2017.
  */
-
+/*
 var Sequelize = require('sequelize');
 module.exports.getCountry = getCountry;
 
@@ -14,6 +14,7 @@ const Country = sequelize.define('Country', {
     }
 });
 
+
 function getCountry(){
     return Country;
 }
@@ -24,3 +25,4 @@ Country.sync({force: false}).then(() => {
         name: 'Serbia'
     });
 });
+*/

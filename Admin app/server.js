@@ -103,10 +103,13 @@ sequelize
 
 global.sequelize = sequelize;
 
+
+
 require('./routes/generic.server.routes')(app);
 require('./models/user.server.model');
 require('./models/country.server.model');
 require('./controllers/user.server.controller');
+
 
 https.createServer(httpsOptions, app).listen(3000, function() {
    logger.info("Express https server listening on port " + "3000");
