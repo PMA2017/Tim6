@@ -12,9 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -24,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout drawerLayout;
 //    private android.widget.RelativeLayout mainContent;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private String testResponse = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +91,41 @@ public class MainActivity extends ActionBarActivity {
         };
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        testRest();
+
+
     }
 
+    private void testRest(){
+        RequestParams rp = new RequestParams();
+        // rp.add("username", "aaa"); rp.add("password", "aaa@123");
+
+        HttpUtils.get("api/amounts", null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                testResponse = response.toString();
+                displayResult();
+
+                try {
+                    JSONObject serverResp = new JSONObject(response.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            //@Override
+            // public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+            //    // Pull out the first event on the public timeline
+            //
+            //}
+        });
+
+    }
+
+    public void displayResult(){
+        Toast.makeText(this,testResponse,Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

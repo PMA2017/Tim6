@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Patterns;
-import android.widget.Toast;
+
 
 /**
  * Created by Milos on 5/20/2017.
@@ -60,8 +59,11 @@ public class SplashScreenActivity extends Activity {
      */
     private void login()
     {
+
         startMainActivity();
     }
+
+
 
     private void startMainActivity()
     {
