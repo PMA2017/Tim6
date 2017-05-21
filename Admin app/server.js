@@ -106,6 +106,15 @@ global.sequelize = sequelize;
 require('./routes/generic.server.routes')(app);
 require('./models/user.server.model');
 require('./models/country.server.model');
+require('./models/town.server.model');
+require('./models/airport.server.model');
+require('./models/airline.server.model');
+require('./models/airplane.server.model');
+require('./models/flight.server.model');
+require('./models/drive.server.model');
+require('./models/ticket.server.model');
+require('./models/drive_ticket_connection.server.model');
+require('./models/context.server.model');
 require('./controllers/user.server.controller');
 
 https.createServer(httpsOptions, app).listen(3000, function() {

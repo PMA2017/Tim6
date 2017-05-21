@@ -3,21 +3,17 @@
  */
 
 var Sequelize = require('sequelize');
-module.exports.getCountry = getCountry;
+module.exports.getAirline = getAirline;
 
-const Country = sequelize.define('Country', {
-    Mark: {
+const Airline = sequelize.define('Airline', {
+    Name: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    Name: {
-        type: Sequelize.STRING
     }
 }, {
     freezeTableName: true // Model tableName will be the same as the model name
 });
 
-function getCountry(){
-    return Country;
+function getAirline(){
+    return Airline;
 }
-
