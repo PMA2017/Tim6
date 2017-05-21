@@ -1,0 +1,24 @@
+{
+  "name": "NodeBackend",
+  "version": "1.0.0",
+  "description": "A simple backend for an angular app.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Nikola Luburić, Milos Savic, Rajko Ilic",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "csurf": "1.9.0",
+    "helmet": "3.4.0",
+    "xss": "0.3.2",
+    "log4js": "1.1.0",
+	  "morgan" : "1.8.0",
+    "sequelize":"3.30.4",
+    "tedious":"2.0.0"
+  }
+}
