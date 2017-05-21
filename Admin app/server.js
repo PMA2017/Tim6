@@ -103,6 +103,7 @@ sequelize
 
 global.sequelize = sequelize;
 
+require('./routes/generic.server.routes')(app);
 require('./models/user.server.model');
 require('./controllers/user.server.controller');
 

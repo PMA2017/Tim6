@@ -2,6 +2,8 @@
 
 var user = require(appRoot+'/models/user.server.model');
 
+
+function addNewUser(){
 var User = user.getUser();
 User.sync({force: false}).then(() => {
   // Table created
@@ -10,3 +12,4 @@ User.sync({force: false}).then(() => {
     lastName: 'Hancock'
   });
 });
+}

@@ -20,6 +20,7 @@ function getUser(){
 
 
 //testing country
+/*
 const Country = sequelize.define('countries', {
   name: {
     type: Sequelize.STRING
@@ -33,5 +34,5 @@ Country.sync({force: false}).then(() => {
   });
 });
 
-
+*/
 
