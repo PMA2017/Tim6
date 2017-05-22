@@ -17,9 +17,17 @@ import android.content.res.Resources;
 import android.widget.TextView;
 import android.widget.EditText;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import cz.msebera.android.httpclient.Header;
 
 import static android.R.layout.simple_spinner_dropdown_item;
 
@@ -57,7 +65,7 @@ public class Reservations extends Fragment {
 
     private ArrayList<String> getDataForSpinner()
     {
-        ArrayList<String> items = new ArrayList<>();
+        final ArrayList<String> items = new ArrayList<>();
         items.add("");
         items.add("Amsterdam");
         items.add("Belgrade");
@@ -68,6 +76,15 @@ public class Reservations extends Fragment {
         items.add("New York");
         items.add("Tel Aviv");
         items.add("Vienna");
+
+
+        HttpUtils.get("api/get/Country", null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
+                //if the response is JSONArray
+                String testResponse = arrayResponse.toString();
+            }
+        });
 
         return items;
     }
