@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -100,7 +101,7 @@ public class MainActivity extends ActionBarActivity {
         RequestParams rp = new RequestParams();
         // rp.add("username", "aaa"); rp.add("password", "aaa@123");
 
-        HttpUtils.get("api/amounts", null, new JsonHttpResponseHandler() {
+        HttpUtils.get("api/get/Country", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -114,6 +115,18 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
 
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse){
+                //if the response is JSONArray
+                testResponse = arrayResponse.toString();
+                displayResult();
+            }
+
+            @Override
+             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                System.out.println("CALL FAILED:" +responseString);
+                System.out.println("STATUS CODE:" + statusCode);
+            }
             //@Override
             // public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
             //    // Pull out the first event on the public timeline

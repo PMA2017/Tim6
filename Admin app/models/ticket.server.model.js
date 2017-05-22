@@ -28,4 +28,3 @@ const Ticket = sequelize.define('Ticket', {
 function getTicket(){
     return Ticket;
 }
-

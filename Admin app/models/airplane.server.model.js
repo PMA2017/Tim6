@@ -1,3 +1,4 @@
+
 /**
  * Created by Nemanja on 5/21/2017.
  */
@@ -35,4 +36,3 @@ const Airplane = sequelize.define('Airplane', {
 function getAirplane(){
     return Airplane;
 }
-
