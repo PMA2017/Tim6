@@ -13,10 +13,12 @@ import android.widget.Toast;
 public class NotificationListener extends BroadcastReceiver {
 
 
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(intent.getExtras().getInt("id"));
-        Toast.makeText(context, "Button Clicked!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Notification", Toast.LENGTH_SHORT).show();
     }
 }

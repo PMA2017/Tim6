@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class Flights extends Fragment {
     private ArrayList<HashMap<String,String>> list;
 
     private Context context;
-    private RemoteViews remoteViews;
+    public static RemoteViews remoteViews;
     private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
     private int notification_id;
@@ -77,62 +78,62 @@ public class Flights extends Fragment {
         HashMap<String, String> temp = new HashMap<String, String>();
         temp.put(FIRST_COLUMN,"Belgrade");
         temp.put(SECOND_COLUMN,"Rome");
-        temp.put(THIRD_COLUMN,"14-4-2019");
-        temp.put(FOURTH_COLUMN,"15-8-2019");
+        temp.put(THIRD_COLUMN,"14-4-2016 20:00:00");
+        temp.put(FOURTH_COLUMN,"15-8-2016 20:00:00");
         list.add(temp);
 
         HashMap<String, String> temp1 = new HashMap<String, String>();
         temp1.put(FIRST_COLUMN,"Sevilla");
         temp1.put(SECOND_COLUMN,"Amsterdam");
-        temp1.put(THIRD_COLUMN,"7-9-2019");
-        temp1.put(FOURTH_COLUMN,"11-10-2019");
+        temp1.put(THIRD_COLUMN,"7-9-2016 20:00:00");
+        temp1.put(FOURTH_COLUMN,"11-10-2016 20:00:00");
         list.add(temp1);
 
         HashMap<String, String> temp2 = new HashMap<String, String>();
         temp2.put(FIRST_COLUMN,"Munich");
         temp2.put(SECOND_COLUMN,"Paris");
-        temp2.put(THIRD_COLUMN,"2-5-2017");
-        temp2.put(FOURTH_COLUMN,"3-9-2017");
+        temp2.put(THIRD_COLUMN,"2-5-2017 20:00:00");
+        temp2.put(FOURTH_COLUMN,"3-9-2017 20:00:00");
         list.add(temp2);
 
         HashMap<String, String> temp3 = new HashMap<String, String>();
         temp3.put(FIRST_COLUMN,"Frankfurt");
         temp3.put(SECOND_COLUMN,"Valencia");
-        temp3.put(THIRD_COLUMN,"6-6-2017");
-        temp3.put(FOURTH_COLUMN,"7-11-2017");
+        temp3.put(THIRD_COLUMN,"6-6-2017 20:00:00");
+        temp3.put(FOURTH_COLUMN,"7-11-2017 20:00:00");
         list.add(temp3);
 
         HashMap<String, String> temp4 = new HashMap<String, String>();
         temp4.put(FIRST_COLUMN,"Berlin");
         temp4.put(SECOND_COLUMN,"Copenhagen");
-        temp4.put(THIRD_COLUMN,"6-2-2016");
-        temp4.put(FOURTH_COLUMN,"16-5-2016");
+        temp4.put(THIRD_COLUMN,"6-2-2016 20:00:00");
+        temp4.put(FOURTH_COLUMN,"16-5-2016 20:00:00");
         list.add(temp4);
 
         HashMap<String, String> temp5 = new HashMap<String, String>();
         temp5.put(FIRST_COLUMN,"Lisabon");
         temp5.put(SECOND_COLUMN,"Moscow");
-        temp5.put(THIRD_COLUMN,"2-9-2017");
-        temp5.put(FOURTH_COLUMN,"11-9-2017");
+        temp5.put(THIRD_COLUMN,"2-9-2017 20:00:00");
+        temp5.put(FOURTH_COLUMN,"11-9-2017 20:00:00");
         list.add(temp5);
 
         HashMap<String, String> temp6 = new HashMap<String, String>();
         temp6.put(FIRST_COLUMN,"Torino");
         temp6.put(SECOND_COLUMN,"Monaco");
-        temp6.put(THIRD_COLUMN,"13-5-2016");
-        temp6.put(FOURTH_COLUMN,"21-6-2016");
+        temp6.put(THIRD_COLUMN,"23-5-2017 23:00:00");
+        temp6.put(FOURTH_COLUMN,"21-6-2017 20:00:00");
         list.add(temp6);
 
         HashMap<String, String> temp7 = new HashMap<String, String>();
         temp7.put(FIRST_COLUMN,"Dortmund");
         temp7.put(SECOND_COLUMN,"Istanbul");
-        temp7.put(THIRD_COLUMN,"6-2-2017");
-        temp7.put(FOURTH_COLUMN,"25-9-2017");
+        temp7.put(THIRD_COLUMN,"23-5-2017 4:00:00");
+        temp7.put(FOURTH_COLUMN,"25-9-2017 20:00:00");
         list.add(temp7);
 
 
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date d = new Date();
 
         String datum = sd.format(d);
@@ -147,7 +148,7 @@ public class Flights extends Fragment {
             remoteViews = new RemoteViews(context.getPackageName(),R.layout.notification);
 
             remoteViews.setImageViewResource(R.id.notif_icon,R.mipmap.ic_launcher);
-            remoteViews.setTextViewText(R.id.notif_title,"Notification");
+
 
             notification_id =(int) System.currentTimeMillis();
             Intent button_intent =new Intent("button_clicked");
@@ -160,16 +161,61 @@ public class Flights extends Fragment {
                 Date date = sd.parse(datum);
                 Log.d("date", String.valueOf(date));
                 Log.d("date_compare", String.valueOf(date_compare));
+
+
+
+
                 if(date_compare.after(date)){
 
-                    Log.d("jeeej","jeeej");
-                    Intent notification_intent = new Intent(context, Flights.class);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context,i,notification_intent,i);
+                    Date date_2d = DateUtil.addDays(date_compare,-2);
+                    Date date_12h = DateUtil.addHours(date_compare,-12);
+                    Date date_4h = DateUtil.addHours(date_compare,-4);
 
-                    builder = new NotificationCompat.Builder(context);
-                    builder.setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setCustomBigContentView(remoteViews).setContentIntent(pendingIntent);
+                    Log.d("one", String.valueOf(date_2d));
+                    Log.d("two", String.valueOf(date_12h));
+                    Log.d("three", String.valueOf(date_4h));
 
-                    notificationManager.notify(notification_id,builder.build());
+                    String destination1= list.get(i).get(FIRST_COLUMN);
+                    String destination2= list.get(i).get(SECOND_COLUMN);
+
+
+                    if(date_2d.after(date)){
+                        remoteViews.setTextViewText(R.id.notif_title,"Flight from "+destination1+" to "+destination2+" will begin for less than 2 days");
+
+                        Intent notification_intent = new Intent(context, Flights.class);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context,i,notification_intent,i);
+
+                        builder = new NotificationCompat.Builder(context);
+                        builder.setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setCustomBigContentView(remoteViews).setContentIntent(pendingIntent);
+
+                        notificationManager.notify(notification_id,builder.build());
+
+                    }else if (date_12h.after(date)){
+                        remoteViews.setTextViewText(R.id.notif_title,"Flight from "+destination1+" to "+destination2+" will begin for less than 12 hours");
+
+                        Intent notification_intent = new Intent(context, Flights.class);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context,i,notification_intent,i);
+
+                        builder = new NotificationCompat.Builder(context);
+                        builder.setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setCustomBigContentView(remoteViews).setContentIntent(pendingIntent);
+
+                        notificationManager.notify(notification_id,builder.build());
+
+                    }else if(date_4h.after(date)){
+                        remoteViews.setTextViewText(R.id.notif_title,"Flight from "+destination1+" to "+destination2+" will begin for less than 4 hours");
+
+                        Intent notification_intent = new Intent(context, Flights.class);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context,i,notification_intent,i);
+
+                        builder = new NotificationCompat.Builder(context);
+                        builder.setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setCustomBigContentView(remoteViews).setContentIntent(pendingIntent);
+
+                        notificationManager.notify(notification_id,builder.build());
+
+                    }else{
+                        Log.d("No notification","No notification");
+                    }
+
                 }
             }catch (Exception ex){
                 Log.d("oh","oh");
