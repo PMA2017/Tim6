@@ -18,12 +18,12 @@ const Town = sequelize.define('Town', {
         allowNull: false
     },
     Longitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
         allowNull: false,
         validate: { min: -180, max: 180 }
     },
     Latitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
         allowNull: false,
         validate: { min: -180, max: 180 }
     },
