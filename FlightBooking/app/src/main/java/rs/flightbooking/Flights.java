@@ -1,18 +1,26 @@
 package rs.flightbooking;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
 import  static rs.flightbooking.Constants.FIRST_COLUMN;
 import  static rs.flightbooking.Constants.SECOND_COLUMN;
 import  static rs.flightbooking.Constants.THIRD_COLUMN;
 import  static rs.flightbooking.Constants.FOURTH_COLUMN;
 
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +36,8 @@ public class Flights extends Fragment {
 
     private ArrayList<HashMap<String,String>> list;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -40,6 +50,10 @@ public class Flights extends Fragment {
         ListViewAdapter listAdapter=new ListViewAdapter(this.getActivity(),list);
 
         listView.setAdapter(listAdapter);
+
+
+
+
 
 
         return rootView;
@@ -108,4 +122,9 @@ public class Flights extends Fragment {
 
 
     }
+
+
+
+
 }
+
