@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         listViewSliding= (android.widget.ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout= (android.support.v4.widget.DrawerLayout)findViewById(R.id.drawer_layout);
 //        mainContent= (android.widget.RelativeLayout)findViewById(R.id.main_content);
