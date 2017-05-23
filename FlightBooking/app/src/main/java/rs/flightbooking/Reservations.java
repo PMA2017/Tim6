@@ -2,7 +2,6 @@ package rs.flightbooking;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +14,20 @@ import android.widget.Spinner;
 import android.util.TypedValue;
 import android.content.res.Resources;
 import android.widget.TextView;
-import android.widget.EditText;
+import android.widget.Toast;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static android.R.layout.simple_spinner_dropdown_item;
+import cz.msebera.android.httpclient.Header;
+import json.JSONParser;
 
-/**
- * Created by Rale on 4/23/2017.
- */
+import model.Town;
 
 public class Reservations extends Fragment {
 
@@ -36,7 +38,7 @@ public class Reservations extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View rootView = inflater.inflate(R.layout.activity_reservations, container, false);
+        final View rootView = inflater.inflate(R.layout.activity_reservations, container, false);
         Spinner spinnerFrom = (Spinner) rootView.findViewById(R.id.townFrom);
         Spinner spinnerTo = (Spinner) rootView.findViewById(R.id.townTo);
 
@@ -52,22 +54,50 @@ public class Reservations extends Fragment {
         Button dateTo = (Button) rootView.findViewById(R.id.dateTo);
         datePicker(dateToText,dateTo);
 
+        Button findButton = (Button) rootView.findViewById(R.id.FindButton);
+        final Fragment fragment = this;
+        findButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Spinner spinnerFrom = (Spinner) rootView.findViewById(R.id.townFrom);
+                Spinner spinnerTo = (Spinner) rootView.findViewById(R.id.townTo);
+                TextView dateFromText = (TextView) rootView.findViewById(R.id.dateTextFrom);
+                String textTownFrom = spinnerFrom.getSelectedItem().toString();
+                String textTownTo = spinnerTo.getSelectedItem().toString();
+                String textDateFrom = dateFromText.getText().toString();
+                String errors = "";
+                if(textTownFrom.equals("")) {
+                    errors += "Input for town from is required\n";
+                }
+                if(textTownTo.equals("")) {
+                    errors += "Input for town from is required\n";
+                }
+                if(textDateFrom.equals("")) {
+                    errors += "Input for dete of departure is required\n";
+                }
+                if(!errors.equals("")) {
+                    Toast.makeText(fragment.getActivity(),errors,Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         return rootView;
     }
 
     private ArrayList<String> getDataForSpinner()
     {
-        ArrayList<String> items = new ArrayList<>();
+        final ArrayList<String> items = new ArrayList<>();
         items.add("");
-        items.add("Amsterdam");
-        items.add("Belgrade");
-        items.add("Berlin");
-        items.add("Copenhagen");
-        items.add("Paris");
-        items.add("Rome");
-        items.add("New York");
-        items.add("Tel Aviv");
-        items.add("Vienna");
+
+        HttpUtils.get("api/get/Town", null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
+                ArrayList<Town> towns = JSONParser.GetAllTowns(arrayResponse);
+                for(int i = 0; i < towns.size(); i++) {
+                    items.add(towns.get(i).name);
+                }
+            }
+        });
 
         return items;
     }

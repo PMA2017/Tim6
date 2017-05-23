@@ -86,30 +86,31 @@
         android:layout_alignStart="@+id/dateFrom"
         android:layout_below="@+id/dateFrom"
         android:layout_marginTop="34dp"
-        android:text="Date of arrival" />
+        android:text="Return datel" />
 
     <Button
-        android:id="@+id/Find"
+        android:id="@+id/FindButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/townTo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/townTo"
+        android:layout_below="@+id/dateTextTo"
         android:layout_marginEnd="34dp"
         android:layout_marginRight="34dp"
         android:layout_marginTop="53dp"
-        android:text="Find"
-        android:layout_below="@+id/dateTextTo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/townTo"
-        android:layout_alignStart="@+id/townTo" />
+        android:onClick="findClick"
+        android:text="Find" />
 
     <TextView
         android:id="@+id/dateTextFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/dateTo"
-        android:layout_alignEnd="@+id/Find"
+        android:layout_alignEnd="@+id/FindButton"
         android:layout_alignLeft="@+id/townTo"
-        android:layout_alignRight="@+id/Find"
+        android:layout_alignRight="@+id/FindButton"
         android:layout_alignStart="@+id/townTo"
         android:layout_alignTop="@+id/dateFrom"
         android:layout_marginLeft="23dp"
