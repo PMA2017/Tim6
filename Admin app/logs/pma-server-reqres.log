@@ -53,3 +53,5 @@ Tue, 23 May 2017 22:07:47 GMT ::ffff:127.0.0.1 - GET /api/get/Country HTTP/1.1 2
 Tue, 23 May 2017 22:07:47 GMT ::ffff:127.0.0.1 - GET /api/get/Town HTTP/1.1 200 1514 - 829.104 ms
 Tue, 23 May 2017 22:09:21 GMT ::ffff:127.0.0.1 - GET /api/get/Country HTTP/1.1 200 947 - 815.999 ms
 Tue, 23 May 2017 22:09:21 GMT ::ffff:127.0.0.1 - GET /api/get/Town HTTP/1.1 200 1514 - 806.559 ms
+Tue, 23 May 2017 22:11:31 GMT ::ffff:127.0.0.1 - GET /api/get/Country HTTP/1.1 200 947 - 853.120 ms
+Tue, 23 May 2017 22:11:31 GMT ::ffff:127.0.0.1 - GET /api/get/Town HTTP/1.1 200 1514 - 866.601 ms
