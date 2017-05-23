@@ -13,7 +13,7 @@ function list(req, res, next, tableName){
 	sequelize.model(tableName).findAll()
 		 .then(data => {
 		    res.status(200).send(data);
-		  }, error => {
+		  }).catch(error => {
 		  	res.status(400).send({message:"SQL error"});
 		  })
 
@@ -26,7 +26,7 @@ function getById(req, res, next){
 sequelize.model(tableNameId).findById(rowId)
 		 .then(data => {
 		    res.status(200).send(data);
-		  }, error => {
+		  }).catch(error => {
 		  	res.status(400).send({message:"SQL error"});
 	  })
 
@@ -41,3 +41,4 @@ function postToTable(req,res,next){
 	    res.status(400).send({message:error});
 	})
 }
+
