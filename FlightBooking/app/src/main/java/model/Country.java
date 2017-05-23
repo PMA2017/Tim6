@@ -5,4 +5,6 @@ package model;
  */
 
 public class Country {
+    public String mark;
+    public String name;
 }

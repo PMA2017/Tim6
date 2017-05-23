@@ -5,4 +5,10 @@ package model;
  */
 
 public class Town {
+    public String name;
+    public int zipCode;
+    public float longitude;
+    public float latitude;
+    public int timeZone;
+    public int countryId;
 }
