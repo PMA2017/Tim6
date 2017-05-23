@@ -12,6 +12,11 @@ global.appRoot = path.resolve(__dirname);
 
 log4js.loadAppender('file');
 //log4js.addAppender(log4js.appenders.console()); 
+
+if (!fs.existsSync('logs')){
+    fs.mkdirSync('logs');
+}
+
 log4js.addAppender(log4js.appenders.file('logs/PMA-server.log'), 'upp');
  
 global.logger = log4js.getLogger('upp');
@@ -68,6 +73,8 @@ app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
 var morgan = require('morgan');
+
+
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/pma-server-reqres.log'), {flags: 'a'})
 //HOW TO USE CSURF?
 //app.use(function(req, res, next) {
