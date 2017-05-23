@@ -3,6 +3,7 @@ package rs.flightbooking;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapFragment;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -49,6 +51,7 @@ public class MainActivity extends ActionBarActivity {
         listSliding.add(new ItemSlideMenu(R.drawable.reservation,"Reservations"));
         listSliding.add(new ItemSlideMenu(R.drawable.flights,"Flights"));
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
+        listSliding.add(new ItemSlideMenu(R.drawable.map,"Maps"));
 
         adapter= new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
@@ -171,6 +174,10 @@ public class MainActivity extends ActionBarActivity {
                 break;
             case 2:
                 fragment=new Informations();
+                break;
+            case 3:
+                //fragment = new Maps();
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             default:
                 break;
