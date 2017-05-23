@@ -4,7 +4,7 @@ module.exports = function(app){
 app.route('/api/get/:tableName')
     .get(genericOperations.list)
 app.param('tableName',genericOperations.list);
-app.route('/api/getById/:tableNameId/:rowId')
+app.route('/api/get/:tableNameId/:rowId')
 	.get(genericOperations.getById)
 app.param('tableNameId',genericOperations.getById);
 app.param('rowId',genericOperations.getById);
