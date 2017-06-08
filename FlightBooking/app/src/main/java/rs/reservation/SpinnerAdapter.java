@@ -1,4 +1,4 @@
-package reservations;
+package rs.reservation;
 
 import android.content.Context;
 import android.graphics.Color;

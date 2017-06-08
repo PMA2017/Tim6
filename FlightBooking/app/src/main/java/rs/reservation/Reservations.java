@@ -1,4 +1,4 @@
-package reservations;
+package rs.reservation;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -25,9 +25,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import cz.msebera.android.httpclient.Header;
-import json.JSONParser;
+import parsers.JSONParser;
 
-import model.Town;
 import rs.flightbooking.HttpUtils;
 import rs.flightbooking.R;
 

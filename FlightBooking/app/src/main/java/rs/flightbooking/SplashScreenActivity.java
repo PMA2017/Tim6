@@ -1,11 +1,12 @@
 package rs.flightbooking;
 
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+
+import rs.authentification.RegistrationActivity;
 
 
 /**
@@ -13,7 +14,7 @@ import android.os.SystemClock;
  */
 
 public class SplashScreenActivity extends Activity {
-    private static int SPLASH_TIME_OUT = 3000; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
+    private static int SPLASH_TIME_OUT = 100; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,7 +68,7 @@ public class SplashScreenActivity extends Activity {
 
     private void startMainActivity()
     {
-        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
         finish(); // da nebi mogao da ode back na splash
     }
 }

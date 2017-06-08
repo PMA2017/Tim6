@@ -3,11 +3,25 @@ var Sequelize = require('sequelize');
 module.exports.getUser = getUser;
 
 const User = sequelize.define('User', {
+  Username: {
+	type: Sequelize.STRING,
+	allowNull: false
+  },
   FirstName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+	allowNull: false
   },
   LastName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+	allowNull: false
+  },
+  Password: {
+	type: Sequelize.STRING,
+	allowNull: false
+  },
+  Role: {
+	  type: Sequelize.INTEGER,
+	  allowNull: false
   }
 });
 

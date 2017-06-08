@@ -1,10 +1,10 @@
-package json;
+package parsers;
 
 import model.Town;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
-import java.util.ArrayList;
+
 /**
  * Created by Nemanja on 5/23/2017.
  */

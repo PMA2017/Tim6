@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import reservations.Reservations;
+import rs.reservation.Reservations;
 
 public class MainActivity extends ActionBarActivity {
 
