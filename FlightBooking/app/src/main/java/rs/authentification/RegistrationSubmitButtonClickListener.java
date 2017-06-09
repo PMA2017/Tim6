@@ -34,7 +34,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToNodeServerTool("Users");
+        _nodeServer = new SendToNodeServerTool("User");
     }
 
     @Override
