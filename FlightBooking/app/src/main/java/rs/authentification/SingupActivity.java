@@ -8,31 +8,34 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import rs.flightbooking.R;
+import rs.flightbooking.SplashScreenActivity;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class SingupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_singup);
         setSubmitListener();
-        setSingupListener();
+        setRegisterActivity();
     }
 
     private void setSubmitListener()
     {
         Button submit = (Button) findViewById(R.id.submit);
-        submit.setOnClickListener(new RegistrationSubmitButtonClickListener(this));
+        submit.setOnClickListener(new SingupSubmitButtonClickListener(this));
     }
 
-    private void setSingupListener()
+    private void setRegisterActivity()
     {
-        TextView singup = (TextView) findViewById(R.id.singup);
-        singup.setOnClickListener(new View.OnClickListener() {
+        TextView register = (TextView) findViewById(R.id.registerHere);
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationActivity.this, SingupActivity.class));
+                startActivity(new Intent(SingupActivity.this, RegistrationActivity.class));
             }
         });
+
+
     }
 }
