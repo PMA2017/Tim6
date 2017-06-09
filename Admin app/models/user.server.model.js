@@ -4,7 +4,7 @@ module.exports.getUser = getUser;
 
 const User = sequelize.define('User', {
   Username: {
-	type: Sequelize.STRING,
+	type: Sequelize.STRING, unique: true,
 	allowNull: false
   },
   FirstName: {

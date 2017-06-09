@@ -1,17 +1,19 @@
 package rs.authentification;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
+import parsers.JSONParser;
 import rs.flightbooking.R;
 import tools.SendToNodeServerTool;
 import tools.ToastTool;
 import parsers.RequestParamParser;
+import tools.response.NodeResponse;
 
 /**
  * Created by n.starcev on 6/8/2017.
@@ -34,7 +36,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToNodeServerTool("Users");
+        _nodeServer = new SendToNodeServerTool("User");
     }
 
     @Override
@@ -55,7 +57,11 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         boolean isValid = doValidationAndCheckIsValid();
         if(isValid) {
             RequestParams params = RequestParamParser.makeRequestParamsUser(_username,_firstname,_lastname,_password,"1");
-            _nodeServer.sendToServer(params);
+            NodeResponse response = _nodeServer.post(params);
+            boolean result = processResponse(response);
+            if(result == true) {
+                _registrationActivity.startActivity((new Intent(_registrationActivity, SingupActivity.class)));
+            }
         }
     }
 
@@ -85,5 +91,14 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         return true;
     }
 
+    private boolean processResponse(NodeResponse response)
+    {
+        if(response.statusCode == 200) {
+            return true;
+        }
+        ArrayList<String> errors = JSONParser.getErrorsFromResponse(response.response);
+        _toastTool.showList(errors);
+        return false;
+    }
 
 }

@@ -113,6 +113,7 @@ global.sequelize = sequelize;
 
 
 require('./routes/generic.server.routes')(app);
+require('./routes/user.server.routes')(app);
 require('./models/user.server.model');
 require('./models/country.server.model');
 require('./models/town.server.model');
@@ -130,4 +131,3 @@ require('./controllers/user.server.controller');
 app.listen(3000, function() {
    logger.info("Express http server listening on port " + "3000");
 });
-
