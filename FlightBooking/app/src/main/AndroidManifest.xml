@@ -27,6 +27,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:name="rs.authentification.RegistrationActivity"
+
             android:label="FlightBooking" />
         <activity
             android:name=".SplashScreenActivity"
@@ -61,6 +63,10 @@
             </intent-filter>
         </receiver>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e994b0b744ec32c2a8fa4a868b54c8cec8e22f3
     </application>
 
 </manifest>

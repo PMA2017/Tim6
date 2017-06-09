@@ -1,4 +1,4 @@
-package rs.flightbooking;
+package rs.reservation;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -25,9 +25,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import cz.msebera.android.httpclient.Header;
-import json.JSONParser;
+import parsers.JSONParser;
 
-import model.Town;
+import rs.flightbooking.HttpUtils;
+import rs.flightbooking.R;
 
 public class Reservations extends Fragment {
 
@@ -37,8 +38,8 @@ public class Reservations extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
         final View rootView = inflater.inflate(R.layout.activity_reservations, container, false);
+
         Spinner spinnerFrom = (Spinner) rootView.findViewById(R.id.townFrom);
         Spinner spinnerTo = (Spinner) rootView.findViewById(R.id.townTo);
 
@@ -87,25 +88,28 @@ public class Reservations extends Fragment {
     private ArrayList<String> getDataForSpinner()
     {
         final ArrayList<String> items = new ArrayList<>();
-        items.add("");
-
+        items.add("Select town");
+        final String retTowns[];
         HttpUtils.get("api/get/Town", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
-                ArrayList<Town> towns = JSONParser.GetAllTowns(arrayResponse);
-                for(int i = 0; i < towns.size(); i++) {
-                    items.add(towns.get(i).name);
+                String towns[] = JSONParser.GetAllTowns(arrayResponse);
+                for(int i = 0; i < towns.length; i++) {
+                    items.add(towns[i]);
                 }
             }
         });
-
         return items;
     }
 
     private void setSpinnerWithData(ArrayList<String> towns, Spinner spinner) {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item,towns);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        //spinner.setAdapter(dataAdapter);
+
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this.getActivity(), android.R.layout.simple_list_item_1, towns, "Select town");
+        spinner.setAdapter(spinnerAdapter);
+        //spinner.setSelection(3);
 
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");

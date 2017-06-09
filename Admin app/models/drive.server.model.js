@@ -16,6 +16,10 @@ const Drive = sequelize.define('Drive', {
         type: Sequelize.DATE,
         allowNull: false
     },
+	Price: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     Airplane_ID: {
         type: Sequelize.INTEGER,
         allowNull: false,
