@@ -6,6 +6,7 @@ User = user.getUser(),
 Sequelize = require('sequelize');
 
 module.exports.postLoginData = postLoginData;
+module.exports.getFlights = getFlights;
 
 
 function postLoginData(req,res,next){
@@ -20,6 +21,17 @@ function postLoginData(req,res,next){
 		  }).catch(error => {
 		  	res.status(400).send({message:"User not found"});
 	  })
+}
+
+function getFlights(req,res,next){
+	var userId = req.params.userId;
+	sequelize.model("Ticket").findAll({where: {User_ID: userId}})
+		.then(data=>{
+			//this returns tickets
+			res.status(200).send(data);
+		}).catch(error=>{
+			res.status(400).send({message:error});
+		})
 }
 
 
