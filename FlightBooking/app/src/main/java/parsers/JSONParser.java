@@ -49,7 +49,25 @@ public class JSONParser {
     public static ArrayList<String> getErrorsFromUserResponse(JSONObject object)
     {
         ArrayList<String> errors = new ArrayList<String>();
+        if(object.has("message")) {
+            try {
+                errors.add(object.getString("message"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         return errors;
+    }
+
+    public static String getUsername(JSONObject object)
+    {
+        String username = null;
+        try {
+            username = object.getString("Username");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return username;
     }
 
 }

@@ -1,4 +1,4 @@
-package rs.flightbooking;
+package tools;
 
 import java.util.Calendar;
 import java.util.Date;
