@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 import parsers.JSONParser;
 import rs.flightbooking.R;
-import tools.SendToNodeServerTool;
+import tools.IServerCaller;
+import tools.SendToServerTool;
 import tools.ToastTool;
 import parsers.RequestParamParser;
 import tools.response.NodeResponse;
@@ -19,11 +20,11 @@ import tools.response.NodeResponse;
  * Created by n.starcev on 6/8/2017.
  */
 
-public class RegistrationSubmitButtonClickListener implements View.OnClickListener {
+public class RegistrationSubmitButtonClickListener implements View.OnClickListener, IServerCaller {
 
     private RegistrationActivity _registrationActivity;
     private ToastTool _toastTool;
-    private SendToNodeServerTool _nodeServer;
+    private SendToServerTool _nodeServer;
 
     private String _username;
     private String _firstname;
@@ -36,7 +37,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToNodeServerTool("User");
+        _nodeServer = new SendToServerTool(this);
     }
 
     @Override
@@ -57,11 +58,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         boolean isValid = doValidationAndCheckIsValid();
         if(isValid) {
             RequestParams params = RequestParamParser.makeRequestParamsUser(_username,_firstname,_lastname,_password,"1");
-            NodeResponse response = _nodeServer.post(params);
-            boolean result = processResponse(response);
-            if(result == true) {
-                _registrationActivity.startActivity((new Intent(_registrationActivity, SingupActivity.class)));
-            }
+            _nodeServer.post("User",params);
         }
     }
 
@@ -89,6 +86,15 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void OnServerResponse(NodeResponse response)
+    {
+        boolean result = processResponse(response);
+        if(result == true) {
+            _registrationActivity.startActivity((new Intent(_registrationActivity, SingupActivity.class)));
+        }
     }
 
     private boolean processResponse(NodeResponse response)

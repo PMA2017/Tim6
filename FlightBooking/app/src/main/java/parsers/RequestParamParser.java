@@ -19,4 +19,12 @@ public class RequestParamParser {
         return rp;
     }
 
+    public static RequestParams makeRequestParamsUserLogin(String username, String password)
+    {
+        RequestParams rp = new RequestParams();
+        rp.add("Username",username);
+        rp.add("Password",password);
+        return rp;
+    }
+
 }
