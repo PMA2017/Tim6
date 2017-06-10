@@ -1,11 +1,13 @@
 package rs.authentification;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 
+import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 import tools.SendToNodeServerTool;
 import tools.ToastTool;
@@ -34,6 +36,9 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener  {
 
         _username = usernameField.getText().toString();
         _password = passwordField.getText().toString();
+
+        _singupActivity.startActivity((new Intent(_singupActivity, MainActivity.class)));
+
 
     }
 
