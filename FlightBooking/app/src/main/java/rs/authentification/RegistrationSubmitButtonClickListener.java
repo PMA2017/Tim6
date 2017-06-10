@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import parsers.JSONParser;
 import rs.flightbooking.R;
 import tools.IServerCaller;
-import tools.SendToServerTool;
+import tools.SendToServer;
 import tools.ToastTool;
 import parsers.RequestParamParser;
 import tools.response.NodeResponse;
@@ -24,7 +24,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
 
     private RegistrationActivity _registrationActivity;
     private ToastTool _toastTool;
-    private SendToServerTool _nodeServer;
+    private SendToServer _nodeServer;
 
     private String _username;
     private String _firstname;
@@ -37,7 +37,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToServerTool(this);
+        _nodeServer = new SendToServer(this);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         if(response.statusCode == 200) {
             return true;
         }
-        ArrayList<String> errors = JSONParser.getErrorsFromResponse(response.response);
+        ArrayList<String> errors = JSONParser.getErrorsFromResponse(response.responseObject);
         _toastTool.showList(errors);
         return false;
     }

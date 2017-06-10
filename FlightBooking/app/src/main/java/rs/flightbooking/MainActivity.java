@@ -31,6 +31,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import rs.reservation.Reservations;
+import tools.Session;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -100,19 +101,23 @@ public class MainActivity extends ActionBarActivity {
         };
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        testRest();
+        //testRest();
+
+
+        //Session session = new Session(this.getApplicationContext());
+        //String username = session.getUsername();
 
 
     }
 
-    private void testRest(){
+    /*private void testRest(){
         RequestParams rp = new RequestParams();
         // rp.add("username", "aaa"); rp.add("password", "aaa@123");
 
         HttpUtils.get("api/get/Country", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
+                // If the responseObject is JSONObject instead of expected JSONArray
                 testResponse = response.toString();
                 displayResult();
 
@@ -125,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse){
-                //if the response is JSONArray
+                //if the responseObject is JSONArray
                 testResponse = arrayResponse.toString();
                 displayResult();
             }
@@ -146,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void displayResult(){
         Toast.makeText(this,testResponse,Toast.LENGTH_LONG).show();
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

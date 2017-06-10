@@ -1,5 +1,7 @@
 package rs.authentification;
 
+import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.view.View;
 import android.widget.EditText;
 
@@ -7,19 +9,21 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
+import parsers.JSONParser;
 import parsers.RequestParamParser;
+import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 import tools.IServerCaller;
-import tools.SendToServerTool;
+import tools.SendToServer;
 import tools.ToastTool;
 import tools.response.NodeResponse;
-
+import tools.Session;
 
 public class SingupSubmitButtonClickListener implements View.OnClickListener, IServerCaller {
 
     SingupActivity _singupActivity;
     private ToastTool _toastTool;
-    private SendToServerTool _nodeServer;
+    private SendToServer _nodeServer;
 
     private String _username;
     private String _password;
@@ -28,7 +32,7 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener, IS
     {
         _singupActivity = singupActivity;
         _toastTool = new ToastTool(_singupActivity);
-        _nodeServer = new SendToServerTool(this);
+        _nodeServer = new SendToServer(this);
     }
 
     @Override
@@ -51,6 +55,14 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener, IS
     @Override
     public void OnServerResponse(NodeResponse response)
     {
-        _toastTool.showList(new ArrayList<String>());
+        ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
+        if(response.statusCode == 200) {
+            String username = JSONParser.getUsername(response.responseObject);
+            Session session = new Session(_singupActivity.getApplicationContext());
+            session.setUsername(username);
+            _singupActivity.startActivity((new Intent(_singupActivity, MainActivity.class)));
+        } else {
+            _toastTool.showList(errors);
+        }
     }
 }

@@ -2,6 +2,7 @@ package tools.response;
 
 import cz.msebera.android.httpclient.Header;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -11,5 +12,6 @@ import org.json.JSONObject;
 public class NodeResponse {
     public int statusCode;
     public Header[] headers;
-    public JSONObject response;
+    public JSONObject responseObject;
+    public JSONArray responseArray;
 }

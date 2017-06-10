@@ -27,7 +27,7 @@ import java.util.Calendar;
 import cz.msebera.android.httpclient.Header;
 import parsers.JSONParser;
 
-import rs.flightbooking.HttpUtils;
+import tools.HttpUtils;
 import rs.flightbooking.R;
 
 public class Reservations extends Fragment {

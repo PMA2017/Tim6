@@ -15,7 +15,7 @@ import rs.authentification.SingupActivity;
  */
 
 public class SplashScreenActivity extends Activity {
-    private static int SPLASH_TIME_OUT = 2000; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
+    private static int SPLASH_TIME_OUT = 100; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
