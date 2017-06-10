@@ -1,21 +1,25 @@
 package rs.authentification;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.loopj.android.http.RequestParams;
+
 import java.util.ArrayList;
 
+import parsers.RequestParamParser;
 import rs.flightbooking.R;
-import tools.SendToNodeServerTool;
+import tools.IServerCaller;
+import tools.SendToServerTool;
 import tools.ToastTool;
+import tools.response.NodeResponse;
 
 
-public class SingupSubmitButtonClickListener implements View.OnClickListener  {
+public class SingupSubmitButtonClickListener implements View.OnClickListener, IServerCaller {
 
     SingupActivity _singupActivity;
     private ToastTool _toastTool;
-    private SendToNodeServerTool _nodeServer;
+    private SendToServerTool _nodeServer;
 
     private String _username;
     private String _password;
@@ -24,7 +28,7 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener  {
     {
         _singupActivity = singupActivity;
         _toastTool = new ToastTool(_singupActivity);
-        _nodeServer = new SendToNodeServerTool("User");
+        _nodeServer = new SendToServerTool(this);
     }
 
     @Override
@@ -35,12 +39,18 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener  {
         _username = usernameField.getText().toString();
         _password = passwordField.getText().toString();
 
+        RequestParams params = RequestParamParser.makeRequestParamsUserLogin(_username,_password);
+        _nodeServer.checkIsLoginCorrect(params);
     }
 
     private boolean doValidationAndCheckIsValid()
     {
-        _toastTool.showList(new ArrayList<String>());
         return true;
     }
 
+    @Override
+    public void OnServerResponse(NodeResponse response)
+    {
+        _toastTool.showList(new ArrayList<String>());
+    }
 }

@@ -33,6 +33,7 @@ public class JSONParser {
     {
         ArrayList<String> errors = new ArrayList<String>();
         try {
+            object = object.getJSONObject("message");
             JSONArray array = object.getJSONArray("errors");
             for (int i = 0; i < array.length(); i++) {
                 JSONObject singleError = array.getJSONObject(i);
@@ -42,6 +43,12 @@ public class JSONParser {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return errors;
+    }
+
+    public static ArrayList<String> getErrorsFromUserResponse(JSONObject object)
+    {
+        ArrayList<String> errors = new ArrayList<String>();
         return errors;
     }
 
