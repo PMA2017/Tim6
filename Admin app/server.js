@@ -131,4 +131,3 @@ require('./controllers/user.server.controller');
 app.listen(3000, function() {
    logger.info("Express http server listening on port " + "3000");
 });
-
