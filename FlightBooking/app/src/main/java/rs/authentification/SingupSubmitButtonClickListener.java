@@ -1,10 +1,6 @@
 package rs.authentification;
 
-<<<<<<< HEAD
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-=======
->>>>>>> b72007b2dca637271b8ad26ff7d8b8e0a5ea2456
+
 import android.view.View;
 import android.widget.EditText;
 
@@ -12,11 +8,9 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-import rs.flightbooking.MainActivity;
-=======
+
 import parsers.RequestParamParser;
->>>>>>> b72007b2dca637271b8ad26ff7d8b8e0a5ea2456
+
 import rs.flightbooking.R;
 import tools.IServerCaller;
 import tools.SendToServerTool;
@@ -48,14 +42,10 @@ public class SingupSubmitButtonClickListener implements View.OnClickListener, IS
         _username = usernameField.getText().toString();
         _password = passwordField.getText().toString();
 
-<<<<<<< HEAD
-        _singupActivity.startActivity((new Intent(_singupActivity, MainActivity.class)));
 
-
-=======
         RequestParams params = RequestParamParser.makeRequestParamsUserLogin(_username,_password);
         _nodeServer.checkIsLoginCorrect(params);
->>>>>>> b72007b2dca637271b8ad26ff7d8b8e0a5ea2456
+
     }
 
     private boolean doValidationAndCheckIsValid()
