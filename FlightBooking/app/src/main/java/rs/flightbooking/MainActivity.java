@@ -1,9 +1,12 @@
 package rs.flightbooking;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.SupportMapFragment;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -166,6 +170,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void replaceFragment(int pos){
         Fragment fragment = null;
+        android.support.v4.app.Fragment fragment1 = null;
         switch(pos) {
             case 0:
                 fragment=new Reservations();
@@ -177,8 +182,9 @@ public class MainActivity extends ActionBarActivity {
                 fragment=new Informations();
                 break;
             case 3:
-                //fragment = new Maps();
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                fragment1 = new MapFragment();
+
+                //startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             default:
                 break;
@@ -190,6 +196,16 @@ public class MainActivity extends ActionBarActivity {
             t.replace(R.id.main_content,fragment);
             t.addToBackStack(null);
             t.commit();
+        }
+
+        if(null!=fragment1){
+            android.support.v4.app.FragmentManager fm= getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction t=fm.beginTransaction();
+            t.replace(R.id.main_content,fragment1);
+            t.addToBackStack(null);
+            t.commit();
+
+
         }
 
     }
