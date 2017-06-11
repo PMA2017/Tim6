@@ -15,14 +15,14 @@ import rs.flightbooking.R;
 import tools.IServerCaller;
 import tools.SendToServer;
 import tools.ToastTool;
-import tools.response.NodeResponse;
+import tools.response.ServerResponse;
 import tools.Session;
 
 public class SignupSubmitButtonClickListener implements View.OnClickListener, IServerCaller {
 
     SignupActivity _signupActivity;
     private ToastTool _toastTool;
-    private SendToServer _nodeServer;
+    private SendToServer _server;
 
     private String _username;
     private String _password;
@@ -31,7 +31,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
     {
         _signupActivity = signupActivity;
         _toastTool = new ToastTool(_signupActivity);
-        _nodeServer = new SendToServer(this);
+        _server = new SendToServer(this);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
         _password = passwordField.getText().toString();
 
         RequestParams params = RequestParamParser.makeRequestParamsUserLogin(_username,_password);
-        _nodeServer.checkIsLoginCorrect(params);
+        _server.checkIsLoginCorrect(params);
     }
 
     private boolean doValidationAndCheckIsValid()
@@ -52,7 +52,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
     }
 
     @Override
-    public void OnServerResponse(NodeResponse response)
+    public void OnServerResponse(ServerResponse response)
     {
         ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
         if(response.statusCode == 200) {

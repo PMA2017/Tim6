@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class JSONParser {
 
-    public static String[] GetAllTowns(JSONArray array)
+    public static ArrayList<String> getAllTowns(JSONArray array)
     {
-        String towns[] = new String[array.length()];
+        ArrayList<String> towns = new ArrayList<String>();
         for(int i = 0; i < array.length(); i++) {
             Town town = new Town();
             try {
@@ -24,7 +24,7 @@ public class JSONParser {
             } catch(JSONException e) {
                 e.printStackTrace();
             }
-            towns[i] = town.name;
+            towns.add(town.name);
         }
         return towns;
     }
