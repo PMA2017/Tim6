@@ -26,7 +26,7 @@ const Airplane = sequelize.define('Airplane', {
         allowNull: false,
         references: {
             model: Airline,
-            key: 'id',
+            key: 'id'
         }
     }
 }, {

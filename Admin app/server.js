@@ -124,6 +124,8 @@ require('./models/flight.server.model');
 require('./models/drive.server.model');
 require('./models/ticket.server.model');
 require('./models/drive_ticket_connection.server.model');
+require('./models/comment.server.model');
+require('./models/rating.server.model');
 require('./models/context.server.model');
 require('./controllers/user.server.controller');
 
