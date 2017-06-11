@@ -93,7 +93,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         boolean result = processResponse(response);
         if(result == true) {
-            _registrationActivity.startActivity((new Intent(_registrationActivity, SingupActivity.class)));
+            _registrationActivity.startActivity((new Intent(_registrationActivity, SignupActivity.class)));
         }
     }
 

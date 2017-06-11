@@ -16,7 +16,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         setSubmitListener();
-        setSingupListener();
+        setSignListener();
     }
 
     private void setSubmitListener()
@@ -25,13 +25,13 @@ public class RegistrationActivity extends AppCompatActivity {
         submit.setOnClickListener(new RegistrationSubmitButtonClickListener(this));
     }
 
-    private void setSingupListener()
+    private void setSignListener()
     {
-        TextView singup = (TextView) findViewById(R.id.singup);
-        singup.setOnClickListener(new View.OnClickListener() {
+        TextView signup = (TextView) findViewById(R.id.signup);
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationActivity.this, SingupActivity.class));
+                startActivity(new Intent(RegistrationActivity.this, SignupActivity.class));
             }
         });
     }

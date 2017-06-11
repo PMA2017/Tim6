@@ -38,6 +38,7 @@ public class SendToServer {
         retVal.statusCode = statusCode;
         retVal.headers = headers;
         retVal.responseObject = response;
+        retVal.responseArray = array;
         return retVal;
     }
 

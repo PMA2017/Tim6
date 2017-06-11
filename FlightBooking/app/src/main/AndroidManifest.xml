@@ -31,7 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="rs.authentification.SingupActivity"
+            android:name="rs.authentification.SignupActivity"
             android:label="FlightBooking" />
         <activity
                     android:name=".MainActivity"
