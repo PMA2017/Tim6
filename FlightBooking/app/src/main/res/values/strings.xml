@@ -20,7 +20,6 @@
         completions."
     </string>
 
-<<<<<<< HEAD
 
     <string name="add_flight">Add Flight</string>
     <string name="update_flight">Update Flight</string>
@@ -33,7 +32,6 @@
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
 
-=======
     <string name="address">Address</string>
     <string name="city">City</string>
     <string name="phone_number">Phone number</string>
