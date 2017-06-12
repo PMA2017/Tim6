@@ -1,6 +1,8 @@
 package parsers;
 
 import model.Town;
+import rs.contact.Airline;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -13,9 +15,9 @@ import java.util.ArrayList;
 
 public class JSONParser {
 
-    public static String[] GetAllTowns(JSONArray array)
+    public static ArrayList<String> getAllTowns(JSONArray array)
     {
-        String towns[] = new String[array.length()];
+        ArrayList<String> towns = new ArrayList<String>();
         for(int i = 0; i < array.length(); i++) {
             Town town = new Town();
             try {
@@ -24,9 +26,22 @@ public class JSONParser {
             } catch(JSONException e) {
                 e.printStackTrace();
             }
-            towns[i] = town.name;
+            towns.add(town.name);
         }
         return towns;
+    }
+
+    public static Airline getAirline(JSONObject object)
+    {
+
+        try {
+            Airline airline = new Airline(object.getString("Name"),object.getString("Address"), object.getString("PhoneNumber"), object.getString("Town"));
+            return airline;
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static ArrayList<String> getErrorsFromResponse(JSONObject object)

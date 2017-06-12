@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
-import tools.response.NodeResponse;
+import tools.response.ServerResponse;
 
 /**
  * Created by n.starcev on 6/8/2017.
@@ -22,6 +22,17 @@ public class SendToServer {
         _calller = caller;
     }
 
+    public void get(String tableName)
+    {
+        HttpUtils.get("/api/get/" + tableName, null, jsonHttpHandler);
+    }
+
+
+    public void getAirline(){
+        HttpUtils.get("api/getAirline", null, jsonHttpHandler);
+    }
+
+
     public void post(String tableName, RequestParams params)
     {
         HttpUtils.post("api/postToTable/" + tableName, params, jsonHttpHandler);
@@ -32,31 +43,32 @@ public class SendToServer {
         HttpUtils.post("/api/User/postLoginData", params, jsonHttpHandler);
     }
 
-    private NodeResponse makeNodeResponse(int statusCode, Header[] headers, JSONObject response, JSONArray array)
+    private ServerResponse makeServerResponse(int statusCode, Header[] headers, JSONObject response, JSONArray array)
     {
-        NodeResponse retVal = new NodeResponse();
+        ServerResponse retVal = new ServerResponse();
         retVal.statusCode = statusCode;
         retVal.headers = headers;
         retVal.responseObject = response;
+        retVal.responseArray = array;
         return retVal;
     }
 
     private JsonHttpResponseHandler jsonHttpHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-            NodeResponse madeResponse = makeNodeResponse(statusCode, headers, response, null);
+            ServerResponse madeResponse = makeServerResponse(statusCode, headers, response, null);
             _calller.OnServerResponse(madeResponse);
         }
 
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse){
-            NodeResponse madeResponse = makeNodeResponse(statusCode, headers, null, arrayResponse);
+            ServerResponse madeResponse = makeServerResponse(statusCode, headers, null, arrayResponse);
             _calller.OnServerResponse(madeResponse);
         }
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject response) {
-            NodeResponse madeResponse = makeNodeResponse(statusCode, headers, response, null);
+            ServerResponse madeResponse = makeServerResponse(statusCode, headers, response, null);
             _calller.OnServerResponse(madeResponse);
         }
     };

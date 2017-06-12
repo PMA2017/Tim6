@@ -114,6 +114,7 @@ global.sequelize = sequelize;
 
 require('./routes/generic.server.routes')(app);
 require('./routes/user.server.routes')(app);
+require('./routes/airline.server.routes')(app);
 require('./models/user.server.model');
 require('./models/country.server.model');
 require('./models/town.server.model');
@@ -124,6 +125,8 @@ require('./models/flight.server.model');
 require('./models/drive.server.model');
 require('./models/ticket.server.model');
 require('./models/drive_ticket_connection.server.model');
+require('./models/comment.server.model');
+require('./models/rating.server.model');
 require('./models/context.server.model');
 require('./controllers/user.server.controller');
 

@@ -23,7 +23,7 @@ android:background="@drawable/registration_background">
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:id="@+id/singup"
+            android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"

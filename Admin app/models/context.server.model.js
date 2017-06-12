@@ -32,6 +32,9 @@ var Ticket = ticket.getTicket();
 var drive_ticket_connection = require(appRoot+'/models/drive_ticket_connection.server.model');
 var Drive_Ticket_Connection = drive_ticket_connection.getDrive_Ticket_Connection();
 
+var Comment = sequelize.model("Comment");
+var Rating = sequelize.model("Rating");
+
 
 
 User.sync({force: false}).then(() => {
@@ -74,3 +77,10 @@ Drive_Ticket_Connection.sync({force: false}).then(() => {
 
 });
 
+Comment.sync({force: false}).then(()=>{
+
+})
+
+Rating.sync({force: false}).then(()=>{
+	
+})

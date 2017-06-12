@@ -14,7 +14,7 @@ import tools.IServerCaller;
 import tools.SendToServer;
 import tools.ToastTool;
 import parsers.RequestParamParser;
-import tools.response.NodeResponse;
+import tools.response.ServerResponse;
 
 /**
  * Created by n.starcev on 6/8/2017.
@@ -24,7 +24,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
 
     private RegistrationActivity _registrationActivity;
     private ToastTool _toastTool;
-    private SendToServer _nodeServer;
+    private SendToServer _server;
 
     private String _username;
     private String _firstname;
@@ -37,7 +37,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToServer(this);
+        _server = new SendToServer(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         boolean isValid = doValidationAndCheckIsValid();
         if(isValid) {
             RequestParams params = RequestParamParser.makeRequestParamsUser(_username,_firstname,_lastname,_password,"1");
-            _nodeServer.post("User",params);
+            _server.post("User",params);
         }
     }
 
@@ -89,15 +89,15 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     }
 
     @Override
-    public void OnServerResponse(NodeResponse response)
+    public void OnServerResponse(ServerResponse response)
     {
         boolean result = processResponse(response);
         if(result == true) {
-            _registrationActivity.startActivity((new Intent(_registrationActivity, SingupActivity.class)));
+            _registrationActivity.startActivity((new Intent(_registrationActivity, SignupActivity.class)));
         }
     }
 
-    private boolean processResponse(NodeResponse response)
+    private boolean processResponse(ServerResponse response)
     {
         if(response.statusCode == 200) {
             return true;

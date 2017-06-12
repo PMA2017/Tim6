@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 
 import rs.authentification.RegistrationActivity;
-import rs.authentification.SingupActivity;
+import rs.authentification.SignupActivity;
 
 
 /**
@@ -69,7 +69,7 @@ public class SplashScreenActivity extends Activity {
 
     private void startMainActivity()
     {
-        startActivity(new Intent(SplashScreenActivity.this, SingupActivity.class));
+        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
         finish(); // da nebi mogao da ode back na splash
     }
 }

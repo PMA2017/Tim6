@@ -31,7 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="rs.authentification.SingupActivity"
+            android:name="rs.authentification.SignupActivity"
             android:label="FlightBooking" />
         <activity
                     android:name=".MainActivity"
@@ -60,7 +60,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="rs.maps.MapsActivity"
             android:label="@string/title_activity_maps" />
 
         <receiver android:name=".NotificationListener">
