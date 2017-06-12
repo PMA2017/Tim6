@@ -16,10 +16,14 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+import rs.SQLite.FlightAddFragment;
+import rs.SQLite.FlightListFragment;
+=======
 import rs.contact.ContactFragment;
 import rs.maps.MapFragment;
+>>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
 import rs.reservation.Reservations;
-import tools.Session;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -47,6 +51,8 @@ public class MainActivity extends ActionBarActivity {
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Contact"));
         listSliding.add(new ItemSlideMenu(R.drawable.map,"Maps"));
+        listSliding.add(new ItemSlideMenu(R.drawable.information,"Add"));
+
 
         adapter= new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
@@ -167,20 +173,28 @@ public class MainActivity extends ActionBarActivity {
         android.support.v4.app.Fragment fragmentMap = null;
         switch(pos) {
             case 0:
-                fragment=new Reservations();
+                fragment1=new Reservations();
                 break;
             case 1:
-                fragment=new Flights();
+                fragment1 = new FlightListFragment();
+           //     fragment=new Flights();
                 break;
             case 2:
-                fragment=new Informations();
+                fragment1=new Informations();
                 break;
             case 3:
+<<<<<<< HEAD
+                fragment1 = new MapFragment();
+                break;
+            case 4:
+                fragment1 = new FlightAddFragment();
+=======
                 fragment = new ContactFragment();
                 break;
             case 4:
                 fragmentMap = new MapFragment();
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+>>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
                 break;
 
 
@@ -209,24 +223,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
-//    public void letovi(View view){
-//
-//        startActivity(new Intent(this,ActivityOne.class));
-//
-//    }
-//
-//    public void avio_kompanije(View view){
-//
-//        startActivity(new Intent(this,ActivityTwo.class));
-//
-//    }
-//
-//    public void registracija(View view){
-//
-//        startActivity(new Intent(this,ActivityThree.class));
-//
-//    }
 
 
 }
