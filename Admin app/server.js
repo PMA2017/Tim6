@@ -114,6 +114,7 @@ global.sequelize = sequelize;
 
 require('./routes/generic.server.routes')(app);
 require('./routes/user.server.routes')(app);
+require('./routes/airline.server.routes')(app);
 require('./models/user.server.model');
 require('./models/country.server.model');
 require('./models/town.server.model');

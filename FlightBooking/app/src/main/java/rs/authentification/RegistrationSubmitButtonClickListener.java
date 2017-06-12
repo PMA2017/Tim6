@@ -14,7 +14,7 @@ import tools.IServerCaller;
 import tools.SendToServer;
 import tools.ToastTool;
 import parsers.RequestParamParser;
-import tools.response.NodeResponse;
+import tools.response.ServerResponse;
 
 /**
  * Created by n.starcev on 6/8/2017.
@@ -89,7 +89,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     }
 
     @Override
-    public void OnServerResponse(NodeResponse response)
+    public void OnServerResponse(ServerResponse response)
     {
         boolean result = processResponse(response);
         if(result == true) {
@@ -97,7 +97,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         }
     }
 
-    private boolean processResponse(NodeResponse response)
+    private boolean processResponse(ServerResponse response)
     {
         if(response.statusCode == 200) {
             return true;

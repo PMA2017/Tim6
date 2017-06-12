@@ -15,7 +15,7 @@ import rs.flightbooking.R;
 import tools.IServerCaller;
 import tools.SendToServer;
 import tools.ToastTool;
-import tools.response.NodeResponse;
+import tools.response.ServerResponse;
 import tools.Session;
 
 public class SignupSubmitButtonClickListener implements View.OnClickListener, IServerCaller {
@@ -52,7 +52,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
     }
 
     @Override
-    public void OnServerResponse(NodeResponse response)
+    public void OnServerResponse(ServerResponse response)
     {
         ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
         if(response.statusCode == 200) {

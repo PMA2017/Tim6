@@ -1,12 +1,8 @@
 package rs.flightbooking;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,20 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.google.android.gms.maps.SupportMapFragment;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
+import rs.contact.ContactFragment;
+import rs.maps.MapFragment;
 import rs.reservation.Reservations;
 import tools.Session;
 
@@ -57,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
         listSliding.add(new ItemSlideMenu(R.drawable.reservation,"Reservations"));
         listSliding.add(new ItemSlideMenu(R.drawable.flights,"Flights"));
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
+        listSliding.add(new ItemSlideMenu(R.drawable.information,"Contact"));
         listSliding.add(new ItemSlideMenu(R.drawable.map,"Maps"));
 
         adapter= new SlidingMenuAdapter(this,listSliding);
@@ -175,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void replaceFragment(int pos){
         Fragment fragment = null;
-        android.support.v4.app.Fragment fragment1 = null;
+        android.support.v4.app.Fragment fragmentMap = null;
         switch(pos) {
             case 0:
                 fragment=new Reservations();
@@ -187,10 +176,14 @@ public class MainActivity extends ActionBarActivity {
                 fragment=new Informations();
                 break;
             case 3:
-                fragment1 = new MapFragment();
-
+                fragment = new ContactFragment();
+                break;
+            case 4:
+                fragmentMap = new MapFragment();
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
+
+
             default:
                 break;
         }
@@ -203,10 +196,10 @@ public class MainActivity extends ActionBarActivity {
             t.commit();
         }
 
-        if(null!=fragment1){
+        if(null!=fragmentMap){
             android.support.v4.app.FragmentManager fm= getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction t=fm.beginTransaction();
-            t.replace(R.id.main_content,fragment1);
+            t.replace(R.id.main_content,fragmentMap);
             t.addToBackStack(null);
             t.commit();
 

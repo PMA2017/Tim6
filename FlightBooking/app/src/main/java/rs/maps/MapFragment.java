@@ -1,4 +1,4 @@
-package rs.flightbooking;
+package rs.maps;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -25,6 +25,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.Arrays;
 import java.util.List;
+
+import rs.flightbooking.R;
 
 
 /**

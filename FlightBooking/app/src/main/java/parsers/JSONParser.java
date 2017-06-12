@@ -1,6 +1,8 @@
 package parsers;
 
 import model.Town;
+import rs.contact.Airline;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -27,6 +29,19 @@ public class JSONParser {
             towns[i] = town.name;
         }
         return towns;
+    }
+
+    public static Airline getAirline(JSONObject object)
+    {
+
+        try {
+            Airline airline = new Airline(object.getString("Name"),object.getString("Address"), object.getString("PhoneNumber"), object.getString("Town"));
+            return airline;
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static ArrayList<String> getErrorsFromResponse(JSONObject object)
