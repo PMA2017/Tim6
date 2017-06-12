@@ -1,11 +1,7 @@
 package rs.authentification;
 
-<<<<<<< HEAD
-
-=======
 import android.content.Intent;
 import android.content.pm.PackageInstaller;
->>>>>>> 00f2df8bcac1fac33cdf6a38cae210d32944d105
 import android.view.View;
 import android.widget.EditText;
 
@@ -13,15 +9,11 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-
-import parsers.RequestParamParser;
-
-=======
 import parsers.JSONParser;
 import parsers.RequestParamParser;
+
+
 import rs.flightbooking.MainActivity;
->>>>>>> 00f2df8bcac1fac33cdf6a38cae210d32944d105
 import rs.flightbooking.R;
 import tools.IServerCaller;
 import tools.SendToServer;

@@ -20,4 +20,16 @@
         completions."
     </string>
 
+
+    <string name="add_flight">Add Flight</string>
+    <string name="update_flight">Update Flight</string>
+    <string name="town_from">Town from</string>
+    <string name="town_to">Town to</string>
+    <string name="date_from">Date from</string>
+    <string name="date_to">Date to</string>
+    <string name="update">Update</string>
+    <string name="add">Add</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

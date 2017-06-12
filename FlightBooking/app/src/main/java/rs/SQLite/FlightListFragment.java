@@ -1,0 +1,158 @@
+package rs.SQLite;
+
+/**
+ * Created by Rale on 6/11/2017.
+ */
+
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+
+import rs.SQLite.CustomFlightDialogFragment;
+import rs.SQLite.Flight;
+import rs.SQLite.FlightDAO;
+import rs.SQLite.FlightListAdapter;
+import rs.flightbooking.R;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
+
+/**/
+
+public class FlightListFragment extends Fragment implements OnItemClickListener,
+        OnItemLongClickListener {
+
+    public static final String ARG_ITEM_ID = "flight_list";
+
+    Activity activity;
+    ListView flightListView;
+    ArrayList<Flight> flights;
+
+    FlightListAdapter flightListAdapter;
+    FlightDAO flightDAO;
+
+    private GetFlightTask task;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        activity = getActivity();
+        flightDAO = new FlightDAO(activity);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_flight_list, container,
+                false);
+        findViewsById(view);
+
+        task = new GetFlightTask(activity);
+
+        task.execute((Void) null);
+
+        flightListView.setOnItemClickListener(this);
+
+        flightListView.setOnItemLongClickListener(this);
+
+        return view;
+    }
+
+    private void findViewsById(View view) {
+
+        flightListView = (ListView) view.findViewById(R.id.list_flight);
+    }
+
+  /*  @Override
+    public void onResume() {
+        getActivity().setTitle(R.string.app_name);
+        getActivity().getActionBar().setTitle(R.string.app_name);
+        super.onResume();
+    }*/
+
+    @Override
+    public void onItemClick(AdapterView<?> list, View arg1, int position,
+                            long arg3) {
+        Flight flight = (Flight) list.getItemAtPosition(position);
+ 
+        if (flight != null) {
+  
+            Bundle arguments = new Bundle();
+            arguments.putParcelable("selectedFlight", flight);
+            CustomFlightDialogFragment customEmpDialogFragment = new CustomFlightDialogFragment();
+            customEmpDialogFragment.setArguments(arguments);
+
+            customEmpDialogFragment.show(getFragmentManager(),
+                    CustomFlightDialogFragment.ARG_ITEM_ID);
+
+        }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                   int position, long arg3) {
+        Flight flight = (Flight) parent.getItemAtPosition(position);
+        // Use AsyncTask to delete from database
+        flightDAO.delete(flight);
+        flightListAdapter.remove(flight);
+        return true;
+    }
+
+    public class GetFlightTask extends AsyncTask<Void, Void, ArrayList<Flight>> {
+
+        private final WeakReference<Activity> activityWeakRef;
+
+        public GetFlightTask(Activity context) {
+            this.activityWeakRef = new WeakReference<Activity>(context);
+        }
+
+        @Override
+        protected ArrayList<Flight> doInBackground(Void... arg0) {
+
+            ArrayList<Flight> flightList = flightDAO.getFlights();
+            return flightList;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Flight> flightList) {
+            if (activityWeakRef.get() != null
+                    && !activityWeakRef.get().isFinishing()) {
+  
+                flights = flightList;
+                if (flightList != null) {
+                    if (flightList.size() != 0) {
+                        flightListAdapter = new FlightListAdapter(activity,
+                                flightList);
+                        flightListView.setAdapter(flightListAdapter);
+                    } else {
+                        Toast.makeText(activity, "No Flight Records",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+        }
+    }
+
+    /*
+     * This method is invoked from MainActivity onFinishDialog() method. It is
+     * called from CustomEmpDialogFragment when an flight record is updated.
+     * This is used for communicating between fragments.
+     */
+    public void updateView() {
+        task = new GetFlightTask(activity);
+        task.execute((Void) null);
+    }
+}
