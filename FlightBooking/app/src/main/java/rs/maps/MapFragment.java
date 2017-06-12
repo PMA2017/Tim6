@@ -18,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Dash;
 import com.google.android.gms.maps.model.Gap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.Polyline;
@@ -98,7 +99,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .add(new LatLng(-20.25,25.0))
                 .geodesic(true); // Closes the polyline.
 
+
+        Marker melbourne = map.addMarker(new MarkerOptions()
+                .position(new LatLng(45.35, 18.0))
+                .title("Melbourne")
+                .snippet("Population: 4,137,400"));
+        melbourne.showInfoWindow();
+
+
 // Get back the mutable Polyline
         Polyline polyline = map.addPolyline(rectOptions);
+
     }
 }

@@ -2,7 +2,7 @@ var users = require(appRoot+'/controllers/user.server.controller.js');
 
 module.exports = function(app){
 
-app.route('/api/postToTable/User/postLoginData')
+app.route('/api/User/postLoginData')
     .post(users.postLoginData);
 
 app.route('/api/User/getFlights/:userId')
