@@ -168,11 +168,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void replaceFragment(int pos){
-        Fragment fragment = null;
         android.support.v4.app.Fragment v4Fragment = null;
         switch(pos) {
             case 0:
-                fragment=new Reservations();
+                v4Fragment=new Reservations();
                 break;
             case 1:
                 v4Fragment = new FlightListFragment();
@@ -183,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
                 break;
             case 3:
 
-                fragment = new ContactFragment();
+                v4Fragment = new ContactFragment();
                 break;
             case 5:
                 v4Fragment = new FlightAddFragment();
@@ -198,14 +197,6 @@ public class MainActivity extends ActionBarActivity {
 
             default:
                 break;
-        }
-
-        if(null!=fragment){
-            FragmentManager fm= getFragmentManager();
-            FragmentTransaction t=fm.beginTransaction();
-            t.replace(R.id.main_content,fragment);
-            t.addToBackStack(null);
-            t.commit();
         }
 
         if(null!=v4Fragment){
