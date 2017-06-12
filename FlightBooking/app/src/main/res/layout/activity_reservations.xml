@@ -1,134 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/scrollView1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/registration_background">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Reservations"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/townFromLabel"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Town from"
-        android:textSize="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_alignTop="@+id/townFrom"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:id="@+id/registration_form"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/townToLabel"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Town to"
-        android:textSize="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_alignTop="@+id/townTo"
-        android:layout_alignLeft="@+id/townFromLabel"
-        android:layout_alignStart="@+id/townFromLabel" />
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp">
 
-    <Spinner
-        android:id="@+id/townTo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/townFrom"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#e0e0d1"
+                    android:checked="true"
+                    android:text="Return"
+                    android:textColor="#e0e0d1"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="15dp"/>
+            </LinearLayout>
 
-    <Spinner
-        android:id="@+id/townFrom"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:id="@+id/Output"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:background="#e8e8e7"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/dateFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:text="Date of departure"
-        android:layout_below="@+id/townToLabel"
-        android:layout_alignLeft="@+id/townToLabel"
-        android:layout_alignStart="@+id/townToLabel" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/marker" />
 
-    <Button
-        android:id="@+id/dateTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/dateFrom"
-        android:layout_alignLeft="@+id/dateFrom"
-        android:layout_alignRight="@+id/dateFrom"
-        android:layout_alignStart="@+id/dateFrom"
-        android:layout_below="@+id/dateFrom"
-        android:layout_marginTop="34dp"
-        android:text="Return datel" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#e8e8e7"
+                    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/FindButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/townTo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/townTo"
-        android:layout_below="@+id/dateTextTo"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
-        android:layout_marginTop="53dp"
-        android:onClick="findClick"
-        android:text="Find" />
+                    <AutoCompleteTextView
+                        android:id="@+id/from"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#f3f3f3"
+                        android:hint="From"
+                        android:paddingLeft="5dp"
+                        android:completionThreshold="1"
+                        android:inputType="textNoSuggestions"/>
+                </LinearLayout>
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/dateTextFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/dateTo"
-        android:layout_alignEnd="@+id/FindButton"
-        android:layout_alignLeft="@+id/townTo"
-        android:layout_alignRight="@+id/FindButton"
-        android:layout_alignStart="@+id/townTo"
-        android:layout_alignTop="@+id/dateFrom"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:textSize="20dp"
-        android:gravity="center_vertical"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="#e8e8e7"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/dateTextTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/dateTo"
-        android:layout_alignLeft="@+id/dateTextFrom"
-        android:layout_alignStart="@+id/dateTextFrom"
-        android:layout_alignTop="@+id/dateTo"
-        android:layout_alignRight="@+id/dateTextFrom"
-        android:layout_alignEnd="@+id/dateTextFrom"
-        android:textSize="20dp"
-        android:gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/marker" />
 
-</RelativeLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#e8e8e7"
+                    android:orientation="horizontal">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/to"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#f3f3f3"
+                        android:hint="To"
+                        android:paddingLeft="5dp"
+                        android:completionThreshold="1"
+                        android:inputType="textNoSuggestions"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="#e8e8e7"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/calendar" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="38dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#e8e8e7"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/dateDepart"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#e8e8e7"
+                        android:text="Depart"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/returnLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="#e8e8e7"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/calendar" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="38dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#e8e8e7"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/dateReturn"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#e8e8e7"
+                        android:text="Return" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="205dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentTop="true"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:background="#e8e8e7">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="40dp"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentRight="true"
+                        android:adjustViewBounds="false"
+                        android:cropToPadding="false"
+                        android:src="@drawable/person"
+                        android:background="#e8e8e7"/>
+
+                    <TextView
+                        android:id="@+id/personsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Persons:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/personsSpinner"
+                        android:layout_width="80dp"
+                        android:layout_height="38dp"></Spinner>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="45dp">
+
+                <Button
+                    android:id="@+id/findButton"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:background="#13b586"
+                    android:text="Find"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

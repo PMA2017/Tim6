@@ -24,7 +24,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
 
     private RegistrationActivity _registrationActivity;
     private ToastTool _toastTool;
-    private SendToServer _nodeServer;
+    private SendToServer _server;
 
     private String _username;
     private String _firstname;
@@ -37,7 +37,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     {
         _registrationActivity = registrationActivity;
         _toastTool = new ToastTool(_registrationActivity);
-        _nodeServer = new SendToServer(this);
+        _server = new SendToServer(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         boolean isValid = doValidationAndCheckIsValid();
         if(isValid) {
             RequestParams params = RequestParamParser.makeRequestParamsUser(_username,_firstname,_lastname,_password,"1");
-            _nodeServer.post("User",params);
+            _server.post("User",params);
         }
     }
 

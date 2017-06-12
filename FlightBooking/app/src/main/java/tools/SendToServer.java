@@ -27,9 +27,11 @@ public class SendToServer {
         HttpUtils.get("/api/get/" + tableName, null, jsonHttpHandler);
     }
 
+
     public void getAirline(){
         HttpUtils.get("api/getAirline", null, jsonHttpHandler);
     }
+
 
     public void post(String tableName, RequestParams params)
     {
