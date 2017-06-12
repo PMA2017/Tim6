@@ -16,14 +16,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
+
 import rs.SQLite.FlightAddFragment;
 import rs.SQLite.FlightListFragment;
-=======
 import rs.contact.ContactFragment;
 import rs.maps.MapFragment;
->>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
 import rs.reservation.Reservations;
+import tools.Session;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -169,32 +168,30 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void replaceFragment(int pos){
-        Fragment fragment = null;
-        android.support.v4.app.Fragment fragmentMap = null;
+        android.support.v4.app.Fragment v4Fragment = null;
         switch(pos) {
             case 0:
-                fragment1=new Reservations();
+                v4Fragment=new Reservations();
                 break;
             case 1:
-                fragment1 = new FlightListFragment();
+                v4Fragment = new FlightListFragment();
            //     fragment=new Flights();
                 break;
             case 2:
-                fragment1=new Informations();
+                v4Fragment=new Informations();
                 break;
             case 3:
-<<<<<<< HEAD
-                fragment1 = new MapFragment();
+
+                v4Fragment = new ContactFragment();
                 break;
-            case 4:
-                fragment1 = new FlightAddFragment();
-=======
-                fragment = new ContactFragment();
+            case 5:
+                v4Fragment = new FlightAddFragment();
                 break;
+
+
             case 4:
-                fragmentMap = new MapFragment();
+                v4Fragment = new MapFragment();
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
->>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
                 break;
 
 
@@ -202,18 +199,10 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
 
-        if(null!=fragment){
-            FragmentManager fm= getFragmentManager();
-            FragmentTransaction t=fm.beginTransaction();
-            t.replace(R.id.main_content,fragment);
-            t.addToBackStack(null);
-            t.commit();
-        }
-
-        if(null!=fragmentMap){
+        if(null!=v4Fragment){
             android.support.v4.app.FragmentManager fm= getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction t=fm.beginTransaction();
-            t.replace(R.id.main_content,fragmentMap);
+            t.replace(R.id.main_content,v4Fragment);
             t.addToBackStack(null);
             t.commit();
 

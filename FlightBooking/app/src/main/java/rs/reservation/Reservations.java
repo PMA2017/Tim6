@@ -1,13 +1,10 @@
 package rs.reservation;
 
-<<<<<<< HEAD
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v4.app.Fragment;
-=======
-import android.app.Fragment;
->>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -32,11 +32,15 @@
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab5a776c71a61e09661e40b13484e5c15b9be53a
     <string name="address">Address</string>
     <string name="city">City</string>
     <string name="phone_number">Phone number</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
->>>>>>> 79bbbb6af83f99e139a96016ce82d8313eee1a27
+
 </resources>

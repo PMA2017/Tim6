@@ -1,7 +1,5 @@
 package rs.contact;
 
-
-import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -10,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,13 +65,15 @@ public class ContactFragment extends Fragment implements IServerCaller {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.activity_contact, container, false);
         View view = binding.getRoot();
+        final TextView phoneTextView = (TextView)view.findViewById(R.id.phoneNumberTextView);
         //here data must be an instance of the class MarsDataProvider
-        view.findViewById(R.id.phoneNumberTextView).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.callButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
+
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL);
-                    dialIntent.setData(Uri.parse("tel:"+((TextView)v.findViewById(R.id.phoneNumberTextView)).getText()));
+                    dialIntent.setData(Uri.parse("tel:"+phoneTextView.getText()));
                     startActivity(dialIntent);
                 } catch (ActivityNotFoundException activityException) {
                     Log.e("Dialing a Phone Number", "Dial failed", activityException);
@@ -80,8 +81,6 @@ public class ContactFragment extends Fragment implements IServerCaller {
             }
 
         });
-        TextView textView = (TextView)view.findViewById(R.id.phoneNumberTextView);
-        textView.setPaintFlags(textView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         return view;
 
@@ -89,8 +88,14 @@ public class ContactFragment extends Fragment implements IServerCaller {
 
     @Override
     public void OnServerResponse(ServerResponse response) {
-        Airline airline = JSONParser.getAirline(response.responseObject);
-         binding.setAirline(airline);
+        if(response.statusCode==200) {
+            Airline airline = JSONParser.getAirline(response.responseObject);
+            binding.setAirline(airline);
+        }
+        else {
+            Airline airline = new Airline("Default","Default","+3811100000","Belgrade");
+            binding.setAirline(airline);
+        }
 
     }
 
