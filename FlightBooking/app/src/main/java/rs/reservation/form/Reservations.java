@@ -1,7 +1,10 @@
 package rs.reservation.form;
 
-import android.app.Fragment;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,8 +92,8 @@ public class Reservations extends Fragment implements IServerCaller {
 
     public void OnServerResponse(ServerResponse response)
     {
-        _towns = JSONParser.getAllTowns(response.responseArray);
         if(response.statusCode == 200) {
+            _towns = JSONParser.getAllTowns(response.responseArray);
             setTowns(_towns);
         }
     }

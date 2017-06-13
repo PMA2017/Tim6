@@ -4,44 +4,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="160dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="25dp"
+    android:background="#e8e8e7">
 
     <TextView
+        android:id="@+id/townFrom"
         android:layout_width="60dp"
         android:layout_height="28dp"
-        android:layout_marginLeft="16dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="25dp"
         android:text="BEL"
         android:textColor="#2f7efc"
-        android:id="@+id/textView" />
+        android:textSize="25dp" />
 
     <TextView
+        android:id="@+id/timeFrom"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="16dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="46dp"
-        android:textSize="33dp"
         android:text="17:00"
         android:textColor="#0f56c6"
-        android:id="@+id/textView2" />
+        android:textSize="33dp" />
 
     <TextView
+        android:id="@+id/type"
         android:layout_width="160dp"
         android:layout_height="28dp"
+        android:layout_alignBaseline="@+id/townTo"
+        android:layout_alignBottom="@+id/townTo"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:textSize="25dp"
         android:text="DIRECT"
         android:textColor="#9799a0"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_centerHorizontal="true" />
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="60dp"
@@ -53,7 +57,7 @@
         android:textSize="25dp"
         android:text="ROM"
         android:textColor="#2f7efc"
-        android:id="@+id/textView4" />
+        android:id="@+id/townTo" />
 
     <TextView
         android:layout_width="100dp"
@@ -65,17 +69,52 @@
         android:textSize="33dp"
         android:text="21:00"
         android:textColor="#0f56c6"
-        android:id="@+id/textView11" />
+        android:id="@+id/timeTo" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/timeTo"
+        android:layout_alignBottom="@+id/timeTo"
+        android:layout_centerHorizontal="true"
         android:text="2 hrs 5 mins"
-        android:textSize="22dp"
         android:textColor="#9799a0"
-        android:layout_alignBaseline="@+id/textView11"
-        android:layout_alignBottom="@+id/textView11"
-        android:layout_centerHorizontal="true" />
+        android:textSize="22dp" />
+
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company"
+        android:textColor="#9799a0"
+        android:textSize="17dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="95dp"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textColor="#f73337"
+        android:textSize="23dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="120dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/reservation"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="Book"
+        android:textColor="#fff"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="35dp"
+        android:layout_alignParentRight="true"
+        android:background="#13b586"
+        android:textSize="25dp" />
 
 </RelativeLayout>

@@ -6,7 +6,7 @@ import android.app.FragmentTransaction;
 import android.view.View;
 
 import rs.flightbooking.R;
-import rs.reservation.flights.ReservationFlightsActivity;
+import rs.reservation.flights.ReservationFlights;
 
 /**
  * Created by Nemanja on 6/13/2017.
@@ -23,7 +23,7 @@ public class ButtonFindClick implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        ReservationFlightsActivity fragment = new ReservationFlightsActivity();
+        ReservationFlights fragment = new ReservationFlights();
         FragmentManager fm= _activity.getFragmentManager();
         FragmentTransaction t=fm.beginTransaction();
         t.replace(R.id.main_content,fragment);

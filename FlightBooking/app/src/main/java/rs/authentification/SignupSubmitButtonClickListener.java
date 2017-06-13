@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import parsers.JSONParser;
 import parsers.RequestParamParser;
+
+
 import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 import tools.IServerCaller;
@@ -42,8 +44,10 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
         _username = usernameField.getText().toString();
         _password = passwordField.getText().toString();
 
+
         RequestParams params = RequestParamParser.makeRequestParamsUserLogin(_username,_password);
         _server.checkIsLoginCorrect(params);
+
     }
 
     private boolean doValidationAndCheckIsValid()
