@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Zakazivanje letova</string>
+    <string name="drawer_opened">Otvoreno</string>
+    <string name="drawer_closed">Zatvoreno</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="title_activity_maps">Mapa</string>
+
+    <string name="title_activity_login">Prijava</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Lozinka (opciona)</string>
+    <string name="action_sign_in">Prijava ili registracija</string>
+    <string name="action_sign_in_short">Prijava</string>
+    <string name="error_invalid_email">Ova email adresa nije validna</string>
+    <string name="error_invalid_password">Ova lozinka je prekratka</string>
+    <string name="error_incorrect_password">Ovo lozinka je neispravna</string>
+    <string name="error_field_required">Ovo polje je obavezno</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+
+    <string name="add_flight">Dodaj let</string>
+    <string name="update_flight">Azuziraj let</string>
+    <string name="town_from">Grad polaska</string>
+    <string name="town_to">Grad dolaska</string>
+    <string name="date_from">Datum polaska</string>
+    <string name="date_to">Datum povratka</string>
+    <string name="update">Azuriranje</string>
+    <string name="add">Dodavanje</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Odustanak</string>
+
+
+    <string name="address">Adresa</string>
+    <string name="city">Grad</string>
+    <string name="phone_number">Broj telefona</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="settings">Podesavanja</string>
+    <string name="apply">Primeni</string>
+    <string name="language">Jezik</string>
+    <string name="serbian">Srpski</string>
+    <string name="english">Engleski</string>
+
+</resources>
