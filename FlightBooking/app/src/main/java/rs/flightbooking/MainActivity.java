@@ -18,7 +18,7 @@ import java.util.List;
 
 import rs.contact.ContactFragment;
 import rs.maps.MapFragment;
-import rs.reservation.Reservations;
+import rs.reservation.form.Reservations;
 import tools.Session;
 
 public class MainActivity extends ActionBarActivity {

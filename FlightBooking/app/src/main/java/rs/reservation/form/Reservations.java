@@ -1,4 +1,4 @@
-package rs.reservation;
+package rs.reservation.form;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -39,6 +39,7 @@ public class Reservations extends Fragment implements IServerCaller {
         setCheckboxListener();
         setSpinner();
         setButtonsDateListeners();
+        setButtonFindClickListener();
 
         _server.get("Town");
 
@@ -78,6 +79,12 @@ public class Reservations extends Fragment implements IServerCaller {
 
         depart.setOnClickListener(new ButtonClickListenerSetDate(this.getActivity(), depart));
         ret.setOnClickListener(new ButtonClickListenerSetDate(this.getActivity(), ret));
+    }
+
+    private void setButtonFindClickListener()
+    {
+        Button findButton = (Button) _rootView.findViewById(R.id.findButton);
+        findButton.setOnClickListener(new ButtonFindClick(this.getActivity()));
     }
 
     public void OnServerResponse(ServerResponse response)
