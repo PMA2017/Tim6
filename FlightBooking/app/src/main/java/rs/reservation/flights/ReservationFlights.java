@@ -45,7 +45,7 @@ public class ReservationFlights extends Fragment {
         flight1.timeFrom = "10:35";
         flight1.timeTo = "13:00";
         flight1.type = "DIRECT";
-        flight1.duration = "11 hrs 25mins";
+        flight1.duration = "11h 25m";
         flight1.company = "Air Serbia";
         flight1.price = "830 €";
         _flights.add(flight1);
@@ -56,9 +56,33 @@ public class ReservationFlights extends Fragment {
         flight2.timeFrom = "07:45";
         flight2.timeTo = "20:15";
         flight2.type = "1 STOP";
-        flight2.duration = "22 hrs 30mins";
+        flight2.duration = "22h 30m";
+        flight2.company = "Air Serbia";
+        flight2.price = "760 €";
+        _flights.add(flight2);
+
+        flight2 = new FlightView();
+        flight2.townFrom = "BEG";
+        flight2.townTo = "LOS";
+        flight2.timeFrom = "07:45";
+        flight2.timeTo = "20:15";
+        flight2.type = "1 STOP";
+        flight2.duration = "22h 30m";
+        flight2.company = "Air Serbia";
+        flight2.price = "760 €";
+        _flights.add(flight2);
+
+        flight2 = new FlightView();
+        flight2.townFrom = "BEG";
+        flight2.townTo = "LOS";
+        flight2.timeFrom = "07:45";
+        flight2.timeTo = "20:15";
+        flight2.type = "1 STOP";
+        flight2.duration = "22h 30m";
         flight2.company = "Air Serbia";
         flight2.price = "760 €";
         _flights.add(flight2);
     }
+
+
 }

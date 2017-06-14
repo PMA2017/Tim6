@@ -9,20 +9,72 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:orientation="vertical"
+        android:background="@drawable/registration_background">
 
-        <ListView
-            android:id="@+id/flightList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/registration_background"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="25dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        </ListView>
+            <Button
+                android:text="11.05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+
+            <Button
+                android:text="12.05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+            <Button
+                android:text="13.05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+            <Button
+                android:text="14.05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+            <Button
+                android:text="15.05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <ListView
+                android:id="@+id/flightList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/registration_background"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="25dp">
+
+            </ListView>
+        </LinearLayout>
+
     </LinearLayout>
 
 
