@@ -22,5 +22,8 @@ app.route('/api/generic/:tableToDeleteFrom/:deleteRowId')
 app.param('tableToDeleteFrom',genericOperations.delete);
 app.param('deleteRowId',genericOperations.delete);
 
+app.route('/api/generic/getDrivesAroundDate')
+	.post(genericOperations.getDrivesAroundDate);
+
 
 }

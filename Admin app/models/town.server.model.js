@@ -9,6 +9,10 @@ var country = require(appRoot+'/models/country.server.model');
 var Country = country.getCountry();
 
 const Town = sequelize.define('Town', {
+	Mark: {
+		type: Sequelize.STRING,
+        allowNull: false
+	},
     Name: {
         type: Sequelize.STRING,
         allowNull: false

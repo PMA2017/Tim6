@@ -1,17 +1,23 @@
 package rs.flightbooking;
 
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RemoteViews;
+
+import java.util.Locale;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -50,6 +56,8 @@ public class Informations extends Fragment {
         PendingIntent p_button_intent = PendingIntent.getBroadcast(context,123,button_intent,0);
         remoteViews.setOnClickPendingIntent(R.id.notif_button,p_button_intent);
 
+        final Activity thisActivity = this.getActivity();
+
         rootView.findViewById(R.id.button_notification).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +68,9 @@ public class Informations extends Fragment {
                 builder.setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setCustomBigContentView(remoteViews).setContentIntent(pendingIntent);
 
                 notificationManager.notify(notification_id,builder.build());
+
+
+
             }
         });
 

@@ -13,15 +13,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 import rs.SQLite.FlightAddFragment;
 import rs.SQLite.FlightListFragment;
 import rs.contact.ContactFragment;
 import rs.maps.MapFragment;
-import rs.reservation.Reservations;
+import rs.reservation.form.Reservations;
+import rs.settings.SettingsFragment;
 import tools.Session;
 
 public class MainActivity extends ActionBarActivity {
@@ -76,6 +87,8 @@ public class MainActivity extends ActionBarActivity {
             drawerLayout.closeDrawer(listViewSliding);
             }
         });
+
+
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_opened, R.string.drawer_closed){
 
@@ -147,9 +160,25 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(this,testResponse,Toast.LENGTH_LONG).show();
     }*/
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
+
+        menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                setTitle(R.string.settings);
+                drawerLayout.closeDrawer(listViewSliding);
+                item.setChecked(true);
+                replaceFragment(10);
+                return true;
+            }
+
+
+        });
+
         return true;
     }
 
@@ -187,13 +216,22 @@ public class MainActivity extends ActionBarActivity {
             case 5:
                 v4Fragment = new FlightAddFragment();
                 break;
-
-
             case 4:
                 v4Fragment = new MapFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("nameA", "New York");
+                bundle.putString("nameB","Serbia");
+                bundle.putDouble("latA",45.7128);
+                bundle.putDouble("latB",45.35);
+                bundle.putDouble("lonA",20);
+                bundle.putDouble("lonB",0);
+                v4Fragment.setArguments(bundle);
+
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
-
+            case 10:
+                v4Fragment = new SettingsFragment();
+                break;
 
             default:
                 break;

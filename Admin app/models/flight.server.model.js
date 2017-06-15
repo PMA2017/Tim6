@@ -13,10 +13,6 @@ const Flight = sequelize.define('Flight', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    Price: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
     AirportFrom_ID: {
         type: Sequelize.INTEGER,
         allowNull: false,

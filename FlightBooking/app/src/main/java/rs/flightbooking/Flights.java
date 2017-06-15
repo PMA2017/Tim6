@@ -128,6 +128,61 @@ public class Flights extends Fragment {
         temp7.put(FOURTH_COLUMN,"25-9-2017 20:00:00");
         list.add(temp7);
 
+        HashMap<String, String> temp8 = new HashMap<String, String>();
+        temp8.put(FIRST_COLUMN,"Belgrade");
+        temp8.put(SECOND_COLUMN,"Rome");
+        temp8.put(THIRD_COLUMN,"14-4-2016 20:00:00");
+        temp8.put(FOURTH_COLUMN,"15-8-2016 20:00:00");
+        list.add(temp8);
+
+        HashMap<String, String> temp9 = new HashMap<String, String>();
+        temp9.put(FIRST_COLUMN,"Sevilla");
+        temp9.put(SECOND_COLUMN,"Amsterdam");
+        temp9.put(THIRD_COLUMN,"7-9-2016 20:00:00");
+        temp9.put(FOURTH_COLUMN,"11-10-2016 20:00:00");
+        list.add(temp9);
+
+        HashMap<String, String> temp10 = new HashMap<String, String>();
+        temp10.put(FIRST_COLUMN,"Munich");
+        temp10.put(SECOND_COLUMN,"Paris");
+        temp10.put(THIRD_COLUMN,"2-5-2017 20:00:00");
+        temp10.put(FOURTH_COLUMN,"3-9-2017 20:00:00");
+        list.add(temp10);
+
+        HashMap<String, String> temp11 = new HashMap<String, String>();
+        temp11.put(FIRST_COLUMN,"Frankfurt");
+        temp11.put(SECOND_COLUMN,"Valencia");
+        temp11.put(THIRD_COLUMN,"6-6-2017 20:00:00");
+        temp11.put(FOURTH_COLUMN,"7-11-2017 20:00:00");
+        list.add(temp11);
+
+        HashMap<String, String> temp12 = new HashMap<String, String>();
+        temp12.put(FIRST_COLUMN,"Berlin");
+        temp12.put(SECOND_COLUMN,"Copenhagen");
+        temp12.put(THIRD_COLUMN,"6-2-2016 20:00:00");
+        temp12.put(FOURTH_COLUMN,"16-5-2016 20:00:00");
+        list.add(temp12);
+
+        HashMap<String, String> temp13 = new HashMap<String, String>();
+        temp13.put(FIRST_COLUMN,"Lisabon");
+        temp13.put(SECOND_COLUMN,"Moscow");
+        temp13.put(THIRD_COLUMN,"2-9-2017 20:00:00");
+        temp13.put(FOURTH_COLUMN,"11-9-2017 20:00:00");
+        list.add(temp13);
+
+        HashMap<String, String> temp14 = new HashMap<String, String>();
+        temp14.put(FIRST_COLUMN,"Torino");
+        temp14.put(SECOND_COLUMN,"Monaco");
+        temp14.put(THIRD_COLUMN,"23-5-2017 23:00:00");
+        temp14.put(FOURTH_COLUMN,"21-6-2017 20:00:00");
+        list.add(temp14);
+
+        HashMap<String, String> temp15 = new HashMap<String, String>();
+        temp15.put(FIRST_COLUMN,"Dortmund");
+        temp15.put(SECOND_COLUMN,"Istanbul");
+        temp15.put(THIRD_COLUMN,"23-5-2017 4:00:00");
+        temp15.put(FOURTH_COLUMN,"25-9-2017 20:00:00");
+        list.add(temp15);
 
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

@@ -37,11 +37,12 @@
             android:name="rs.authentification.SignupActivity"
             android:label="FlightBooking" />
         <activity
-                    android:name=".MainActivity"
-                    android:label="FlightBooking"
+            android:name=".MainActivity"
+            android:label="FlightBooking"
             android:configChanges="keyboardHidden|orientation|screenSize">
 
         </activity>
+
         <activity
             android:name=".SplashScreenActivity"
             android:label="@string/app_name"

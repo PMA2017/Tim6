@@ -1,4 +1,4 @@
-package rs.reservation;
+package rs.reservation.form;
 
 import android.view.View;
 import android.widget.CompoundButton;

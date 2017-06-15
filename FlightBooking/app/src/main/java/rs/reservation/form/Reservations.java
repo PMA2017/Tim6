@@ -1,4 +1,4 @@
-package rs.reservation;
+package rs.reservation.form;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -42,6 +42,7 @@ public class Reservations extends Fragment implements IServerCaller {
         setCheckboxListener();
         setSpinner();
         setButtonsDateListeners();
+        setButtonFindClickListener();
 
         _server.get("Town");
 
@@ -83,10 +84,18 @@ public class Reservations extends Fragment implements IServerCaller {
         ret.setOnClickListener(new ButtonClickListenerSetDate(this.getActivity(), ret));
     }
 
+    private void setButtonFindClickListener()
+    {
+        Button findButton = (Button) _rootView.findViewById(R.id.findButton);
+        findButton.setOnClickListener(new ButtonFindClick(this.getActivity()));
+    }
+
     public void OnServerResponse(ServerResponse response)
     {
+
        _towns = JSONParser.getAllTowns(response.responseArray);
         if(response.statusCode == 200) {
+            _towns = JSONParser.getAllTowns(response.responseArray);
             setTowns(_towns);
         }
     }
