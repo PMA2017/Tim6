@@ -32,6 +32,9 @@
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
 
+    <string name="comment">Comment</string>
+
+
 
     <string name="address">Address</string>
     <string name="city">City</string>

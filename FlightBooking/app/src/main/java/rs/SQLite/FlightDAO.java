@@ -32,7 +32,7 @@ public class FlightDAO extends FlightDBDAO {
         values.put(DataBaseHelper.FLIGHT_TOWN_TO, flight.getTownTo());
         values.put(DataBaseHelper.FLIGHT_DATE_FROM, formatter.format(flight.getDateFrom()));
         values.put(DataBaseHelper.FLIGHT_DATE_TO, formatter.format(flight.getDateTo()));
-        log.w("a11","a11");
+    log.w("flightDB","flightDB");
         return database.insert(DataBaseHelper.FLIGHT_TABLE, null, values);
 
     }
@@ -47,7 +47,7 @@ public class FlightDAO extends FlightDBDAO {
                         DataBaseHelper.FLIGHT_DATE_FROM,
                         DataBaseHelper.FLIGHT_DATE_TO}, null, null, null,
                 null, null,null);
-        log.w("a12","a12");
+
         while (cursor.moveToNext()) {
             Flight flight = new Flight();
             flight.setId(cursor.getInt(0));
@@ -63,7 +63,6 @@ public class FlightDAO extends FlightDBDAO {
             } catch (ParseException e) {
                 flight.setDateTo(null);
             }
-            log.w("a13","a13");
 
             flights.add(flight);
         }
@@ -80,11 +79,9 @@ public class FlightDAO extends FlightDBDAO {
         values.put(DataBaseHelper.FLIGHT_TOWN_TO, flight.getTownTo());
         values.put(DataBaseHelper.FLIGHT_DATE_FROM, formatter.format(flight.getDateFrom()));
         values.put(DataBaseHelper.FLIGHT_DATE_TO, formatter.format(flight.getDateTo()));
-        log.w("a14","a14");
         long result = database.update(DataBaseHelper.FLIGHT_TABLE, values,
                 WHERE_ID_EQUALS,
                 new String[] { String.valueOf(flight.getId()) });
-        log.w("a15","a15");
         return result;
 
     }
@@ -96,7 +93,6 @@ public class FlightDAO extends FlightDBDAO {
 
     //Retrieves a single flight record with the given id
     public Flight getFlight(long id) {
-        log.w("get","get");
         Flight flight = null;
 
         String sql = "SELECT * FROM " + DataBaseHelper.FLIGHT_TABLE

@@ -5,9 +5,13 @@ package rs.SQLite;
  */
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,11 +33,14 @@ import rs.SQLite.FlightDAO;
 import rs.SQLite.FlightListAdapter;
 import rs.flightbooking.R;
 
+import static android.view.View.*;
+import static com.loopj.android.http.AsyncHttpClient.LOG_TAG;
 import static com.loopj.android.http.AsyncHttpClient.log;
+import static rs.SQLite.FlightListAdapter.broj;
 
 /**/
 
-public class FlightListFragment extends Fragment implements OnItemClickListener,
+public  class FlightListFragment extends Fragment implements OnItemClickListener,
         OnItemLongClickListener {
 
     public static final String ARG_ITEM_ID = "flight_list";
@@ -42,8 +51,12 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
 
     FlightListAdapter flightListAdapter;
     FlightDAO flightDAO;
+     ImageButton comment;
+
+
 
     private GetFlightTask task;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,20 +65,28 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
         flightDAO = new FlightDAO(activity);
     }
 
+
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_flight_list, container,
-                false);
+        View view = inflater.inflate(R.layout.fragment_flight_list, container, false);
         findViewsById(view);
 
         task = new GetFlightTask(activity);
 
         task.execute((Void) null);
 
+
+
         flightListView.setOnItemClickListener(this);
 
         flightListView.setOnItemLongClickListener(this);
+
+
 
         return view;
     }
@@ -73,7 +94,11 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
     private void findViewsById(View view) {
 
         flightListView = (ListView) view.findViewById(R.id.list_flight);
+
+
+
     }
+
 
   /*  @Override
     public void onResume() {
@@ -81,6 +106,8 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
         getActivity().getActionBar().setTitle(R.string.app_name);
         super.onResume();
     }*/
+
+
 
     @Override
     public void onItemClick(AdapterView<?> list, View arg1, int position,
@@ -109,6 +136,7 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
         flightListAdapter.remove(flight);
         return true;
     }
+    CustomInterface mListener;
 
     public class GetFlightTask extends AsyncTask<Void, Void, ArrayList<Flight>> {
 
@@ -134,8 +162,20 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
                 if (flightList != null) {
                     if (flightList.size() != 0) {
                         flightListAdapter = new FlightListAdapter(activity,
-                                flightList);
+                                flightList, new CustomInterface(){
+                            @Override
+                            public void Dialog1(){
+
+                                CustomCommentDialogFragment customComDialogFragment = new CustomCommentDialogFragment();
+                                customComDialogFragment.show(getFragmentManager(),
+                                        CustomFlightDialogFragment.ARG_ITEM_ID);
+                            }
+                        });
                         flightListView.setAdapter(flightListAdapter);
+
+
+
+
                     } else {
                         Toast.makeText(activity, "No Flight Records",
                                 Toast.LENGTH_LONG).show();
@@ -146,13 +186,11 @@ public class FlightListFragment extends Fragment implements OnItemClickListener,
         }
     }
 
-    /*
-     * This method is invoked from MainActivity onFinishDialog() method. It is
-     * called from CustomEmpDialogFragment when an flight record is updated.
-     * This is used for communicating between fragments.
-     */
+
     public void updateView() {
         task = new GetFlightTask(activity);
         task.execute((Void) null);
     }
+
+
 }

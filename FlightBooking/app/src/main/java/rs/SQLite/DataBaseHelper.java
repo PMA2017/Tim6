@@ -9,9 +9,10 @@ import static com.loopj.android.http.AsyncHttpClient.log;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "flightDB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String FLIGHT_TABLE = "flight";
+    public static final String COMMENT_TABLE = "comment";
 
     public static final String ID_COLUMN = "id";
     public static final String FLIGHT_TOWN_FROM = "town_from";
@@ -24,6 +25,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + FLIGHT_TOWN_FROM + " TEXT, " + FLIGHT_TOWN_TO + " TEXT, "
             + FLIGHT_DATE_FROM + " DATE, " + FLIGHT_DATE_TO + " DATE" + ")";
 
+    public static final String COMMENT_COMMENT = "comment";
+
+
+    public static final String CREATE_COMMENT_TABLE = "CREATE TABLE "
+            + COMMENT_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY, "
+            + COMMENT_COMMENT + " TEXT" + ")";
+
 
 
     private static DataBaseHelper instance;
@@ -31,37 +39,34 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static synchronized DataBaseHelper getHelper(Context context) {
 
         if (instance == null) {
-            log.w("m","m");
-            log.w("tabela",CREATE_FLIGHT_TABLE);
-            log.w("dateTo",FLIGHT_DATE_TO);
+
             instance = new DataBaseHelper(context);
         }
-        log.w("m1","m1");
         return instance;
     }
 
     private DataBaseHelper(Context context) {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        log.w("m2","m2");
+
 
     }
 
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
-        log.w("ff","ff");
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(CREATE_FLIGHT_TABLE);
-        log.w("ff1","ff1");
+        db.execSQL(CREATE_COMMENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        log.w("ff2","ff2");
+
     }
 }
