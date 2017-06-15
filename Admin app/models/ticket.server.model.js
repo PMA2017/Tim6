@@ -20,6 +20,10 @@ const Ticket = sequelize.define('Ticket', {
             model: User,
             key: 'id',
         }
+    },
+    NumberOfPassengers:{
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 }, {
     freezeTableName: true // Model tableName will be the same as the model name
