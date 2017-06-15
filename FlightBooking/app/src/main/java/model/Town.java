@@ -5,6 +5,7 @@ package model;
  */
 
 public class Town {
+    public String mark;
     public String name;
     public int zipCode;
     public float longitude;

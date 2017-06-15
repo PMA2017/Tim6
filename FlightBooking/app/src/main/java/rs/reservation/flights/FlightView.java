@@ -14,5 +14,6 @@ public class FlightView {
     public String duration;
     public String company;
     public String price;
+    public boolean isFree;
 
 }

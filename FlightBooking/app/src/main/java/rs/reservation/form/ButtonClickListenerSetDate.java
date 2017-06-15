@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.support.design.R.style.Theme_AppCompat;
 
@@ -54,7 +55,12 @@ public class ButtonClickListenerSetDate implements View.OnClickListener {
             StringBuilder text = new StringBuilder().append(month + 1)
                     .append("/").append(dayOfMonth).append("/").append(year)
                     .append(" ");
+            if(_button.getText().toString().contains(":")) {
+                _button.setText(_button.getText().toString().split(":")[0]);
+            }
             _button.setText(_button.getText() + ": " + text.toString());
+            _button.setTag(month+"/"+dayOfMonth+"/"+year);
+
         }
     }
 }

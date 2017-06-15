@@ -104,16 +104,31 @@
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/reservation"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="106dp"
+        android:textSize="33dp"
+        android:text="Choose"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/choose" />
+
+  <!--  <Button
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#13b586"
         android:text="Choose"
         android:textColor="#fff"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="35dp"
-        android:layout_alignParentRight="true"
-        android:background="#13b586"
-        android:textSize="25dp" />
+        android:textSize="22dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/price"
+        android:layout_toRightOf="@+id/duration"
+        android:layout_toEndOf="@+id/duration" /> -->
 
 </RelativeLayout>
