@@ -59,7 +59,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         flightDAO = new FlightDAO(getActivity());
-        log.w("a1","a1");
     }
 
     @Override
@@ -86,7 +85,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
 
         }
 
-        log.w("a2","a2");
 
         return rootView;
     }
@@ -111,7 +109,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
                 newCalendar.get(Calendar.MONTH),
                 newCalendar.get(Calendar.DAY_OF_MONTH));
 
-       log.w("a3","a3");
 
                 datePickerDialog1 = new DatePickerDialog(getActivity(),
                new OnDateSetListener() {
@@ -149,7 +146,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
         if (dateCalendar1 != null)
             flight.setDateTo(dateCalendar1.getTime());
 
-        log.w("a4","a4");
     }
    /* @Override
     public void onResume() {
@@ -168,7 +164,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
 
         if (dateCalendar1 != null)
             outState.putLong("dateCalendar1", dateCalendar1.getTime().getTime());
-        log.w("a5","a5");
     }
 
     private void findViewsById(View rootView) {
@@ -180,7 +175,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
         flDateToEtxt.setInputType(InputType.TYPE_NULL);
         addButton = (Button) rootView.findViewById(R.id.button_add);
         resetButton = (Button) rootView.findViewById(R.id.button_reset);
-        log.w("a6","a6");
     }
 
     @Override
@@ -193,7 +187,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
             setFlight();
             task = new AddFlightTask(getActivity());
             task.execute((Void) null);
-            log.w("a7","a7");
 
         } else if (view == resetButton) {
             resetAllFields();
@@ -211,32 +204,28 @@ public class FlightAddFragment extends Fragment implements OnClickListener{
 
         @Override
         protected Long doInBackground(Void... arg0) {
-
-            log.w("a8", String.valueOf(flight.getDateFrom()));
-            log.w("a9", String.valueOf(flight.getDateTo()));
+            log.w("flightDB4","flightDB4");
             long result = flightDAO.save(flight);
-            log.w("rr","rr");
+            log.w("flightDB5","flightDB5");
+
             return result;
         }
 
         @Override
         protected void onPostExecute(Long result) {
-            log.w("a22","a22");
+
             log.w("result", result.toString());
 
             if (activityWeakRef.get() != null
                     && !activityWeakRef.get().isFinishing()) {
 
-                log.w("a23","a23");
 
                 if (result != -1) {
 
-                    log.w("a24","a24");
                     Toast.makeText(activityWeakRef.get(), "Flight Saved",
                             Toast.LENGTH_LONG).show();
                 }
             }
-            log.w("a10","a10");
         }
     }
 }

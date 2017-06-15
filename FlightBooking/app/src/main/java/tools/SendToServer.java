@@ -68,8 +68,8 @@ public class SendToServer {
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject response) {
-            ServerResponse madeResponse = makeServerResponse(statusCode, headers, response, null);
-            _calller.OnServerResponse(madeResponse);
+           /* ServerResponse madeResponse = makeServerResponse(statusCode, headers, response, null);
+            _calller.OnServerResponse(madeResponse);*/
         }
     };
 

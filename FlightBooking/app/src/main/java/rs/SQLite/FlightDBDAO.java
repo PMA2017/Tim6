@@ -5,7 +5,7 @@ package rs.SQLite;
  */
 
 
-        import android.content.Context;
+import android.content.Context;
         import android.database.SQLException;
         import android.database.sqlite.SQLiteDatabase;
 
@@ -20,16 +20,17 @@ public class FlightDBDAO {
     public FlightDBDAO(Context context) {
         this.mContext = context;
         dbHelper = DataBaseHelper.getHelper(mContext);
+        log.w("flightDB1","flightDB1");
         open();
-        log.w("a16","a16");
     }
 
     public void open() throws SQLException {
 
         if(dbHelper == null)
             dbHelper = DataBaseHelper.getHelper(mContext);
+        log.w("flightDB2","flightDB2");
         database = dbHelper.getWritableDatabase();
-        log.w("a17","a17");
+        log.w("flightDB3","flightDB3");
     }
 
     public void close() {

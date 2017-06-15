@@ -32,10 +32,10 @@
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
 
-<<<<<<< HEAD
-=======
+    <string name="comment">Comment</string>
 
->>>>>>> ab5a776c71a61e09661e40b13484e5c15b9be53a
+
+
     <string name="address">Address</string>
     <string name="city">City</string>
     <string name="phone_number">Phone number</string>
