@@ -57,5 +57,4 @@ public class ButtonClickListenerSetDate implements View.OnClickListener {
             _button.setText(_button.getText() + ": " + text.toString());
         }
     }
-
 }
