@@ -39,8 +39,8 @@
         android:id="@+id/type"
         android:layout_width="160dp"
         android:layout_height="28dp"
-        android:layout_alignBaseline="@+id/townTo"
-        android:layout_alignBottom="@+id/townTo"
+        android:layout_alignBaseline="@+id/townToMark"
+        android:layout_alignBottom="@+id/townToMark"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="DIRECT"
@@ -57,7 +57,7 @@
         android:textSize="25dp"
         android:text="ROM"
         android:textColor="#2f7efc"
-        android:id="@+id/townTo" />
+        android:id="@+id/townToMark" />
 
     <TextView
         android:layout_width="100dp"
@@ -69,14 +69,14 @@
         android:textSize="33dp"
         android:text="21:00"
         android:textColor="#0f56c6"
-        android:id="@+id/timeTo" />
+        android:id="@+id/townToName" />
 
     <TextView
         android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/timeTo"
-        android:layout_alignBottom="@+id/timeTo"
+        android:layout_alignBaseline="@+id/townToName"
+        android:layout_alignBottom="@+id/townToName"
         android:layout_centerHorizontal="true"
         android:text="2h 55m"
         android:textColor="#9799a0"

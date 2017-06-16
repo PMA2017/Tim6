@@ -1,12 +1,8 @@
 package rs.reservation.flights;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
-import android.widget.ArrayAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,9 +12,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import rs.flightbooking.R;
-import tools.Session;
-
-import static android.graphics.Color.GRAY;
 
 /**
  * Created by Nemanja on 6/13/2017.
@@ -66,13 +59,13 @@ public class FlightAdapter extends BaseAdapter {
         TextView townFrom = (TextView) itemView.findViewById(R.id.townFrom);
         townFrom.setText(flight.townFrom);
 
-        TextView townTo = (TextView) itemView.findViewById(R.id.townTo);
+        TextView townTo = (TextView) itemView.findViewById(R.id.townToMark);
         townTo.setText(flight.townTo);
 
         TextView timeFrom = (TextView) itemView.findViewById(R.id.timeFrom);
         timeFrom.setText(flight.timeFrom);
 
-        TextView timeTo = (TextView) itemView.findViewById(R.id.timeTo);
+        TextView timeTo = (TextView) itemView.findViewById(R.id.townToName);
         timeTo.setText(flight.timeTo);
 
         TextView type = (TextView) itemView.findViewById(R.id.type);

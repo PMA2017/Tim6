@@ -1,9 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context="rs.reservation.ticket.Ticket">
+    android:background="@drawable/registration_background"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/ticketList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:dividerHeight="25dp">
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/reservation"
+            android:layout_width="0dp"
+            android:layout_weight=".50"
+            android:layout_height="match_parent"
+            android:background="#13b586"
+            android:text="@string/make_reservation"
+            android:textColor="#fff" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+    <!--  <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:layout_margin=""/> -->
+
+</LinearLayout>
