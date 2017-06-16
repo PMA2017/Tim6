@@ -44,6 +44,7 @@ insert into Airplane values('Something','Airplane name',300,1,GETDATE(),GETDATE(
 --we shouldn't insert price
 insert into Flight values(30,1,1,GETDATE(),GETDATE());
 insert into Flight values(120,1,3,GETDATE(),GETDATE());
+insert into Flight values(180,1,9,GETDATE(),GETDATE());
 
 
 insert into Drive values(GETDATE(),299,1,1,GETDATE(),GETDATE());

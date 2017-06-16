@@ -23,7 +23,7 @@ app.param('tableToDeleteFrom',genericOperations.delete);
 app.param('deleteRowId',genericOperations.delete);
 
 app.route('/api/generic/getDrivesAroundDate')
-	.get(genericOperations.getDrivesAroundDate);
+	.post(genericOperations.getDrivesAroundDate);
 
 
 }

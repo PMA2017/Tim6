@@ -2,6 +2,7 @@ var errorHandler = require(appRoot+'/controllers/errors.server.controller'),
 Sequelize = require('sequelize');
 
 module.exports.findReservations = findReservations;
+module.exports.reserveTicket = reserveTicket;
 
 
 function findReservations(req,res,next){
@@ -30,4 +31,68 @@ function findReservations(req,res,next){
 	  console.log(req.body.townFrom);
 	  
 	  res.status(200).send({});
+}
+
+
+//ja ti posaljem listu drive, username, broj putnika i ti upisujes u tabele ticket i drive_ticket
+//i jos jedna stvar, moguce je da ti posaljem oznaku koja ne postoji, pa u tom slucaju vratis 400
+
+function reserveTicket(req,res,next){
+	var driveIds = req.body.drives;
+	var username = req.body.username;
+	var passengers = req.body.passengers;
+	var userId;
+	var ticketPrice = 0;
+	sequelize.model('User').findOne({where:{Username:username}}).then(user=>{
+		userId = user.id;
+	
+			sequelize.model('Drive').findAll({where:{id:{$or:driveIds}}}).then(drives=>{
+				for(var i=0; i<drives.length; i++)
+				ticketPrice+=drives[i].Price;
+
+				ticketPrice*=passengers;
+				var ticketBody = {
+					User_ID: userId,
+					Price: ticketPrice,
+					NumberOfPassengers: passengers
+				}
+
+				var newTicket = sequelize.model('Ticket').build(ticketBody);
+				newTicket.save().then(newInstance=>{
+					var realIndex = 0;
+					for(var i=0; i<drives.length; i++)
+					{
+						var conBody = {
+							Drive_ID: drives[i].id,
+							Ticket_ID: newInstance.id
+						}
+						var newConnection = sequelize.model('Drive_Ticket_Connection').build(conBody);
+						newConnection.save().then(newConnection=>{
+							realIndex++;
+							if(realIndex==drives.length)
+							{
+								res.json({message:"Reservation successful"});
+							}
+						}).catch(error=>{
+							res.json({message:error});
+						})
+					}
+					
+				}).catch(error=>{
+					res.json({message:error});
+				})
+
+
+
+
+			})
+
+		
+	})
+
+
+
+	
+	var newTicket = sequelize.model("Ticket").build(req.body);
+
 }
