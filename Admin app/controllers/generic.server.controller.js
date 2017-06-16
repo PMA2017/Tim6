@@ -417,11 +417,11 @@ function returnAllEmpty(endDateDefined){
 	}
 
 	if(endDateDefined){
-		response.day6 = [];
-		response.day7 = [];
-		response.day8 = [];
-		response.day9 = [];
-		response.day10 = [];
+		resBody.day6 = [];
+		resBody.day7 = [];
+		resBody.day8 = [];
+		resBody.day9 = [];
+		resBody.day10 = [];
 	}
 
 	return resBody;
