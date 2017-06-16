@@ -1,6 +1,7 @@
 package parsers;
 
 import model.Town;
+import rs.SQLite.Flight;
 import rs.contact.Airline;
 
 import org.json.JSONArray;
@@ -8,6 +9,8 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
 
 /**
  * Created by Nemanja on 5/23/2017.
@@ -29,6 +32,25 @@ public class JSONParser {
             towns.add(town.name);
         }
         return towns;
+    }
+
+    public static ArrayList<String> getFlights(JSONArray array)
+    {
+        int iden;
+        ArrayList<String> flights = new ArrayList<String>();
+        for(int i = 0; i < array.length(); i++) {
+            Flight flight = new Flight();
+            try {
+                JSONObject object = array.getJSONObject(i);
+                iden = object.getInt("FlightDuration");
+               log.w("iden", String.valueOf(iden));
+                flights.add(String.valueOf(iden));
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return flights;
     }
 
     public static Airline getAirline(JSONObject object)
@@ -83,6 +105,17 @@ public class JSONParser {
             e.printStackTrace();
         }
         return username;
+    }
+
+    public static int getUserId(JSONObject object)
+    {
+        int id = 0;
+        try {
+            id = object.getInt("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
 }

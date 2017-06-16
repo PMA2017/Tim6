@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,9 +56,9 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         TextView flightTownToTxt;
         TextView flightDateFromTxt;
         TextView flightDateToTxt;
-        ImageButton imgbt1;
-        ImageButton imgbt2;
-        ImageButton imgbt3;
+        Button imgbt1;
+        Button imgbt2;
+        Button imgbt3;
     }
 
     @Override
@@ -96,11 +96,11 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                     .findViewById(R.id.txt_fl_dateFrom);
             holder.flightDateToTxt = (TextView) convertView
                     .findViewById(R.id.txt_fl_dateTo);
-            holder.imgbt1 = (ImageButton) convertView
+            holder.imgbt1 = (Button) convertView
                     .findViewById(R.id.imageButton1);
-            holder.imgbt2 = (ImageButton) convertView
+            holder.imgbt2 = (Button) convertView
                     .findViewById(R.id.imageButton2);
-            holder.imgbt3 = (ImageButton) convertView
+            holder.imgbt3 = (Button) convertView
                     .findViewById(R.id.imageButton3);
 
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {

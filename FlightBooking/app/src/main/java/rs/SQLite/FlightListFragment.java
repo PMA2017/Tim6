@@ -51,7 +51,7 @@ public  class FlightListFragment extends Fragment implements OnItemClickListener
 
     FlightListAdapter flightListAdapter;
     FlightDAO flightDAO;
-     ImageButton comment;
+    ImageButton comment;
 
 
 

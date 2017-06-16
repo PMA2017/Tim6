@@ -1,7 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_item"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="25dp"
+    android:background="#e8e8e7">
+
+    <TextView
+        android:id="@+id/txt_fl_townFrom"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="#2f7efc"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/txt_fl_dateFrom"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="46dp"
+        android:textColor="#0f56c6"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/txt_fl_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="160dp"
+        android:layout_height="28dp"
+        android:layout_alignBaseline="@+id/townTo"
+        android:layout_alignBottom="@+id/townTo"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="DIRECT"
+        android:textColor="#9799a0"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/txt_fl_townTo"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="16dp"
+        android:textColor="#2f7efc"
+        android:textSize="14dp"
+         />
+
+    <TextView
+        android:id="@+id/txt_fl_dateTo"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="46dp"
+        android:textSize="11dp"
+        android:textColor="#0f56c6"
+         />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2h 55m"
+        android:textColor="#9799a0"
+        android:textSize="22dp"
+        android:layout_alignBaseline="@+id/txt_fl_dateTo"
+        android:layout_alignBottom="@+id/txt_fl_dateTo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company"
+        android:textColor="#9799a0"
+        android:textSize="17dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="95dp"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textColor="#9799a0"
+        android:textSize="17dp"
+
+        android:layout_alignTop="@+id/company"
+        android:layout_alignLeft="@+id/duration"
+        android:layout_alignStart="@+id/duration" />
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_below="@+id/price"
+        android:layout_toRightOf="@+id/txt_fl_id"
+        android:layout_toEndOf="@+id/txt_fl_id">
+
+        <Button
+            android:id="@+id/imageButton1"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="Comment" />
+
+        <Button
+            android:id="@+id/imageButton2"
+            android:text="Mark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="onClick"
+            />
+
+        <Button
+            android:id="@+id/imageButton3"
+            android:text="Map"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="onClick"
+             />
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
+
+    <!--android:textColor="#f73337"
+     android:textStyle="bold"-->
+  <!--  <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/list_item_bg"
     android:descendantFocusability="blocksDescendants" >
 
@@ -12,11 +177,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
+ android:src="@drawable/mapp"
          <TextView
             android:id="@+id/txt_fl_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+             android:textSize="14dp"
             android:padding="6dp" />
 
         <TextView
@@ -24,6 +190,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_fl_id"
+            android:textSize="7dp"
             android:padding="6dp" />
 
         <TextView
@@ -31,14 +198,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_fl_townFrom"
+            android:textSize="7dp"
             android:padding="6dp" />
         <TextView
             android:id="@+id/txt_fl_dateFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_fl_townTo"
+            android:textSize="7dp"
             android:padding="6dp" /> 
-
+android:src="@drawable/comment"
 
 
         <TextView
@@ -46,6 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_fl_dateFrom"
+            android:textSize="7dp"
             android:padding="6dp" />
 
 
@@ -64,6 +234,7 @@
         android:onClick="onClick"
 
             />
+            android:src="@drawable/mark"
 
          <ImageButton  
         android:id="@+id/imageButton2" 
@@ -99,4 +270,4 @@
         android:layout_below="@+id/layout_item"
         android:background="@color/view_divider_color" />
 
-</RelativeLayout>
+</RelativeLayout>-->

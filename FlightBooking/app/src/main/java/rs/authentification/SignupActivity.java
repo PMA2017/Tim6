@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import rs.flightbooking.R;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 public class SignupActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +23,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void setSubmitListener()
     {
+        log.w("usao57","usao57");
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new SignupSubmitButtonClickListener(this));
     }

@@ -32,7 +32,9 @@
         android:label="FlightBooking"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
+
         <activity
             android:name="rs.authentification.SignupActivity"
             android:label="FlightBooking" />

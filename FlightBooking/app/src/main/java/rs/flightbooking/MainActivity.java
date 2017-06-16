@@ -27,13 +27,19 @@ import java.util.List;
 import java.util.Locale;
 
 
+import parsers.JSONParser;
 import rs.SQLite.FlightAddFragment;
 import rs.SQLite.FlightListFragment;
 import rs.contact.ContactFragment;
 import rs.maps.MapFragment;
 import rs.reservation.form.Reservations;
 import rs.settings.SettingsFragment;
+import tools.IServerCaller;
+import tools.SendToServer;
 import tools.Session;
+import tools.response.ServerResponse;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -45,10 +51,15 @@ public class MainActivity extends ActionBarActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private String testResponse = "";
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
         listViewSliding= (android.widget.ListView)findViewById(R.id.lv_sliding_menu);
