@@ -31,15 +31,15 @@ function getById(req, res, next){
 		    res.status(200).send(data);
 		  }).catch(error => {
 		  	res.status(400).send({message:"SQL error"});
-	  })
+	 	 })
 
 }
 
 function postToTable(req,res,next){
 		var instance = sequelize.model(req.params.tableToPost).build(req.body);
 		instance.save().then(anotherInstance => {
-	    res.status(200).send(anotherInstance);
-	  })
+	    	res.status(200).send(anotherInstance);
+	 	})
 	  .catch(error => {
 	    res.status(400).send({message:error});
 	})
@@ -74,9 +74,8 @@ function deleteFromTable(req,res,next){
 					}).catch(error=>{
 						res.status(400).send({message:error});
 					})
-				
-			}).catch(error=>{
-			res.status(400).send({message:error});
+		}).catch(error=>{
+		res.status(400).send({message:error});
 		})
 }
 
