@@ -26,7 +26,7 @@ function getById(req, res, next){
   var tableNameId = req.params.tableNameId,
        rowId = req.params.rowId;
 
-sequelize.model(tableNameId).findById(rowId)
+	sequelize.model(tableNameId).findById(rowId)
 		 .then(data => {
 		    res.status(200).send(data);
 		  }).catch(error => {
@@ -81,15 +81,18 @@ function deleteFromTable(req,res,next){
 }
 
 //https://pastebin.com/qFfn7cCX
+//https://pastebin.com/jq5eqJbg
+//jako bi mi odgovaralo kad bi mi starttime poslao posebno datum a posebno vreme
 function getDrivesAroundDate(req,res,next){
 	
-	/*
+	
 	var cityFrom = req.body.MarkTownFrom;
 	var cityTo = req.body.MarkTownTo;
 	var dateFrom = new Date(req.body.DateFrom);
-	var dateTo = new Date(req.body.DateTo);
 	var passengers = req.body.Passengers;
-	*/
+	
+
+	/*
 	var date1string = "6/15/2017";
 	var date2string ="6/21/2017";
 	
@@ -97,22 +100,27 @@ function getDrivesAroundDate(req,res,next){
 	var cityTo = "Ber";
 	var passengers = "3";
 	var dateFrom = new Date(date1string);
+	*/
 	var dateTo;
-	if(date2string)
-	dateTo = new Date(date2string);
+	if(req.body.DateTo)
+	dateTo = new Date(req.body.DateTo);
 	else
 		dateTo = new Date("1/2/1970");
-	
 
+	console.log()
 
 	var cityFromId;
 	var cityToId;
 	var airportsFrom;
 	var airportsTo;
+	var cityToTimeZone;
+	var cityFromTimeZone;
 	sequelize.model('Town').findOne({where:{Mark:cityFrom}}).then(townFrom=>{
 		cityFromId = townFrom.id;
+		cityFromTimeZone = townFrom.TimeZone;
 		sequelize.model('Town').findOne({where:{Mark:cityTo}}).then(townTo=>{
 			cityToId = townTo.id;
+			cityToTimeZone = townTo.TimeZone;
 			sequelize.model('Airport').findAll({where:{Town_ID:cityFromId}}).then(airportsFrom=>{
 					var queryFrom = [];
 					for(var i=0; i<airportsFrom.length; i++)
@@ -147,7 +155,11 @@ function getDrivesAroundDate(req,res,next){
 
 							var testDate = new Date(2017,6,15);
 							
-
+							if(flights.length==0)
+							{
+								res.json([]);
+								return;
+							}
 
 							sequelize.model('Drive').findAll({where:Sequelize.and({Flight_ID:{$or:queryFlights}},Sequelize.or({StartTime:{$gte:dateFromMin, $lte:dateFromMax}},{StartTime:{$gte:dateToMin, $lte:dateToMax}}))}).then(drives=>{
 								var companyCount = 0;
@@ -164,6 +176,7 @@ function getDrivesAroundDate(req,res,next){
 										drives[response.index].dataValues.duration = hours.toString()+"h "+minutes.toString()+"m";
 										drives[response.index].dataValues.endTime = new Date(drives[response.index].StartTime);
 										drives[response.index].dataValues.endTime.setMinutes(drives[response.index].dataValues.endTime.getMinutes()+response.duration);
+										drives[response.index].dataValues.endTime.setHours(drives[response.index].dataValues.endTime.getHours()+cityToTimeZone-cityFromTimeZone);
 										if(companyCount==drives.length && freeCount==drives.length && durationCount==drives.length)
 										{
 											organizeDrives(drives,dateFromMin,dateToMin, function(response){
@@ -209,7 +222,7 @@ function getDrivesAroundDate(req,res,next){
 	})
 }
 
-function findDuration(drives,index,response){console.log('find duration function');
+function findDuration(drives,index,response){
 	sequelize.model('Flight').findById(drives[index].Flight_ID).then(data=>{
 		response({index:index,duration:data.FlightDuration});
 	})
@@ -226,7 +239,7 @@ function checkIfFree(drives,index,passengers,response){
 			if(data.length>0)
 			for(var i=0; i<data.length; i++)
 			{	
-				sequelize.model('Ticket').findById(data[i].Ticket_ID).then(ticket=>{console.log('check if free function');
+				sequelize.model('Ticket').findById(data[i].Ticket_ID).then(ticket=>{
 					currentPassengers+=ticket.NumberOfPassengers;
 					realIndex++;
 					if(realIndex==data.length)
@@ -317,19 +330,29 @@ function organizeDrives(drives,dateFromMin,dateToMin, response){
 		newDrives.day10 = [];
 	}
 	console.log(drives);
-	console.log(day10.toDateString());
+
 	for(var i=0; i<drives.length; i++){
 		console.log(drives[i].StartTime.toDateString());
 		console.log(dateFromMin.toDateString());
 		console.log(day3.toDateString());
+
+		drives[i].dataValues.StartTimeDate = drives[i].StartTime.toDateString().substring(4);
+		drives[i].dataValues.StartTimeTime = drives[i].StartTime.getHours()+":"+drives[i].StartTime.getMinutes();
+		drives[i].dataValues.EndTimeDate = drives[i].dataValues.endTime.toDateString().substring(4);
+		drives[i].dataValues.EndTimeTime = drives[i].dataValues.endTime.getHours() + ":" + drives[i].dataValues.endTime.getMinutes();
+
 		if(drives[i].StartTime.toDateString()===dateFromMin.toDateString())
 		{
+			
 			newDrives.day1.push(drives[i]);
+			
 		}
 
 		else if(drives[i].StartTime.toDateString()===day2.toDateString())
 		{
+
 			newDrives.day2.push(drives[i]);
+
 		}
 		
 		else if(drives[i].StartTime.toDateString()===day3.toDateString())
@@ -373,9 +396,7 @@ function organizeDrives(drives,dateFromMin,dateToMin, response){
 				{
 					newDrives.day10.push(drives[i]);
 				}
-		}
-		
-		
+		}		
 			
 	}
 
