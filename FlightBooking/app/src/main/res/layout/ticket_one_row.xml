@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="25dp"
+    android:background="#e8e8e7">
+
+    <TextView
+        android:id="@+id/townFromMark"
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="BEL"
+        android:textColor="#2f7efc"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/townFromName"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="46dp"
+        android:text="Belgrad"
+        android:textColor="#707070"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/dateDepart"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="106dp"
+        android:text="18.01.2017"
+        android:textColor="#2f7efc"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/timeDepart"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="133dp"
+        android:text="17:00"
+        android:textColor="#707070"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="160dp"
+        android:layout_height="28dp"
+        android:layout_alignBaseline="@+id/townToMark"
+        android:layout_alignBottom="@+id/townToMark"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="TYPE"
+        android:textColor="#9799a0"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="16dp"
+        android:textSize="25dp"
+        android:text="ROM"
+        android:textColor="#2f7efc"
+        android:id="@+id/townToMark" />
+
+    <TextView
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="46dp"
+        android:textSize="20dp"
+        android:text="Roma"
+        android:textColor="#707070"
+        android:id="@+id/townToName" />
+
+    <TextView
+        android:id="@+id/dateReturn"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="106dp"
+        android:textSize="22dp"
+        android:text="22.02.2017"
+        android:textColor="#2f7efc" />
+
+    <TextView
+        android:id="@+id/timeReturn"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="133dp"
+        android:textSize="20dp"
+        android:text="22:37"
+        android:textColor="#707070" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="175dp"
+        android:textSize="24dp"
+        android:text="Price"
+        android:textColor="#f73337"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/townToName"
+        android:layout_alignBottom="@+id/townToName"
+        android:layout_centerHorizontal="true"
+        android:text="2h 55m"
+        android:textColor="#9799a0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="175dp"
+        android:text="Company"
+        android:textColor="#2f7efc"
+        android:textSize="23dp" />
+
+
+</RelativeLayout>

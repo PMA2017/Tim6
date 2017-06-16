@@ -1,6 +1,8 @@
 package rs.reservation.flights;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import rs.flightbooking.R;
+import rs.reservation.ticket.Ticket;
 import tools.DateUtil;
 import tools.SendToServer;
 import java.util.Calendar;
@@ -115,7 +118,7 @@ public class ReservationFlights extends Fragment {
             _flightDepart = flight;
             changeToReturnSection();
         } else {
-
+            makeTicket(flight);
         }
     }
 
@@ -166,6 +169,27 @@ public class ReservationFlights extends Fragment {
         _flightAdapter.notifyDataSetChanged();
     }
 
+    private void makeTicket(FlightView flight)
+    {
+        Ticket fragment = new Ticket();
+        Bundle bundle = new Bundle();
+
+        if(_flightDepart != null) {
+            bundle.putSerializable("departFlight",_flightDepart);
+            bundle.putSerializable("returnFlight",flight);
+        } else {
+            bundle.putSerializable("departFlight",flight);
+            bundle.putSerializable("returnFlight",null);
+        }
+
+        fragment.setArguments(bundle);
+        FragmentManager fm= this.getFragmentManager();
+        FragmentTransaction t=fm.beginTransaction();
+        t.replace(R.id.main_content,fragment);
+        t.addToBackStack(null);
+        t.commit();
+    }
+
     private void mainMock()
     {
         _flights.add(mockData1());
@@ -186,7 +210,9 @@ public class ReservationFlights extends Fragment {
         ArrayList<FlightView> flights = new ArrayList<FlightView>();
         FlightView flight1 = new FlightView();
         flight1.townFrom = "BEG";
+        flight1.townFromName = "Belgrad";
         flight1.townTo = "LOS";
+        flight1.townToName = "Los Angeles";
         flight1.timeFrom = "10:35";
         flight1.timeTo = "13:00";
         flight1.type = "DIRECT";
@@ -198,7 +224,9 @@ public class ReservationFlights extends Fragment {
 
         FlightView flight2 = new FlightView();
         flight2.townFrom = "BEG";
+        flight2.townFromName = "Belgrad";
         flight2.townTo = "LOS";
+        flight2.townToName = "Los Angeles";
         flight2.timeFrom = "07:45";
         flight2.timeTo = "20:15";
         flight2.type = "1 STOP";
@@ -215,7 +243,9 @@ public class ReservationFlights extends Fragment {
         ArrayList<FlightView> flights = new ArrayList<FlightView>();
         FlightView flight1 = new FlightView();
         flight1.townFrom = "ROM";
+        flight1.townFromName = "Roma";
         flight1.townTo = "NWK";
+        flight1.townToName = "New York";
         flight1.timeFrom = "13:35";
         flight1.timeTo = "16:00";
         flight1.type = "DIRECT";
@@ -227,7 +257,9 @@ public class ReservationFlights extends Fragment {
 
         FlightView flight2 = new FlightView();
         flight2.townFrom = "ROM";
+        flight2.townFromName = "Roma";
         flight2.townTo = "NWK";
+        flight2.townToName = "New York";
         flight2.timeFrom = "06:45";
         flight2.timeTo = "17:15";
         flight2.type = "1 STOP";
@@ -238,6 +270,4 @@ public class ReservationFlights extends Fragment {
         flights.add(flight2);
         return flights;
     }
-
-
 }
