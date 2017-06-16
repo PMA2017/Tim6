@@ -36,7 +36,7 @@ android:background="@drawable/registration_background">
                     android:layout_height="wrap_content"
                     android:buttonTint="#e0e0d1"
                     android:checked="true"
-                    android:text="Return"
+                    android:text="@string/returnnCheck"
                     android:textColor="#e0e0d1"
                     android:textSize="20dp"
                     android:layout_marginBottom="15dp"/>
@@ -67,7 +67,7 @@ android:background="@drawable/registration_background">
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="#f3f3f3"
-                        android:hint="From"
+                        android:hint="@string/from"
                         android:paddingLeft="5dp"
                         android:completionThreshold="1"
                         android:inputType="textNoSuggestions"/>
@@ -99,7 +99,7 @@ android:background="@drawable/registration_background">
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="#f3f3f3"
-                        android:hint="To"
+                        android:hint="@string/to"
                         android:paddingLeft="5dp"
                         android:completionThreshold="1"
                         android:inputType="textNoSuggestions"/>
@@ -130,7 +130,7 @@ android:background="@drawable/registration_background">
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:background="#e8e8e7"
-                        android:text="Depart"/>
+                        android:text="@string/depart"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -160,7 +160,7 @@ android:background="@drawable/registration_background">
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:background="#e8e8e7"
-                        android:text="Return" />
+                        android:text="@string/returnn" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -197,7 +197,7 @@ android:background="@drawable/registration_background">
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="Persons:"
+                        android:text="@string/passangers"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -213,17 +213,28 @@ android:background="@drawable/registration_background">
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="45dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="45dp">
+                android:orientation="horizontal">
+
+                <android.support.v4.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_height="match_parent" />
 
                 <Button
                     android:id="@+id/findButton"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
                     android:layout_height="match_parent"
                     android:background="#13b586"
-                    android:text="Find"
+                    android:text="@string/find"
                     android:textColor="#fff" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
         </LinearLayout>

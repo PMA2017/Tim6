@@ -92,7 +92,6 @@ public class Reservations extends Fragment implements IServerCaller {
 
     public void OnServerResponse(ServerResponse response)
     {
-
        _towns = JSONParser.getAllTowns(response.responseArray);
         if(response.statusCode == 200) {
             _towns = JSONParser.getAllTowns(response.responseArray);
