@@ -54,6 +54,9 @@
     <string name="passangers">Putnika:</string>
     <string name="find">Trazi</string>
 
+    <string name="choose">Izaberi</string>
+    <string name="sold_out">Rasprodato</string>
+
     <string name="reservations_form_town_from_error">Unos za grad od je obavezan</string>
     <string name="reservations_form_town_to_error">Unos za grad do je obavezan</string>
     <string name="reservations_form_depart_date_error">Unos za datum putovanja je obavezan</string>

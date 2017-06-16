@@ -59,7 +59,7 @@ public class ButtonClickListenerSetDate implements View.OnClickListener {
                 _button.setText(_button.getText().toString().split(":")[0]);
             }
             _button.setText(_button.getText() + ": " + text.toString());
-            _button.setTag(month+"/"+dayOfMonth+"/"+year);
+            _button.setTag((month+1)+"/"+dayOfMonth+"/"+year);
 
         }
     }

@@ -89,14 +89,15 @@ public class FlightAdapter extends BaseAdapter {
 
         Button choose = (Button) itemView.findViewById(R.id.choose);
         if(flight.isFree == false) {
-            choose.setText("SOLD OUT");
+            choose.setText(R.string.sold_out);
             choose.setEnabled(false);
             choose.setBackgroundColor(Color.GRAY);
         } else {
-            choose.setText("CHOOSE");
+            choose.setText(R.string.choose);
             choose.setEnabled(true);
             choose.setBackgroundColor(Color.parseColor("#13b586"));
         }
+        choose.setOnClickListener(new ChooseButtonClickListener(_reservationFlights, flight));
 
         return itemView;
     }
@@ -105,10 +106,4 @@ public class FlightAdapter extends BaseAdapter {
     {
         _flights = flights;
     }
-
-    private void setListenerOnChooseButton(Button button, FlightView flight)
-    {
-
-    }
-
 }
