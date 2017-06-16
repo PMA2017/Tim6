@@ -66,4 +66,9 @@
     <string name="reservations_form_depart_date_error">Daprt date is required</string>
     <string name="reservations_form_return_date_error">Return date is required</string>
 
+    <string name="reservations">Reservations</string>
+    <string name="information">Information</string>
+    <string name="flights">Flights</string>
+    <string name="map">Map</string>
+
 </resources>
