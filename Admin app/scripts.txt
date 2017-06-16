@@ -29,25 +29,41 @@ insert into Airport values('GW','Gatwich',7,GETDATE(),GETDATE());
 insert into Airport values('BF','Buffalo',8,GETDATE(),GETDATE());
 insert into Airport values('IS','Islip',8,GETDATE(),GETDATE());
 
-insert into Ticket values(1000,1,GETDATE(),GETDATE());
-insert into Ticket values(400,1,GETDATE(),GETDATE());
-insert into Ticket values(1000,2,GETDATE(),GETDATE());
+
+
+--new tickets
+insert into Ticket values(1000,1,3,GETDATE(),GETDATE());
+insert into Ticket values(900,1,3,GETDATE(),GETDATE());
+insert into Ticket values(400,1,2,GETDATE(),GETDATE());
+insert into Ticket values(1000,2,1,GETDATE(),GETDATE());
 
 insert into Airline values('Air Serbia','Surcin','+3811199999',1,GETDATE(),GETDATE());
 
 insert into Airplane values('Something','Airplane name',300,1,GETDATE(),GETDATE());
 
-insert into Flight values(3,199,1,1,GETDATE(),GETDATE());
-insert into Flight values(120,250,1,3,GETDATE(),GETDATE());
+--we shouldn't insert price
+insert into Flight values(30,1,1,GETDATE(),GETDATE());
+insert into Flight values(120,1,3,GETDATE(),GETDATE());
+insert into Flight values(180,1,9,GETDATE(),GETDATE());
 
 
 insert into Drive values(GETDATE(),299,1,1,GETDATE(),GETDATE());
 insert into Drive values(GETDATE(),299,1,2,GETDATE(),GETDATE());
+insert into Drive values(GETDATE(),299,1,2,GETDATE(),GETDATE());
+
 
 insert into Drive_Ticket_Connection values(1,1,GETDATE(),GETDATE());
 insert into Drive_Ticket_Connection values(1,2,GETDATE(),GETDATE());
+insert into Drive_Ticket_Connection values(1,3,GETDATE(),GETDATE());
 insert into Drive_Ticket_Connection values(2,3,GETDATE(),GETDATE());
 
+insert into Ticket values(10000,2,296,GETDATE(),GETDATE());
+insert into Drive_Ticket_Connection values(2,5,GETDATE(),GETDATE());
 
 
+insert into Ticket values(1000,2,2,GETDATE(),GETDATE());
 
+insert into Drive_Ticket_Connection values(2,6,GETDATE(),GETDATE());
+
+
+insert into Drive values('2017-6-23',299,1,2,GETDATE(),GETDATE());

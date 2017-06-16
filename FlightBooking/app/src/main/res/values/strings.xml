@@ -35,7 +35,6 @@
     <string name="comment">Comment</string>
 
 
-
     <string name="address">Address</string>
     <string name="city">City</string>
     <string name="phone_number">Phone number</string>
@@ -49,5 +48,22 @@
     <string name="language">Language</string>
     <string name="serbian">Serbian</string>
     <string name="english">English</string>
+
+    <string name="returnnCheck">Return</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="depart">Depart</string>
+    <string name="returnn">Return</string>
+    <string name="passangers">Passangers:</string>
+    <string name="find">Find</string>
+
+    <string name="choose">Choose</string>
+    <string name="sold_out">Sold out</string>
+
+
+    <string name="reservations_form_town_from_error">Town from is required</string>
+    <string name="reservations_form_town_to_error">Town to is required</string>
+    <string name="reservations_form_depart_date_error">Daprt date is required</string>
+    <string name="reservations_form_return_date_error">Return date is required</string>
 
 </resources>

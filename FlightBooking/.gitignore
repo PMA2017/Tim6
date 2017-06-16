@@ -6,4 +6,7 @@
 .DS_Store
 /build
 /captures
+/false
 .externalNativeBuild
+
+false/*

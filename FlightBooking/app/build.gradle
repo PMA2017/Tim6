@@ -24,9 +24,9 @@ android {
         enabled = true
     }
 
-        aaptOptions {
-            cruncherEnabled = false
-        }
+    aaptOptions {
+        cruncherEnabled = false
+    }
 
 
 }

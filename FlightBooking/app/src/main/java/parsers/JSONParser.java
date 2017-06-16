@@ -26,10 +26,11 @@ public class JSONParser {
             try {
                 JSONObject object = array.getJSONObject(i);
                 town.name = object.getString("Name");
+                town.mark = object.getString("Mark");
             } catch(JSONException e) {
                 e.printStackTrace();
             }
-            towns.add(town.name);
+            towns.add(town.name + " (" + town.mark + ")");
         }
         return towns;
     }
