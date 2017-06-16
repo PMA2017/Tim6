@@ -57,6 +57,10 @@
     <string name="passangers">Passangers:</string>
     <string name="find">Find</string>
 
+    <string name="choose">Choose</string>
+    <string name="sold_out">Sold out</string>
+
+
     <string name="reservations_form_town_from_error">Town from is required</string>
     <string name="reservations_form_town_to_error">Town to is required</string>
     <string name="reservations_form_depart_date_error">Daprt date is required</string>
