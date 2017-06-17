@@ -14,7 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import model.Flight;
+
 import static com.loopj.android.http.AsyncHttpClient.log;
+import static rs.flights.FlightAddFragment.list_integer;
 
 
 public class FlightDAO extends FlightDBDAO {
@@ -42,6 +45,11 @@ public class FlightDAO extends FlightDBDAO {
         values.put(DataBaseHelper.FLIGHT_TIME_FROM, flight.getTime1());
         values.put(DataBaseHelper.FLIGHT_TIME_TO, flight.getTime2());
         values.put(DataBaseHelper.FLIGHT_DURATION, flight.getDuration());
+        values.put(DataBaseHelper.FLIGHT_FROM_LATITUDE, flight.getTownFromLatitude());
+        values.put(DataBaseHelper.FLIGHT_TO_LATITUDE, flight.getTownToLatitude());
+        values.put(DataBaseHelper.FLIGHT_FROM_LONGITUDE, flight.getTownFromLongitude());
+        values.put(DataBaseHelper.FLIGHT_TO_LONGITUDE, flight.getTownToLongitude());
+
 
     log.w("flightDB","flightDB");
         return database.insert(DataBaseHelper.FLIGHT_TABLE, null, values);
@@ -63,27 +71,40 @@ public class FlightDAO extends FlightDBDAO {
                         DataBaseHelper.FLIGHT_DATE_TO,
                         DataBaseHelper.FLIGHT_TIME_FROM,
                         DataBaseHelper.FLIGHT_TIME_TO,
-                        DataBaseHelper.FLIGHT_DURATION}, null, null, null,
+                        DataBaseHelper.FLIGHT_DURATION,
+                        DataBaseHelper.FLIGHT_FROM_LATITUDE,
+                        DataBaseHelper.FLIGHT_TO_LATITUDE,
+                        DataBaseHelper.FLIGHT_FROM_LONGITUDE,
+                        DataBaseHelper.FLIGHT_TO_LONGITUDE
+                }, null, null, null,
                 null, null,null);
 
         while (cursor.moveToNext()) {
-            Flight flight = new Flight();
-            flight.setId(cursor.getInt(0));
-            flight.setTownFrom(cursor.getString(1));
-            flight.setTownTo(cursor.getString(2));
-            flight.setTownFromMark(cursor.getString(3));
-            flight.setTownToMark(cursor.getString(4));
-            flight.setPrice(cursor.getString(5));
-            flight.setCompany(cursor.getString(6));
-            flight.setDate1(cursor.getString(7));
-            flight.setDate2(cursor.getString(8));
-            flight.setTime1(cursor.getString(9));
-            flight.setTime2(cursor.getString(10));
-            flight.setDuration(cursor.getString(11));
 
+                Flight flight = new Flight();
+                flight.setId(cursor.getInt(0));
+                flight.setTownFrom(cursor.getString(1));
+                flight.setTownTo(cursor.getString(2));
+                flight.setTownFromMark(cursor.getString(3));
+                flight.setTownToMark(cursor.getString(4));
+                flight.setPrice(cursor.getString(5));
+                flight.setCompany(cursor.getString(6));
+                flight.setDate1(cursor.getString(7));
+                flight.setDate2(cursor.getString(8));
+                flight.setTime1(cursor.getString(9));
+                flight.setTime2(cursor.getString(10));
+                flight.setDuration(cursor.getString(11));
+            flight.setTownFromLatitude(cursor.getInt(12));
+            flight.setTownToLatitude(cursor.getInt(13));
+            flight.setTownFromLongitude(cursor.getInt(14));
+            flight.setTownToLongitude(cursor.getInt(15));
 
+            for(int i=0;i<list_integer.size();i++){
+                if(list_integer.get(i)==cursor.getInt(0)) {
+                    flights.add(flight);
+                }
+            }
 
-            flights.add(flight);
         }
         return flights;
     }
@@ -106,6 +127,10 @@ public class FlightDAO extends FlightDBDAO {
         values.put(DataBaseHelper.FLIGHT_TIME_FROM, flight.getTime1());
         values.put(DataBaseHelper.FLIGHT_TIME_TO, flight.getTime2());
         values.put(DataBaseHelper.FLIGHT_DURATION, flight.getDuration());
+        values.put(DataBaseHelper.FLIGHT_FROM_LATITUDE, flight.getTownFromLatitude());
+        values.put(DataBaseHelper.FLIGHT_TO_LATITUDE, flight.getTownToLatitude());
+        values.put(DataBaseHelper.FLIGHT_FROM_LONGITUDE, flight.getTownFromLongitude());
+        values.put(DataBaseHelper.FLIGHT_TO_LONGITUDE, flight.getTownToLongitude());
         long result = database.update(DataBaseHelper.FLIGHT_TABLE, values,
                 WHERE_ID_EQUALS,
                 new String[] { String.valueOf(flight.getId()) });
@@ -140,6 +165,10 @@ public class FlightDAO extends FlightDBDAO {
             flight.setTime1(cursor.getString(9));
             flight.setTime2(cursor.getString(10));
             flight.setDuration(cursor.getString(11));
+            flight.setTownFromLatitude(cursor.getInt(12));
+            flight.setTownToLatitude(cursor.getInt(13));
+            flight.setTownFromLongitude(cursor.getInt(14));
+            flight.setTownToLongitude(cursor.getInt(15));
 
         }
         return flight;

@@ -8,10 +8,10 @@ import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "flightDB";
-    private static final int DATABASE_VERSION = 3;
+    private static final String DATABASE_NAME = "flightDBase";
+    private static final int DATABASE_VERSION = 5;
 
-    public static final String FLIGHT_TABLE = "flightModify";
+    public static final String FLIGHT_TABLE = "flightTable";
     public static final String COMMENT_TABLE = "comment";
 
     public static final String ID_COLUMN = "id";
@@ -26,6 +26,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String FLIGHT_TIME_FROM = "time1";
     public static final String FLIGHT_TIME_TO = "time2";
     public static final String FLIGHT_DURATION = "duration";
+    public static final String FLIGHT_FROM_LATITUDE = "from_latitude";
+    public static final String FLIGHT_TO_LATITUDE = "to_latitude";
+    public static final String FLIGHT_FROM_LONGITUDE = "from_longitude";
+    public static final String FLIGHT_TO_LONGITUDE = "to_longitude";
 
     public static final String CREATE_FLIGHT_TABLE = "CREATE TABLE "
             + FLIGHT_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY, "
@@ -34,7 +38,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + FLIGHT_PRICE + " TEXT, " + FLIGHT_COMPANY + " TEXT, "
             + FLIGHT_DATE_FROM + " TEXT, " + FLIGHT_DATE_TO + " TEXT, "
             + FLIGHT_TIME_FROM + " TEXT, " + FLIGHT_TIME_TO + " TEXT, "
-            + FLIGHT_DURATION + " TEXT" + ")";
+            + FLIGHT_DURATION + " TEXT, " + FLIGHT_FROM_LATITUDE + " REAL, "
+            + FLIGHT_TO_LATITUDE + " REAL, " + FLIGHT_FROM_LONGITUDE + " REAL, "
+            + FLIGHT_TO_LONGITUDE + " REAL" + ")";
 
     public static final String COMMENT_COMMENT = "comment";
 

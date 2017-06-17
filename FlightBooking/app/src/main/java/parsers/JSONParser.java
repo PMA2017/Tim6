@@ -1,7 +1,7 @@
 package parsers;
 
 import model.Town;
-import rs.SQLite.Flight;
+import model.Flight;
 import rs.contact.Airline;
 import rs.reservation.flights.FlightView;
 import rs.flightbooking.R;
