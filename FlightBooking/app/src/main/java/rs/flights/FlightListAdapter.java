@@ -283,7 +283,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         }
 
         Flight flight = (Flight) getItem(position);
-        holder.flightIdTxt.setText(flight.getId() + "");
+//        holder.flightIdTxt.setText(flight.getId() + "");
         holder.flightTownFromTxt.setText(flight.getTownFrom()+ "");
         holder.flightTownToTxt.setText(flight.getTownTo() + "");
         holder.flightDateFromTxt.setText(flight.getTime1() + "");
