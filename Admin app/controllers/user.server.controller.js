@@ -48,11 +48,15 @@ function getFlights(req,res,next){
 
 									drives[townFromIndex].dataValues.townFrom = town.Name;
 									drives[townFromIndex].dataValues.townFromMark = town.Mark;
+									drives[townFromIndex].dataValues.townFromLatitude = town.Latitude;
+									drives[townFromIndex].dataValues.townFromLongitude = town.Longitude;
 									townFromIndex++;
 									sequelize.model('Airport').findById(flight.AirportTo_ID).then(airportTo=>{
 										sequelize.model('Town').findById(airportTo.Town_ID).then(town=>{
 											drives[townToIndex].dataValues.townToMark = town.Mark;
 											drives[townToIndex].dataValues.townTo = town.Name;
+											drives[townToIndex].dataValues.townToLatitude = town.Latitude;
+											drives[townToIndex].dataValues.townToLongitude = town.Longitude;
 											townToIndex++;
 											if(airlineIndex==drives.length && !responseSent && townToIndex==drives.length)
 											{

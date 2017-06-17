@@ -31,7 +31,7 @@ public class SendToServer {
 
     public void checkFlights(int id)
     {
-        HttpUtils.get("/api/User/getFlights/"+2 ,null, jsonHttpHandler);
+        HttpUtils.get("/api/User/getFlights/"+id ,null, jsonHttpHandler);
     }
 
     public void getAirline(){
