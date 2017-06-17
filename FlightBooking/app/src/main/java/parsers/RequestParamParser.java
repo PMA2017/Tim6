@@ -2,6 +2,12 @@ package parsers;
 
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+
+import rs.reservation.flights.FlightView;
+
 /**
  * Created by n.starcev on 6/8/2017.
  */
@@ -37,6 +43,22 @@ public class RequestParamParser {
             rp.add("DateTo", dateTo);
         }
         rp.add("Passengers",passengers);
+        return rp;
+    }
+
+    public static RequestParams makeRequestParamsReserveTicket(ArrayList<FlightView> flights, String username, Integer passangers)
+    {
+        Integer ids[] = new Integer[flights.size()];
+        JSONArray array = new JSONArray();
+        for(int i = 0; i < flights.size(); i++) {
+            ids[i] = flights.get(i).id;
+            array.put(flights.get(i).id);
+        }
+
+        RequestParams rp = new RequestParams();
+        rp.put("drives",array);
+        rp.add("username",username);
+        rp.put("passengers",passangers);
         return rp;
     }
 

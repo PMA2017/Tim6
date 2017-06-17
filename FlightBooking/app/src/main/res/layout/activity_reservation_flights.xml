@@ -27,7 +27,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight=".20"
-                android:text="11.05" />
+                android:text="" />
 
             <Button
                 android:id="@+id/second"
@@ -36,7 +36,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight=".20"
-                android:text="12.05" />
+                android:text="" />
 
             <Button
                 android:id="@+id/third"
@@ -45,7 +45,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight=".20"
-                android:text="13.05" />
+                android:text="" />
 
             <Button
                 android:id="@+id/fourth"
@@ -54,7 +54,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight=".20"
-                android:text="14.05" />
+                android:text="" />
 
             <Button
                 android:id="@+id/fifth"
@@ -63,7 +63,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight=".20"
-                android:text="15.05" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout

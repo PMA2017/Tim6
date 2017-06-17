@@ -311,7 +311,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_fl_townTo"
             android:textSize="7dp"
-            android:padding="6dp" /> 
+            android:padding="6dp" />
 android:src="@drawable/comment"
 
 
@@ -325,8 +325,8 @@ android:src="@drawable/comment"
 
 
 
-        <ImageButton  
-        android:id="@+id/imageButton1" 
+        <ImageButton
+        android:id="@+id/imageButton1"
         android:src="@drawable/comment"
         android:layout_width="50dp"
         android:layout_height="30dp"
@@ -341,8 +341,8 @@ android:src="@drawable/comment"
             />
             android:src="@drawable/mark"
 
-         <ImageButton  
-        android:id="@+id/imageButton2" 
+         <ImageButton
+        android:id="@+id/imageButton2"
         android:src="@drawable/star"
         android:layout_width="50dp"
         android:layout_height="30dp"
@@ -355,8 +355,8 @@ android:src="@drawable/comment"
         android:onClick="onClick" />
 
 
-        <ImageButton  
-        android:id="@+id/imageButton3" 
+        <ImageButton
+        android:id="@+id/imageButton3"
         android:src="@drawable/mapp"
         android:layout_width="50dp"
         android:layout_height="30dp"

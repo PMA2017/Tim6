@@ -171,7 +171,6 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
 
                     flight = new Flight();
 
-
                     flight.setId(id);
                     flight.setTownFrom(json_data.getString("townFrom"));
                     flight.setTownTo(json_data.getString("townTo"));
