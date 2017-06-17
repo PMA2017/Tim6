@@ -50,6 +50,7 @@ insert into Flight values(180,1,9,GETDATE(),GETDATE());
 insert into Drive values(GETDATE(),299,1,1,GETDATE(),GETDATE());
 insert into Drive values(GETDATE(),299,1,2,GETDATE(),GETDATE());
 insert into Drive values(GETDATE(),299,1,2,GETDATE(),GETDATE());
+insert into Drive values(GETDATE(),450,1,3,GETDATE(),GETDATE());
 
 
 insert into Drive_Ticket_Connection values(1,1,GETDATE(),GETDATE());
@@ -67,3 +68,10 @@ insert into Drive_Ticket_Connection values(2,6,GETDATE(),GETDATE());
 
 
 insert into Drive values('2017-6-23',299,1,2,GETDATE(),GETDATE());
+
+--Ber-Bel
+insert into Flight values(120,3,1,GETDATE(),GETDATE());
+
+--Ber Bel drive
+
+insert into Drive values('2017-6-24',310,1,4,GETDATE(),GETDATE()); 

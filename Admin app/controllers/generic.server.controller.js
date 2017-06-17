@@ -136,10 +136,17 @@ function getDrivesAroundDate(req,res,next){
 						}
 
 						sequelize.model('Flight').findAll({where:Sequelize.and({AirportTo_ID:{$or:queryTo}},{AirportFrom_ID:{$or:queryFrom}})}).then(flights=>{
+							sequelize.model('Flight').findAll({where:Sequelize.and({AirportTo_ID:{$or:queryFrom}},{AirportFrom_ID:{$or:queryTo}})}).then(flightsReturn=>{
 							
 							var queryFlights = [];
 							for(var i=0; i<flights.length; i++){
 								queryFlights.push(flights[i].id);
+							}
+
+							var queryFlightsReturn = [];
+							for(var i=0; i<flightsReturn.length; i++)
+							{
+								queryFlightsReturn.push(flightsReturn[i].id);
 							}
 							var queryDate = [];
 							var dateFromMin = new Date(dateFrom);
@@ -165,7 +172,10 @@ function getDrivesAroundDate(req,res,next){
 								
 							}
 
-							sequelize.model('Drive').findAll({where:Sequelize.and({Flight_ID:{$or:queryFlights}},Sequelize.or({StartTime:{$gte:dateFromMin, $lte:dateFromMax}},{StartTime:{$gte:dateToMin, $lte:dateToMax}}))}).then(drives=>{
+							//if(queryFlightsReturn.length==0)
+								//queryFlightsReturn = [-1];
+
+							sequelize.model('Drive').findAll({where:Sequelize.and(Sequelize.or({StartTime:{$gte:dateFromMin, $lte:dateFromMax},Flight_ID:{$or:queryFlights}},{Flight_ID:{$or:queryFlightsReturn}, StartTime:{$gte:dateToMin, $lte:dateToMax}}))}).then(drives=>{
 								var companyCount = 0;
 								var freeCount = 0;
 								var durationCount = 0;
@@ -218,6 +228,7 @@ function getDrivesAroundDate(req,res,next){
 								}
 								else res.json([]);
 								
+							})
 							})
 						})
 					})		
@@ -341,9 +352,9 @@ function organizeDrives(drives,dateFromMin,dateToMin, response){
 		console.log(day3.toDateString());
 
 		drives[i].dataValues.StartTimeDate = drives[i].StartTime.toDateString().substring(4);
-		drives[i].dataValues.StartTimeTime = drives[i].StartTime.getHours()+":"+drives[i].StartTime.getMinutes();
+		drives[i].dataValues.StartTimeTime = getPrettyString(drives[i].StartTime.getHours())+":"+getPrettyString(drives[i].StartTime.getMinutes());
 		drives[i].dataValues.EndTimeDate = drives[i].dataValues.endTime.toDateString().substring(4);
-		drives[i].dataValues.EndTimeTime = drives[i].dataValues.endTime.getHours() + ":" + drives[i].dataValues.endTime.getMinutes();
+		drives[i].dataValues.EndTimeTime = getPrettyString(drives[i].dataValues.endTime.getHours()) + ":" + getPrettyString(drives[i].dataValues.endTime.getMinutes());
 
 		if(drives[i].StartTime.toDateString()===dateFromMin.toDateString())
 		{
@@ -426,4 +437,15 @@ function returnAllEmpty(endDateDefined){
 
 	return resBody;
 
+}
+
+function getPrettyString(value){
+	var returnString;
+	if(value<10)
+	{
+			returnString="0";
+			returnString = returnString.concat(value.toString());
+	}
+	else returnString = value.toString();
+	return returnString;
 }
