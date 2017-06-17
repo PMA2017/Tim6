@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.DialogFragment;
@@ -25,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.loopj.android.http.RequestParams;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -38,9 +41,13 @@ import rs.SQLite.CustomInterface;
 import model.Flight;
 import rs.flightbooking.R;
 import rs.maps.MapFragment;
+import tools.IServerCaller;
+import tools.SendToServer;
+import tools.Session;
+import tools.response.ServerResponse;
 
 
-public class FlightListAdapter extends ArrayAdapter<Flight> {
+public class FlightListAdapter extends ArrayAdapter<Flight>{
 
     private Context context;
 
@@ -58,6 +65,8 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         this.flights = flights;
         this.mListener = mListener;
     }
+
+
 
     private class ViewHolder {
         TextView flightIdTxt;
@@ -123,8 +132,6 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             convertView = inflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
 
-            holder.flightIdTxt = (TextView) convertView
-                    .findViewById(R.id.txt_fl_id);
             holder.flightTownFromTxt = (TextView) convertView
                     .findViewById(R.id.txt_fl_townFrom);
             holder.flightTownToTxt = (TextView) convertView
@@ -203,6 +210,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     ActionBarActivity thisActivity = (ActionBarActivity) context;
                     android.support.v4.app.Fragment v4Fragment = new MapFragment();
                     Bundle bundle = new Bundle();
@@ -231,11 +239,29 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                       v.setBackgroundResource(R.drawable.staryellow);
-                       star2.setBackgroundResource(R.drawable.star_empty);
-                        star3.setBackgroundResource(R.drawable.star_empty);
-                        star4.setBackgroundResource(R.drawable.star_empty);
-                        star5.setBackgroundResource(R.drawable.star_empty);
+
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                view.setBackgroundResource(R.drawable.staryellow);
+                                star2.setBackgroundResource(R.drawable.star_empty);
+                                star3.setBackgroundResource(R.drawable.star_empty);
+                                star4.setBackgroundResource(R.drawable.star_empty);
+                                star5.setBackgroundResource(R.drawable.star_empty);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
+
+                    RequestParams params = new RequestParams();
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight.getId());
+                    params.put("Rating",3);
+                    sts.post("Rating",params);
 
 
                 }
@@ -343,10 +369,6 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
        // latFrom = flight.getTownFromLongitude();
         //lonTo = flight.getTownToLatitude();
        // latTo = flight.getTownToLongitude();
-
-
-
-
         return convertView;
     }
 
@@ -363,4 +385,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         notifyDataSetChanged();
         super.remove(flight);
     }
+
+
+
 }

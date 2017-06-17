@@ -36,6 +36,7 @@ function getById(req, res, next){
 }
 
 function postToTable(req,res,next){
+		if(req.params.tableToPost!="Rating"){
 		var instance = sequelize.model(req.params.tableToPost).build(req.body);
 		instance.save().then(anotherInstance => {
 	    	res.status(200).send(anotherInstance);
@@ -43,6 +44,34 @@ function postToTable(req,res,next){
 	  .catch(error => {
 	    res.status(400).send({message:error});
 	})
+	}
+	else{
+		var tableNameId = req.params.tableToPost;
+	var driveId = req.body.Drive_ID;
+	var userId = req.body.User_ID;
+	sequelize.model(tableNameId).findOne({where:{Drive_ID: driveId,User_ID:userId}})
+	  .then(data=>{
+	  	if(data){
+	  		data.update(req.body).then(updatedInstance=>{
+	  			res.status(200).send(updatedInstance);
+	  		})
+	  		.catch(error => {
+	  			res.status(400).send({message:error});
+	  		})
+	  	}
+	  	else {
+			  	var instance = sequelize.model(req.params.tableToPost).build(req.body);
+				instance.save().then(anotherInstance => {
+			    	res.status(200).send(anotherInstance);
+			 	})
+			  .catch(error => {
+			    res.status(400).send({message:error});
+			})
+	  	}
+	  }).catch(error=>{
+	  	res.status(400).send({message:error});
+	  })
+	}
 }
 
 function putToTable(req,res,next){
