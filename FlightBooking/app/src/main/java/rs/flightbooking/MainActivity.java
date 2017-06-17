@@ -40,20 +40,17 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         listViewSliding= (android.widget.ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout= (android.support.v4.widget.DrawerLayout)findViewById(R.id.drawer_layout);
 //        mainContent= (android.widget.RelativeLayout)findViewById(R.id.main_content);
         listSliding= new ArrayList<>();
 
-        listSliding.add(new ItemSlideMenu(R.drawable.reservation,"Reservations"));
-        listSliding.add(new ItemSlideMenu(R.drawable.flights,"Flights"));
-    //    listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
-        listSliding.add(new ItemSlideMenu(R.drawable.information,"Contact"));
-        listSliding.add(new ItemSlideMenu(R.drawable.map,"Maps"));
-        listSliding.add(new ItemSlideMenu(R.drawable.information,"Add"));
+        listSliding.add(new ItemSlideMenu(R.drawable.reservation,getResources().getString(R.string.reservations)));
+        listSliding.add(new ItemSlideMenu(R.drawable.flights,getResources().getString(R.string.flights)));
+        //listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.information)));
+        listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.information)));
+        listSliding.add(new ItemSlideMenu(R.drawable.map,getResources().getString(R.string.map)));
+        listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.add)));
 
 
 
@@ -105,6 +102,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         Session session = new Session(this.getApplicationContext());
+        session.setUsername("username");
         String username = session.getUsername();
 
 

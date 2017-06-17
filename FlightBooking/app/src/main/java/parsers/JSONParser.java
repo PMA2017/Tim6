@@ -3,6 +3,8 @@ package parsers;
 import model.Town;
 import model.Flight;
 import rs.contact.Airline;
+import rs.reservation.flights.FlightView;
+import rs.flightbooking.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 import static com.loopj.android.http.AsyncHttpClient.log;
+
 
 /**
  * Created by Nemanja on 5/23/2017.
@@ -117,6 +120,54 @@ public class JSONParser {
             e.printStackTrace();
         }
         return id;
+    }
+
+    public static ArrayList<ArrayList<FlightView>> getAllFlightsFromGetAroungDateResponse(JSONObject object, boolean isReturn)
+    {
+        ArrayList<ArrayList<FlightView>> allFlights = new ArrayList<ArrayList<FlightView>>();
+        int counter = 10;
+        if(!isReturn) {
+            counter = 5;
+        }
+        for(int i = 1; i <= counter; i++) {
+            String key = "day" + i;
+            String type = "DEPART";
+            if(i > 5) {
+                type = "RETURN";
+            }
+            try {
+                JSONArray array = object.getJSONArray(key);
+                ArrayList<FlightView> flights = new ArrayList<FlightView>();
+                for(int j = 0; j < array.length(); j++) {
+                    JSONObject flightObject = array.getJSONObject(j);
+                    flightObject.getInt("id");
+                    String price = flightObject.getString("Price");
+                    String duration = flightObject.getString("duration");
+                    String company = flightObject.getString("company");
+                    boolean free = flightObject.getBoolean("free");
+                    String startTimeDate = flightObject.getString("StartTimeDate");
+                    String endTimeDate = flightObject.getString("EndTimeDate");
+                    String startTimeTime = flightObject.getString("StartTimeTime");
+                    String endTimeDTime = flightObject.getString("EndTimeTime");
+
+                    FlightView flightView = new FlightView();
+                    flightView.price = price + " €";
+                    flightView.duration = duration;
+                    flightView.company = company;
+                    flightView.isFree = free;
+                    flightView.dateFrom = startTimeDate;
+                    flightView.timeFrom = startTimeTime;
+                    flightView.dateTo = endTimeDate;
+                    flightView.timeTo = endTimeDTime;
+                    flightView.type = type;
+                    flights.add(flightView);
+                }
+                allFlights.add(flights);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return allFlights;
     }
 
 }

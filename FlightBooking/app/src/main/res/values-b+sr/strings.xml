@@ -70,5 +70,8 @@
 
     <string name="make_reservation">Rezervisi</string>
 
+    <string name="departUpper">POLAZAK</string>
+    <string name="returnUpper">POVRATAK</string>
+
 
 </resources>

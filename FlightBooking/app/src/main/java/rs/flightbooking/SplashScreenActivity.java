@@ -8,6 +8,7 @@ import android.os.SystemClock;
 
 import rs.authentification.RegistrationActivity;
 import rs.authentification.SignupActivity;
+import rs.reservation.form.Reservations;
 
 
 /**
@@ -69,7 +70,7 @@ public class SplashScreenActivity extends Activity {
 
     private void startMainActivity()
     {
-        startActivity(new Intent(SplashScreenActivity.this, SignupActivity.class));
+        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
         finish(); // da nebi mogao da ode back na splash
     }
 }

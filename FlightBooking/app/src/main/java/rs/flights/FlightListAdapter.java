@@ -7,6 +7,7 @@ package rs.flights;
 import android.app.Activity;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.DialogFragment;
@@ -35,6 +36,7 @@ import rs.flightbooking.R;
 import rs.SQLite.CustomInterface;
 import model.Flight;
 import rs.flightbooking.R;
+import rs.maps.MapFragment;
 
 
 public class FlightListAdapter extends ArrayAdapter<Flight> {
@@ -147,7 +149,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3 = (Button) convertView
                     .findViewById(R.id.imageButton3);
 
-           /*holder.star1 = (Button) convertView.findViewById(R.id.star1);
+           holder.star1 = (Button) convertView.findViewById(R.id.star1);
             holder.star2 = (Button) convertView.findViewById(R.id.star2);
             holder.star3 = (Button) convertView.findViewById(R.id.star3);
             holder.star4 = (Button) convertView.findViewById(R.id.star4);
@@ -162,7 +164,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             final Button star2 = holder.star2;
             final Button star3 = holder.star3;
             final Button star4 = holder.star4;
-            final Button star5 = holder.star5;*/
+            final Button star5 = holder.star5;
 
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {
 
@@ -176,7 +178,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             });
 
             //TO do
-           /* holder.imgbt2.setOnClickListener(new View.OnClickListener() {
+            holder.imgbt2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(mListener!=null){
@@ -189,15 +191,21 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mListener!=null){
-
-                    }
+                    android.support.v4.app.Fragment v4Fragment = new MapFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nameA", "New York");
+                    bundle.putString("nameB","Serbia");
+                    bundle.putDouble("latA",45.7128);
+                    bundle.putDouble("latB",45.35);
+                    bundle.putDouble("lonA",20);
+                    bundle.putDouble("lonB",0);
+                    v4Fragment.setArguments(bundle);
 
                 }
-            });*/
+            });
 
 
-           /* holder.star1.setOnClickListener(new View.OnClickListener() {
+            holder.star1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                        v.setBackgroundResource(R.drawable.staryellow);
@@ -267,7 +275,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                 public void onClick(View v) {
                     starsLayout.setVisibility(View.GONE);
                 }
-            });*/
+            });
 
 
 

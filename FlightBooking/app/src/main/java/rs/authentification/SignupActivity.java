@@ -23,10 +23,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private void setSubmitListener()
     {
-        log.w("usao57","usao57");
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new SignupSubmitButtonClickListener(this));
-    //    submit.setOnClickListener(new Initt(this));
     }
 
     private void setRegisterActivity()
@@ -38,7 +36,5 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(new Intent(SignupActivity.this, RegistrationActivity.class));
             }
         });
-
-
     }
 }
