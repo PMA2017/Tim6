@@ -106,5 +106,4 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
         _toastTool.showList(errors);
         return false;
     }
-
 }

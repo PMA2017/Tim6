@@ -145,16 +145,6 @@ public class ReservationFlights extends Fragment {
         return new Integer(date.getMonth()).toString() + "/" + new Integer(dayOfMonth).toString();
     }
 
-    /*private String makeStringForDayNicer(int number)
-    {
-        String ret = new Integer(number).toString();
-        if(ret.length() < 2)
-        {
-            ret = "0" + ret;
-        }
-        return ret;
-    }*/
-
     private Date convertStringDateFromFormIntoDate(String dateFromForm)
     {
         Integer month = new Integer(dateFromForm.split("/")[0]);
