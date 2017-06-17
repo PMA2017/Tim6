@@ -113,8 +113,6 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             convertView = inflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
 
-            holder.flightIdTxt = (TextView) convertView
-                    .findViewById(R.id.txt_fl_id);
             holder.flightTownFromTxt = (TextView) convertView
                     .findViewById(R.id.txt_fl_townFrom);
             holder.flightTownToTxt = (TextView) convertView
