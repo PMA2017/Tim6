@@ -26,6 +26,7 @@ public class SignupActivity extends AppCompatActivity {
         log.w("usao57","usao57");
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new SignupSubmitButtonClickListener(this));
+    //    submit.setOnClickListener(new Initt(this));
     }
 
     private void setRegisterActivity()

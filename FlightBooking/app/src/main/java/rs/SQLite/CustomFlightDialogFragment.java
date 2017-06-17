@@ -69,12 +69,12 @@ public class CustomFlightDialogFragment extends DialogFragment {
         View customDialogView = inflater.inflate(R.layout.fragment_add_flight, null);
         builder.setView(customDialogView);
 
-        flightTownFromEtxt = (EditText) customDialogView.findViewById(R.id.etxt_townFrom);
+       /* flightTownFromEtxt = (EditText) customDialogView.findViewById(R.id.etxt_townFrom);
         flightTownToEtxt = (EditText) customDialogView.findViewById(R.id.etxt_townTo);
         flightDateFromEtxt = (EditText) customDialogView.findViewById(R.id.etxt_dateFrom);
         flightDateToEtxt = (EditText) customDialogView.findViewById(R.id.etxt_dateTo);
         submitLayout = (LinearLayout) customDialogView.findViewById(R.id.layout_submit);
-        submitLayout.setVisibility(View.GONE);
+        submitLayout.setVisibility(View.GONE);*/
 
         setValue();
 
@@ -83,7 +83,7 @@ public class CustomFlightDialogFragment extends DialogFragment {
         builder.setPositiveButton(R.string.update,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        try {
+                        /*try {
                             flight.setDateFrom(formatter.parse(flightDateFromEtxt.getText().toString()));
 
                         } catch (ParseException e) {
@@ -99,7 +99,7 @@ public class CustomFlightDialogFragment extends DialogFragment {
                                 "Invalid date format!",
                                 Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
                         flight.setTownFrom(flightTownFromEtxt.getText().toString());
                         flight.setTownTo(flightTownToEtxt.getText().toString());
                         long result = flightDAO.update(flight);
@@ -130,8 +130,8 @@ public class CustomFlightDialogFragment extends DialogFragment {
 
             flightTownFromEtxt.setText(flight.getTownFrom());
             flightTownToEtxt.setText(flight.getTownTo() + "");
-            flightDateFromEtxt.setText(formatter.format(flight.getDateFrom()));
-            flightDateToEtxt.setText(formatter.format(flight.getDateTo()));
+           /* flightDateFromEtxt.setText(formatter.format(flight.getDateFrom()));
+            flightDateToEtxt.setText(formatter.format(flight.getDateTo()));*/
         }
     }
 }

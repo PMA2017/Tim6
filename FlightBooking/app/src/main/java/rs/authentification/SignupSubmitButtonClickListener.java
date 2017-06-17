@@ -12,6 +12,7 @@ import parsers.JSONParser;
 import parsers.RequestParamParser;
 
 
+import rs.flights.FlightAddFragment;
 import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 import tools.IServerCaller;
@@ -63,26 +64,22 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
     public void OnServerResponse(ServerResponse response)
     {
 
-        log.w("usao5","usao5");
         ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
         if(response.statusCode == 200) {
-            log.w("usao","usao");
+
             String username = JSONParser.getUsername(response.responseObject);
 
             int id = JSONParser.getUserId(response.responseObject);
-            log.w("usao14","usao14");
+
             Session session = new Session(_signupActivity.getApplicationContext());
             session.setUsername(username);
-            log.w("username",username);
-            log.w("userId", String.valueOf(id));
+            session.setId(String.valueOf(id));
 
-            InitActivity initActivity= new InitActivity();
-            initActivity.napuni();
+
 
 
             _signupActivity.startActivity((new Intent(_signupActivity, MainActivity.class)));
         } else {
-            log.w("usao1","usao1");
             _toastTool.showList(errors);
         }
     }

@@ -68,13 +68,12 @@
         android:id="@+id/txt_fl_dateTo"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
         android:gravity="right"
-        android:layout_marginTop="46dp"
         android:textSize="11dp"
         android:textColor="#0f56c6"
-         />
+        android:layout_alignBottom="@+id/date1"
+        android:layout_toRightOf="@+id/type"
+        android:layout_toEndOf="@+id/type" />
 
     <TextView
         android:id="@+id/duration"
@@ -152,9 +151,42 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/mark1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_fl_townFrom"
+        android:layout_toEndOf="@+id/txt_fl_townFrom"
+        android:layout_toRightOf="@+id/txt_fl_townFrom"
+        android:text="TextView" />
 
+    <TextView
+        android:id="@+id/mark2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_fl_townTo"
+        android:layout_toLeftOf="@+id/txt_fl_townTo"
+        android:layout_toStartOf="@+id/txt_fl_townTo"
+        android:text="TextView" />
 
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignBaseline="@+id/date2"
+        android:layout_alignBottom="@+id/date2"
+        android:layout_toLeftOf="@+id/txt_fl_dateTo"
+        android:layout_toStartOf="@+id/txt_fl_dateTo" />
 
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignBottom="@+id/txt_fl_dateFrom"
+        android:layout_toLeftOf="@+id/price"
+        android:layout_toStartOf="@+id/price" />
 
 
 </RelativeLayout>

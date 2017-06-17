@@ -1,8 +1,5 @@
 package rs.flightbooking;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,33 +10,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
-import parsers.JSONParser;
-import rs.SQLite.FlightAddFragment;
-import rs.SQLite.FlightListFragment;
+import rs.flights.FlightAddFragment;
 import rs.contact.ContactFragment;
+import rs.flights.FlightListFragment;
 import rs.maps.MapFragment;
 import rs.reservation.form.Reservations;
 import rs.settings.SettingsFragment;
-import tools.IServerCaller;
-import tools.SendToServer;
 import tools.Session;
-import tools.response.ServerResponse;
-
-import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -69,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
         listSliding.add(new ItemSlideMenu(R.drawable.reservation,"Reservations"));
         listSliding.add(new ItemSlideMenu(R.drawable.flights,"Flights"));
-        listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
+    //    listSliding.add(new ItemSlideMenu(R.drawable.information,"Informations"));
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Contact"));
         listSliding.add(new ItemSlideMenu(R.drawable.map,"Maps"));
         listSliding.add(new ItemSlideMenu(R.drawable.information,"Add"));
@@ -217,17 +198,17 @@ public class MainActivity extends ActionBarActivity {
                 v4Fragment = new FlightListFragment();
            //     fragment=new Flights();
                 break;
-            case 2:
+           /* case 2:
                 v4Fragment=new Informations();
-                break;
-            case 3:
+                break;*/
+            case 2:
 
                 v4Fragment = new ContactFragment();
                 break;
-            case 5:
+            case 4:
                 v4Fragment = new FlightAddFragment();
                 break;
-            case 4:
+            case 3:
                 v4Fragment = new MapFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("nameA", "New York");

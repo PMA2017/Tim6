@@ -13,8 +13,15 @@ public class Flight implements Parcelable {
     private int id;
     private String townFrom;
     private String townTo;
-    private Date dateFrom;
-    private Date dateTo;
+    private String townFromMark;
+    private String townToMark;
+    private String price;
+    private String company;
+    private String date1;
+    private String date2;
+    private String time1;
+    private String time2;
+    private String duration;
 
     public Flight() {
         super();
@@ -25,8 +32,31 @@ public class Flight implements Parcelable {
         this.id = in.readInt();
         this.townFrom = in.readString();
         this.townTo = in.readString();
-        this.dateFrom = new Date(in.readLong());
-        this.dateTo = new Date(in.readLong());
+        this.townFromMark = in.readString();
+        this.townToMark = in.readString();
+        this.price = in.readString();
+        this.company = in.readString();
+        this.date1 = in.readString();
+        this.date2 = in.readString();
+        this.time1 = in.readString();
+        this.time2 = in.readString();
+        this.duration = in.readString();
+
+    }
+
+    public Flight(int id, String townFrom, String townTo, String townFromMark, String townToMark, String price, String company, String date1, String date2, String time1, String time2, String duration) {
+        this.id = id;
+        this.townFrom = townFrom;
+        this.townTo = townTo;
+        this.townFromMark = townFromMark;
+        this.townToMark = townToMark;
+        this.price = price;
+        this.company = company;
+        this.date1 = date1;
+        this.date2 = date2;
+        this.time1 = time1;
+        this.time2 = time2;
+        this.duration = duration;
     }
 
     public int getId() {
@@ -53,26 +83,94 @@ public class Flight implements Parcelable {
         this.townTo = townTo;
     }
 
-    public Date getDateFrom() {
-        return dateFrom;
+    public String getTownFromMark() {
+        return townFromMark;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setTownFromMark(String townFromMark) {
+        this.townFromMark = townFromMark;
     }
 
-    public Date getDateTo() {
-        return dateTo;
+    public String getTownToMark() {
+        return townToMark;
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setTownToMark(String townToMark) {
+        this.townToMark = townToMark;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
+    }
+
+    public String getDate2() {
+        return date2;
+    }
+
+    public void setDate2(String date2) {
+        this.date2 = date2;
+    }
+
+    public String getTime1() {
+        return time1;
+    }
+
+    public void setTime1(String time1) {
+        this.time1 = time1;
+    }
+
+    public String getTime2() {
+        return time2;
+    }
+
+    public void setTime2(String time2) {
+        this.time2 = time2;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     @Override
     public String toString() {
-        return "Flight [id=" + id + ", townFrom=" + townFrom + ", townTo="
-                + townTo + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + "]";
+        return "Flight{" +
+                "id=" + id +
+                ", townFrom='" + townFrom + '\'' +
+                ", townTo='" + townTo + '\'' +
+                ", townFromMark='" + townFromMark + '\'' +
+                ", townToMark='" + townToMark + '\'' +
+                ", price='" + price + '\'' +
+                ", company='" + company + '\'' +
+                ", date1='" + date1 + '\'' +
+                ", date2='" + date2 + '\'' +
+                ", time1='" + time1 + '\'' +
+                ", time2='" + time2 + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
     }
 
     @Override
@@ -107,9 +205,20 @@ public class Flight implements Parcelable {
         parcel.writeInt(getId());
         parcel.writeString(getTownFrom());
         parcel.writeString(getTownTo());
-        parcel.writeLong(getDateFrom().getTime());
-        parcel.writeLong(getDateTo().getTime());
+        parcel.writeString(getTownFromMark());
+        parcel.writeString(getTownToMark());
+        parcel.writeString(getPrice());
+        parcel.writeString(getCompany());
+        parcel.writeString(getDate1());
+        parcel.writeString(getDate2());
+        parcel.writeString(getTime1());
+        parcel.writeString(getTime2());
+        parcel.writeString(getDuration());
+
+
     }
+
+
 
     public static final Parcelable.Creator<Flight> CREATOR = new Parcelable.Creator<Flight>() {
         public Flight createFromParcel(Parcel in) {

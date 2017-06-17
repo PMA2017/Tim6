@@ -36,6 +36,9 @@
             android:name="rs.authentification.SignupActivity"
             android:label="FlightBooking" />
         <activity
+            android:name="rs.authentification.Initt"
+            android:label="FlightBooking" />
+        <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="FlightBooking"></activity>

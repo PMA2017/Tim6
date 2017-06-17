@@ -27,11 +27,22 @@ public class FlightDAO extends FlightDBDAO {
     }
 
     public long save(Flight flight) {
+
+        log.w("usao21","usao21");
         ContentValues values = new ContentValues();
+        values.put(DataBaseHelper.ID_COLUMN, flight.getId());
         values.put(DataBaseHelper.FLIGHT_TOWN_FROM, flight.getTownFrom());
         values.put(DataBaseHelper.FLIGHT_TOWN_TO, flight.getTownTo());
-        values.put(DataBaseHelper.FLIGHT_DATE_FROM, formatter.format(flight.getDateFrom()));
-        values.put(DataBaseHelper.FLIGHT_DATE_TO, formatter.format(flight.getDateTo()));
+        values.put(DataBaseHelper.FLIGHT_TOWN_FROM_MARK, flight.getTownFromMark());
+        values.put(DataBaseHelper.FLIGHT_TOWN_TO_MARK, flight.getTownToMark());
+        values.put(DataBaseHelper.FLIGHT_PRICE, flight.getPrice());
+        values.put(DataBaseHelper.FLIGHT_COMPANY, flight.getCompany());
+        values.put(DataBaseHelper.FLIGHT_DATE_FROM, flight.getDate1());
+        values.put(DataBaseHelper.FLIGHT_DATE_TO, flight.getDate2());
+        values.put(DataBaseHelper.FLIGHT_TIME_FROM, flight.getTime1());
+        values.put(DataBaseHelper.FLIGHT_TIME_TO, flight.getTime2());
+        values.put(DataBaseHelper.FLIGHT_DURATION, flight.getDuration());
+
     log.w("flightDB","flightDB");
         return database.insert(DataBaseHelper.FLIGHT_TABLE, null, values);
 
@@ -44,8 +55,15 @@ public class FlightDAO extends FlightDBDAO {
                 new String[] { DataBaseHelper.ID_COLUMN,
                         DataBaseHelper.FLIGHT_TOWN_FROM,
                         DataBaseHelper.FLIGHT_TOWN_TO,
+                        DataBaseHelper.FLIGHT_TOWN_FROM_MARK,
+                        DataBaseHelper.FLIGHT_TOWN_TO_MARK,
+                        DataBaseHelper.FLIGHT_PRICE,
+                        DataBaseHelper.FLIGHT_COMPANY,
                         DataBaseHelper.FLIGHT_DATE_FROM,
-                        DataBaseHelper.FLIGHT_DATE_TO}, null, null, null,
+                        DataBaseHelper.FLIGHT_DATE_TO,
+                        DataBaseHelper.FLIGHT_TIME_FROM,
+                        DataBaseHelper.FLIGHT_TIME_TO,
+                        DataBaseHelper.FLIGHT_DURATION}, null, null, null,
                 null, null,null);
 
         while (cursor.moveToNext()) {
@@ -53,16 +71,17 @@ public class FlightDAO extends FlightDBDAO {
             flight.setId(cursor.getInt(0));
             flight.setTownFrom(cursor.getString(1));
             flight.setTownTo(cursor.getString(2));
-            try {
-                flight.setDateFrom(formatter.parse(cursor.getString(3)));
-            } catch (ParseException e) {
-                flight.setDateFrom(null);
-            }
-            try {
-                flight.setDateTo(formatter.parse(cursor.getString(4)));
-            } catch (ParseException e) {
-                flight.setDateTo(null);
-            }
+            flight.setTownFromMark(cursor.getString(3));
+            flight.setTownToMark(cursor.getString(4));
+            flight.setPrice(cursor.getString(5));
+            flight.setCompany(cursor.getString(6));
+            flight.setDate1(cursor.getString(7));
+            flight.setDate2(cursor.getString(8));
+            flight.setTime1(cursor.getString(9));
+            flight.setTime2(cursor.getString(10));
+            flight.setDuration(cursor.getString(11));
+
+
 
             flights.add(flight);
         }
@@ -75,10 +94,18 @@ public class FlightDAO extends FlightDBDAO {
 
     public long update(Flight flight) {
         ContentValues values = new ContentValues();
+        values.put(DataBaseHelper.ID_COLUMN, flight.getId());
         values.put(DataBaseHelper.FLIGHT_TOWN_FROM, flight.getTownFrom());
         values.put(DataBaseHelper.FLIGHT_TOWN_TO, flight.getTownTo());
-        values.put(DataBaseHelper.FLIGHT_DATE_FROM, formatter.format(flight.getDateFrom()));
-        values.put(DataBaseHelper.FLIGHT_DATE_TO, formatter.format(flight.getDateTo()));
+        values.put(DataBaseHelper.FLIGHT_TOWN_FROM_MARK, flight.getTownFromMark());
+        values.put(DataBaseHelper.FLIGHT_TOWN_TO_MARK, flight.getTownToMark());
+        values.put(DataBaseHelper.FLIGHT_PRICE, flight.getPrice());
+        values.put(DataBaseHelper.FLIGHT_COMPANY, flight.getCompany());
+        values.put(DataBaseHelper.FLIGHT_DATE_FROM, flight.getDate1());
+        values.put(DataBaseHelper.FLIGHT_DATE_TO, flight.getDate2());
+        values.put(DataBaseHelper.FLIGHT_TIME_FROM, flight.getTime1());
+        values.put(DataBaseHelper.FLIGHT_TIME_TO, flight.getTime2());
+        values.put(DataBaseHelper.FLIGHT_DURATION, flight.getDuration());
         long result = database.update(DataBaseHelper.FLIGHT_TABLE, values,
                 WHERE_ID_EQUALS,
                 new String[] { String.valueOf(flight.getId()) });
@@ -101,20 +128,19 @@ public class FlightDAO extends FlightDBDAO {
         Cursor cursor = database.rawQuery(sql, new String[] { id + "" });
 
         if (cursor.moveToNext()) {
-            flight = new Flight();
             flight.setId(cursor.getInt(0));
             flight.setTownFrom(cursor.getString(1));
             flight.setTownTo(cursor.getString(2));
-            try {
-                flight.setDateFrom(formatter.parse(cursor.getString(3)));
-            } catch (ParseException e) {
-                flight.setDateFrom(null);
-            }
-            try {
-                flight.setDateTo(formatter.parse(cursor.getString(4)));
-            } catch (ParseException e) {
-                flight.setDateTo(null);
-            }
+            flight.setTownFromMark(cursor.getString(3));
+            flight.setTownToMark(cursor.getString(4));
+            flight.setPrice(cursor.getString(5));
+            flight.setCompany(cursor.getString(6));
+            flight.setDate1(cursor.getString(7));
+            flight.setDate2(cursor.getString(8));
+            flight.setTime1(cursor.getString(9));
+            flight.setTime2(cursor.getString(10));
+            flight.setDuration(cursor.getString(11));
+
         }
         return flight;
     }
