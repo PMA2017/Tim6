@@ -6,8 +6,10 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public GoogleMap getMap() {
         return map;
     }
+    private boolean mLocationPermissionGranted;
+    private Object mLastKnownLocation;
+    public static int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION =1;
 
     GoogleMap map;
     public MapFragment() {
@@ -74,21 +79,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-        //i have no idea how to get current location
-        if (ContextCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            //map.setMyLocationEnabled(true);
-        } else {
-
-            // Show rationale and request permission.
-        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        updateLocationUI();
+        //getDeviceLocation();
+
 
         PatternItem DASH = new Dash(20);
         PatternItem GAP = new Gap(8);
@@ -182,4 +180,63 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             Polyline polyline = map.addPolyline(rectOptions);
         }
     }
+
+    private void updateLocationUI() {
+        if (map == null) {
+            return;
+        }
+
+    /*
+     * Request location permission, so that we can get the location of the
+     * device. The result of the permission request is handled by a callback,
+     * onRequestPermissionsResult.
+     */
+        if (ContextCompat.checkSelfPermission(this.getActivity().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(this.getActivity(),
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+
+        if (mLocationPermissionGranted) {
+            map.setMyLocationEnabled(true);
+            map.getUiSettings().setMyLocationButtonEnabled(true);
+        } else {
+            map.setMyLocationEnabled(false);
+            map.getUiSettings().setMyLocationButtonEnabled(false);
+            mLastKnownLocation = null;
+        }
+    }
+
+    /*
+    private void getDeviceLocation() {
+    /*
+     * Before getting the device location, you must check location
+     * permission, as described earlier in the tutorial. Then:
+     * Get the best and most recent location of the device, which may be
+     * null in rare cases when a location is not available.
+
+        if (mLocationPermissionGranted) {
+            mLastKnownLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
+        }
+
+        // Set the map's camera position to the current location of the device.
+        if (mCameraPosition != null) {
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+        } else if (mLastKnownLocation != null) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(mLastKnownLocation.getLatitude(),
+                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+        } else {
+            Log.d(TAG, "Current location is null. Using defaults.");
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        }
+    }
+    */
+
 }
