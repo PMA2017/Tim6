@@ -240,7 +240,7 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     String duration = diffHours + ":" + diffMinutes + ":" + diffSeconds;
                     log.w("usao20", String.valueOf(duration));
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
+                    /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
 
                     preferences.edit().putString("flightId", String.valueOf(id)).commit();
                     preferences.edit().putString("townFrom", json_data.getString("townFrom")).commit();
@@ -254,10 +254,10 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     preferences.edit().putString("time1", time11[0]).commit();
                     preferences.edit().putString("time2", end_time11[0]).commit();
                     preferences.edit().putString("duration", duration).commit();
-                    preferences.edit().putInt("fromLatitude", json_data.getInt("company")).commit();
-                    preferences.edit().putString("time1", time11[0]).commit();
-                    preferences.edit().putString("time2", end_time11[0]).commit();
-                    preferences.edit().putString("duration", duration).commit();
+                    preferences.edit().putInt("fromLatitude", json_data.getInt("townFromLatitude")).commit();
+                    preferences.edit().putInt("toLatitude", json_data.getInt("townToLatitude")).commit();
+                    preferences.edit().putInt("fromLongitude", json_data.getInt("townFromLongitude")).commit();
+                    preferences.edit().putInt("toLongitude", json_data.getInt("townToLongitude")).commit();*/
 
 
                     flight = new Flight();
@@ -268,8 +268,25 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     String ide = preferences2.getString("flightId", "");
                     int ide1 = Integer.parseInt(ide);
 
+                    flight.setId(id);
+                    flight.setTownFrom(json_data.getString("townFrom"));
+                    flight.setTownTo(json_data.getString("townTo"));
+                    flight.setTownFromMark(json_data.getString("townFromMark"));
+                    flight.setTownToMark(json_data.getString("townToMark"));
+                    flight.setPrice(json_data.getString("Price"));
+                    flight.setCompany(json_data.getString("company"));
+                    flight.setDate1(time1[0]);
+                    flight.setDate2(end_time1[0]);
+                    flight.setTime1(time11[0]);
+                    flight.setTime2(end_time11[0]);
+                    flight.setDuration(duration);
+                    flight.setTownFromLatitude(json_data.getInt("townFromLatitude"));
+                    flight.setTownToLatitude( json_data.getInt("townToLatitude"));
+                    flight.setTownFromLongitude(json_data.getInt("townFromLongitude"));
+                    flight.setTownToLongitude(json_data.getInt("townToLongitude"));
 
-                    flight.setId(ide1);
+
+                    /*flight.setId(ide1);
                     flight.setTownFrom(preferences2.getString("townFrom", ""));
                     flight.setTownTo(preferences2.getString("townTo", ""));
                     flight.setTownFromMark(preferences2.getString("townFromMark", ""));
@@ -281,6 +298,10 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     flight.setTime1(preferences2.getString("time1", ""));
                     flight.setTime2(preferences2.getString("time2", ""));
                     flight.setDuration(preferences2.getString("duration", ""));
+                    flight.setTownFromLatitude(preferences2.getInt("fromLatitude", 0));
+                    flight.setTownToLatitude(preferences2.getInt("toLatitude", 0));
+                    flight.setTownFromLongitude(preferences2.getInt("fromLongitude", 0));
+                    flight.setTownToLongitude(preferences2.getInt("toLongitude", 0));*/
 
                     task = new AddFlightTask(getActivity());
                     task.execute((Void) null);

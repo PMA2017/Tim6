@@ -70,7 +70,7 @@ public class SplashScreenActivity extends Activity {
 
     private void startMainActivity()
     {
-        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashScreenActivity.this, SignupActivity.class));
         finish(); // da nebi mogao da ode back na splash
     }
 }
