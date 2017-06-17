@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import model.Flight;
 import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 

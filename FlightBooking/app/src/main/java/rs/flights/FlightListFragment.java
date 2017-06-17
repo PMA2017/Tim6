@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import rs.SQLite.CustomCommentDialogFragment;
 import rs.SQLite.CustomFlightDialogFragment;
 import rs.SQLite.CustomInterface;
-import rs.SQLite.Flight;
+import model.Flight;
 import rs.SQLite.FlightDAO;
 import rs.flightbooking.R;
 

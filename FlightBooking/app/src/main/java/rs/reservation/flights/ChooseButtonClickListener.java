@@ -3,7 +3,7 @@ package rs.reservation.flights;
 import android.view.View;
 import android.widget.Button;
 
-import rs.SQLite.Flight;
+import model.Flight;
 import rs.flightbooking.R;
 
 import rs.reservation.form.Reservations;

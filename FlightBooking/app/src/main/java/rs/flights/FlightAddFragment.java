@@ -26,11 +26,12 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import rs.SQLite.Flight;
+import model.Flight;
 import rs.SQLite.FlightDAO;
 import rs.authentification.SignupActivity;
 import rs.flightbooking.R;
@@ -197,55 +198,41 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
         }
     }
 
-    public void ubaci(Flight fli){
-        log.w("usao23","usao23");
-        flight= fli;
-        task = new AddFlightTask(getActivity());
-        task.execute((Void) null);
 
-    }
     private SendToServer _server;
     private JSONArray array;
+    public static ArrayList<Integer> list_integer =new ArrayList<Integer>();
 
     @Override
     public void OnServerResponse(ServerResponse response) {
 
-        log.w("usao9", "usao9");
+
         if(response.statusCode == 200) {
-            log.w("usao10", "usao10");
+
             array = response.responseArray;
-            log.w("usao11", "usao11");
-            log.w("usao12", String.valueOf(array.length()));
+
 
             for(int i=0; i<array.length(); i++) {
                 try {
                     JSONObject json_data = array.getJSONObject(i);
                     int id = json_data.getInt("id");
 
+                    list_integer.add(id);
 
 
-                    log.w("usao13", json_data.getString("id"));
-                    log.w("usao14", json_data.getString("townFrom"));
-                    log.w("usao14", json_data.getString("townTo"));
-                    log.w("usao14", json_data.getString("townFromMark"));
-                    log.w("usao14", json_data.getString("townToMark"));
-                    log.w("usao14", json_data.getString("Price"));
-                    log.w("usao14", json_data.getString("company"));
+
                     String time = json_data.getString("StartTime");
                     String end_time = json_data.getString("endTime");
                     String[] time1 = time.split("T");
                     String[] time11 = time1[1].split("\\.");
-                    log.w("usao15", time1[0]);
-                    log.w("usao16", time11[0]);
+
                     String[] end_time1 = end_time.split("T");
                     String[] end_time11 = end_time1[1].split("\\.");
-                    log.w("usao15", end_time1[0]);
-                    log.w("usao16", end_time11[0]);
+
                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
                     Date d1 = sdf.parse(time11[0]);
                     Date d2 = sdf.parse(end_time11[0]);
-                    /*Date d1 = sdf.parse(time);
-                    Date d2 = sdf.parse(end_time);*/
+
                     long diff = d2.getTime() - d1.getTime();
                     long diffSeconds = diff / 1000 % 60;
                     long diffMinutes = diff / (60 * 1000) % 60;
@@ -253,7 +240,7 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     String duration = diffHours + ":" + diffMinutes + ":" + diffSeconds;
                     log.w("usao20", String.valueOf(duration));
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
+                    /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
 
                     preferences.edit().putString("flightId", String.valueOf(id)).commit();
                     preferences.edit().putString("townFrom", json_data.getString("townFrom")).commit();
@@ -267,6 +254,11 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     preferences.edit().putString("time1", time11[0]).commit();
                     preferences.edit().putString("time2", end_time11[0]).commit();
                     preferences.edit().putString("duration", duration).commit();
+                    preferences.edit().putInt("fromLatitude", json_data.getInt("townFromLatitude")).commit();
+                    preferences.edit().putInt("toLatitude", json_data.getInt("townToLatitude")).commit();
+                    preferences.edit().putInt("fromLongitude", json_data.getInt("townFromLongitude")).commit();
+                    preferences.edit().putInt("toLongitude", json_data.getInt("townToLongitude")).commit();*/
+
 
                     flight = new Flight();
 
@@ -276,8 +268,25 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     String ide = preferences2.getString("flightId", "");
                     int ide1 = Integer.parseInt(ide);
 
+                    flight.setId(id);
+                    flight.setTownFrom(json_data.getString("townFrom"));
+                    flight.setTownTo(json_data.getString("townTo"));
+                    flight.setTownFromMark(json_data.getString("townFromMark"));
+                    flight.setTownToMark(json_data.getString("townToMark"));
+                    flight.setPrice(json_data.getString("Price"));
+                    flight.setCompany(json_data.getString("company"));
+                    flight.setDate1(time1[0]);
+                    flight.setDate2(end_time1[0]);
+                    flight.setTime1(time11[0]);
+                    flight.setTime2(end_time11[0]);
+                    flight.setDuration(duration);
+                    flight.setTownFromLatitude(json_data.getInt("townFromLatitude"));
+                    flight.setTownToLatitude( json_data.getInt("townToLatitude"));
+                    flight.setTownFromLongitude(json_data.getInt("townFromLongitude"));
+                    flight.setTownToLongitude(json_data.getInt("townToLongitude"));
 
-                    flight.setId(ide1);
+
+                    /*flight.setId(ide1);
                     flight.setTownFrom(preferences2.getString("townFrom", ""));
                     flight.setTownTo(preferences2.getString("townTo", ""));
                     flight.setTownFromMark(preferences2.getString("townFromMark", ""));
@@ -289,65 +298,15 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     flight.setTime1(preferences2.getString("time1", ""));
                     flight.setTime2(preferences2.getString("time2", ""));
                     flight.setDuration(preferences2.getString("duration", ""));
+                    flight.setTownFromLatitude(preferences2.getInt("fromLatitude", 0));
+                    flight.setTownToLatitude(preferences2.getInt("toLatitude", 0));
+                    flight.setTownFromLongitude(preferences2.getInt("fromLongitude", 0));
+                    flight.setTownToLongitude(preferences2.getInt("toLongitude", 0));*/
 
                     task = new AddFlightTask(getActivity());
                     task.execute((Void) null);
 
 
-
-
-              /*  String string = preferences.getString("townFrom", "");
-
-
-                flight.setId(id);
-                flight.setTownFrom(string);
-                flight.setTownTo(json_data.getString("townFrom"));
-                flight.setTownFromMark(json_data.getString("townTo"));
-                flight.setTownToMark(json_data.getString("townFromMark"));
-                flight.setPrice(json_data.getString("townToMark"));
-                flight.setCompany(json_data.getString("Price"));
-                flight.setDate1(json_data.getString("company"));
-                flight.setDate2(time1[0]);
-                flight.setTime1(time11[0]);
-                flight.setTime2(end_time1[0]);
-                flight.setDuration(duration);
-
-                Session session = new Session(_signupActivity.getApplicationContext());
-                session.setFilghtId(String.valueOf(id));
-                session.setTownFrom(json_data.getString("townFrom"));
-                session.setTownTo(json_data.getString("townTo"));
-                session.setTownFromMark(json_data.getString("townFromMark"));
-                session.setTownToMark(json_data.getString("townToMark"));
-                session.setPrice(json_data.getString("Price"));
-                session.setCompany(json_data.getString("company"));
-                session.setDate1(time1[0]);
-                session.setDate2(time11[0]);
-                session.setTime1(end_time1[0]);
-                session.setTime2(end_time11[0]);
-                session.setDuration(duration);*/
-
-
-
-
-
-
-                   /* Flight flight = new Flight();
-                    flight.setId(id);
-                    flight.setTownFrom(json_data.getString("townFrom"));
-                    flight.setTownTo(json_data.getString("townTo"));
-                    flight.setTownFromMark(json_data.getString("townFromMark"));
-                    flight.setTownToMark(json_data.getString("townToMark"));
-                    flight.setPrice(json_data.getString("Price"));
-                    flight.setCompany(json_data.getString("company"));
-                    flight.setDate1(time1[0]);
-                    flight.setDate2(time11[0]);
-                    flight.setTime1(end_time1[0]);
-                    flight.setTime2(end_time11[0]);
-                    flight.setDuration(duration);
-
-                    log.w("usao25",flight.getTownFromMark());
-                    FlightAddFragment faf = new FlightAddFragment();
-                    faf.ubaci(flight);*/
 
 
                 } catch (JSONException e) {

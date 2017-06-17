@@ -1,8 +1,11 @@
+/*
 package rs.SQLite;
 
+*/
 /**
  * Created by Rale on 6/11/2017.
- */
+ *//*
+
 
 import java.util.Date;
 import android.os.Parcel;
@@ -231,3 +234,4 @@ public class Flight implements Parcelable {
     };
 
 }
+*/
