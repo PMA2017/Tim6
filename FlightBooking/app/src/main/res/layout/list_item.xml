@@ -270,7 +270,7 @@ android:src="@drawable/comment"
 
          <ImageButton  
         android:id="@+id/imageButton2" 
-        android:src="@drawable/mark"
+        android:src="@drawable/star"
         android:layout_width="50dp"
         android:layout_height="30dp"
              android:layout_centerInParent="true"
@@ -280,6 +280,7 @@ android:src="@drawable/comment"
         android:padding="0dp"
         android:clickable="true"
         android:onClick="onClick" />
+
 
         <ImageButton  
         android:id="@+id/imageButton3" 
@@ -294,7 +295,81 @@ android:src="@drawable/comment"
         android:clickable="true"
         android:onClick="onClick" />
 
+
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_item"
+        android:visibility="gone">
+
+
+        <Button
+
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/star1"
+            android:clickable="true"
+            android:background="@drawable/star_empty"
+            android:onClick="onClick"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+
+        </Button>
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="28dp"
+            android:id="@+id/star2"
+            android:background="@drawable/star_empty"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+
+        </Button>
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="28dp"
+            android:id="@+id/star3"
+            android:background="@drawable/star_empty"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+        </Button>
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="28dp"
+            android:id="@+id/star4"
+            android:background="@drawable/star_empty"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+        </Button>
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="28dp"
+            android:id="@+id/star5"
+            android:background="@drawable/star_empty"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+        </Button>
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="28dp"
+            android:id="@+id/arrowUp"
+            android:layout_gravity="right"
+            android:background="@drawable/arrowup"
+            android:layout_height="28dp"
+            android:layout_width="28dp">
+        </Button>
+
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"

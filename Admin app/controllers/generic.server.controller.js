@@ -101,10 +101,13 @@ function getDrivesAroundDate(req,res,next){
 	var dateFrom = new Date(date1string);
 	*/
 	var dateTo;
+	var endDateDefined = true;
 	if(req.body.DateTo)
 	dateTo = new Date(req.body.DateTo);
-	else
+	else{
 		dateTo = new Date("1/2/1970");
+		endDateDefined = false;
+	}
 
 	console.log()
 
@@ -156,8 +159,10 @@ function getDrivesAroundDate(req,res,next){
 							
 							if(flights.length==0)
 							{
-								res.json([]);
+								res.json(returnAllEmpty(endDateDefined));
 								return;
+									
+								
 							}
 
 							sequelize.model('Drive').findAll({where:Sequelize.and({Flight_ID:{$or:queryFlights}},Sequelize.or({StartTime:{$gte:dateFromMin, $lte:dateFromMax}},{StartTime:{$gte:dateToMin, $lte:dateToMax}}))}).then(drives=>{
@@ -400,4 +405,25 @@ function organizeDrives(drives,dateFromMin,dateToMin, response){
 	}
 
 	response(newDrives);
+}
+
+function returnAllEmpty(endDateDefined){
+	var resBody = {
+		day1:[],
+		day2:[],
+		day3:[],
+		day4:[],
+		day5:[]
+	}
+
+	if(endDateDefined){
+		resBody.day6 = [];
+		resBody.day7 = [];
+		resBody.day8 = [];
+		resBody.day9 = [];
+		resBody.day10 = [];
+	}
+
+	return resBody;
+
 }
