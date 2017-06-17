@@ -147,7 +147,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3 = (Button) convertView
                     .findViewById(R.id.imageButton3);
 
-        /*    holder.star1 = (Button) convertView.findViewById(R.id.star1);
+           /*holder.star1 = (Button) convertView.findViewById(R.id.star1);
             holder.star2 = (Button) convertView.findViewById(R.id.star2);
             holder.star3 = (Button) convertView.findViewById(R.id.star3);
             holder.star4 = (Button) convertView.findViewById(R.id.star4);
@@ -155,14 +155,14 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.arrowUp = (Button) convertView.findViewById(R.id.arrowUp);
 
 
-            holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);*/
+            holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);
 
             final LinearLayout starsLayout = holder.stars;
             final Button star1 = holder.star1;
             final Button star2 = holder.star2;
             final Button star3 = holder.star3;
             final Button star4 = holder.star4;
-            final Button star5 = holder.star5;
+            final Button star5 = holder.star5;*/
 
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {
 
@@ -176,7 +176,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             });
 
             //TO do
-            holder.imgbt2.setOnClickListener(new View.OnClickListener() {
+           /* holder.imgbt2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(mListener!=null){
@@ -194,10 +194,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                     }
 
                 }
-            });
+            });*/
 
 
-            holder.star1.setOnClickListener(new View.OnClickListener() {
+           /* holder.star1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                        v.setBackgroundResource(R.drawable.staryellow);
@@ -267,7 +267,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                 public void onClick(View v) {
                     starsLayout.setVisibility(View.GONE);
                 }
-            });
+            });*/
 
 
 
