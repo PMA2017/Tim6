@@ -38,9 +38,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + FLIGHT_PRICE + " TEXT, " + FLIGHT_COMPANY + " TEXT, "
             + FLIGHT_DATE_FROM + " TEXT, " + FLIGHT_DATE_TO + " TEXT, "
             + FLIGHT_TIME_FROM + " TEXT, " + FLIGHT_TIME_TO + " TEXT, "
-            + FLIGHT_DURATION + " TEXT, " + FLIGHT_FROM_LATITUDE + " REAL, "
-            + FLIGHT_TO_LATITUDE + " REAL, " + FLIGHT_FROM_LONGITUDE + " REAL, "
-            + FLIGHT_TO_LONGITUDE + " REAL" + ")";
+            + FLIGHT_DURATION + " TEXT, " + FLIGHT_FROM_LATITUDE + " NUMBER, "
+            + FLIGHT_TO_LATITUDE + " NUMBER, " + FLIGHT_FROM_LONGITUDE + " NUMBER, "
+            + FLIGHT_TO_LONGITUDE + " NUMBER" + ")";
 
     public static final String COMMENT_COMMENT = "comment";
 

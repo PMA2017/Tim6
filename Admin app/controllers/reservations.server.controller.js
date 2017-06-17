@@ -71,15 +71,15 @@ function reserveTicket(req,res,next){
 							realIndex++;
 							if(realIndex==drives.length)
 							{
-								res.json({message:"Reservation successful"});
+								res.status(200).send({message:"Reservation successful"});
 							}
 						}).catch(error=>{
-							res.json({message:error});
+							res.status(400).send({message:error});
 						})
 					}
 					
 				}).catch(error=>{
-					res.json({message:error});
+					res.status(400).send({message:error});
 				})
 
 

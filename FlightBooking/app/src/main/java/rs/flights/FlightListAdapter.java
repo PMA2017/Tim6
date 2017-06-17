@@ -12,6 +12,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.DialogFragment;
 import android.content.Context;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ import rs.maps.MapFragment;
 public class FlightListAdapter extends ArrayAdapter<Flight> {
 
     private Context context;
+
     List<Flight> flights;
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat(
@@ -86,6 +88,8 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         Button star5;
         Button arrowUp;
 
+        Flight flight;
+
     }
 
     @Override
@@ -104,8 +108,14 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         ViewHolder holder = null;
+
+
+
+        System.out.println("position"+ position);
+
+
         if (convertView == null) {
 
             LayoutInflater inflater = (LayoutInflater) context
@@ -140,8 +150,6 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                     .findViewById(R.id.date2);
 
 
-
-
             holder.imgbt1 = (Button) convertView
                     .findViewById(R.id.imageButton1);
             holder.imgbt2 = (Button) convertView
@@ -158,6 +166,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
 
 
             holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);
+            holder.flight = new Flight();
 
             final LinearLayout starsLayout = holder.stars;
             final Button star1 = holder.star1;
@@ -165,6 +174,9 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             final Button star3 = holder.star3;
             final Button star4 = holder.star4;
             final Button star5 = holder.star5;
+
+            final Flight flight = holder.flight;
+
 
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {
 
@@ -191,15 +203,26 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ActionBarActivity thisActivity = (ActionBarActivity) context;
                     android.support.v4.app.Fragment v4Fragment = new MapFragment();
                     Bundle bundle = new Bundle();
-                    bundle.putString("nameA", "New York");
-                    bundle.putString("nameB","Serbia");
-                    bundle.putDouble("latA",45.7128);
-                    bundle.putDouble("latB",45.35);
-                    bundle.putDouble("lonA",20);
-                    bundle.putDouble("lonB",0);
+
+                    bundle.putString("nameA",flight.getTownFrom());
+                    bundle.putString("nameB",flight.getTownTo());
+                    bundle.putDouble("latA",flight.getTownFromLongitude());
+                    bundle.putDouble("latB",flight.getTownToLongitude());
+                    bundle.putDouble("lonA",flight.getTownFromLatitude());
+                    bundle.putDouble("lonB",flight.getTownToLatitude());
                     v4Fragment.setArguments(bundle);
+                    if(null!=v4Fragment){
+                        android.support.v4.app.FragmentManager fm= thisActivity.getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction t=fm.beginTransaction();
+                        t.replace(R.id.main_content,v4Fragment);
+                        t.addToBackStack(null);
+                        t.commit();
+
+
+                    }
 
                 }
             });
@@ -283,8 +306,9 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         Flight flight = (Flight) getItem(position);
+        System.out.println("Second:" +flight.getTownFrom());
+        System.out.println("Second:" +flight.getTownTo());
         holder.flightIdTxt.setText(flight.getId() + "");
         holder.flightTownFromTxt.setText(flight.getTownFrom()+ "");
         holder.flightTownToTxt.setText(flight.getTownTo() + "");
@@ -297,6 +321,29 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         holder.durationTxt.setText(flight.getDuration() + "");
         holder.date1Txt.setText(flight.getDate1() + "");
         holder.date2Txt.setText(flight.getDate2() + "");
+        holder.flight.setTownFrom(flight.getTownFrom());
+        holder.flight.setTownTo(flight.getTownTo());
+        holder.flight.setTownFromLatitude(flight.getTownFromLatitude());
+        holder.flight.setTownFromLongitude(flight.getTownFromLongitude());
+        holder.flight.setTownToLatitude(flight.getTownToLatitude());
+        holder.flight.setTownToLongitude(flight.getTownToLongitude());
+
+        /*
+        holder.lonFrom = flights.get(position).getTownFromLatitude();
+        holder.lonTo = flights.get(position).getTownToLatitude();
+         holder.latFrom = flights.get(position).getTownFromLongitude();
+        holder.latTo = flights.get(position).getTownToLongitude();
+       holder.nameA = flights.get(position).getTownFrom();
+       holder.nameB = flights.get(position).getTownTo();
+    */
+
+       // nameA = flight.getTownFrom();
+       // nameB = flight.getTownTo();
+        //lonFrom = flight.getTownFromLatitude();
+       // latFrom = flight.getTownFromLongitude();
+        //lonTo = flight.getTownToLatitude();
+       // latTo = flight.getTownToLongitude();
+
 
 
 

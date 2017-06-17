@@ -166,7 +166,7 @@ function getDrivesAroundDate(req,res,next){
 							
 							if(flights.length==0)
 							{
-								res.json(returnAllEmpty(endDateDefined));
+								res.status(200).send(returnAllEmpty(endDateDefined));
 								return;
 									
 								
@@ -194,7 +194,7 @@ function getDrivesAroundDate(req,res,next){
 										if(companyCount==drives.length && freeCount==drives.length && durationCount==drives.length)
 										{
 											organizeDrives(drives,dateFromMin,dateToMin, function(response){
-												res.json(response);
+												res.status(200).send(response);
 												return;
 											});
 										}
@@ -206,7 +206,7 @@ function getDrivesAroundDate(req,res,next){
 										if(companyCount==drives.length && freeCount==drives.length && durationCount==drives.length)
 										{
 											organizeDrives(drives,dateFromMin,dateToMin, function(response){
-												res.json(response);
+												res.status(200).send(response);
 												return;
 											});
 											
@@ -219,14 +219,14 @@ function getDrivesAroundDate(req,res,next){
 										if(companyCount==drives.length && freeCount==drives.length && durationCount==drives.length)
 										{
 											organizeDrives(drives,dateFromMin,dateToMin, function(response){
-												res.json(response);
+												res.status(200).send(response);
 												return;
 											});
 											
 										}
 									})
 								}
-								else res.json([]);
+								else res.status(200).send([]);
 								
 							})
 							})
