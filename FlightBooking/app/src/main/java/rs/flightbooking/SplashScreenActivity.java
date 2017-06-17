@@ -2,28 +2,37 @@ package rs.flightbooking;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 
+import org.json.JSONArray;
+
+import rs.SQLite.FlightDAO;
+import rs.SQLite.FlightDBDAO;
 import rs.authentification.RegistrationActivity;
 import rs.authentification.SignupActivity;
 import rs.reservation.form.Reservations;
+import tools.IServerCaller;
+import tools.SendToServer;
+import tools.Session;
+import tools.response.ServerResponse;
 
 
 /**
  * Created by Milos on 5/20/2017.
  */
 
-public class SplashScreenActivity extends Activity {
-    private static int SPLASH_TIME_OUT = 100; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
+public class SplashScreenActivity extends Activity implements IServerCaller {
+    private static int SPLASH_TIME_OUT = 3000; // splash ce biti vidljiv minimum SPLASH_TIME_OUT milisekundi
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-
+        getFlightsFromNodeServer();
         // uradi inicijalizaciju u pozadinksom threadu
         new InitTask().execute();
     }
@@ -52,24 +61,30 @@ public class SplashScreenActivity extends Activity {
             if(timeLeft < 0) timeLeft = 0;
             SystemClock.sleep(timeLeft);
 
-            // uloguj se
-            login();
+            startMainActivity();
         }
     }
-
-    /**
-     * Proveri da li je logovan user, ako nije registruj ga.
-     */
-    private void login()
-    {
-        startMainActivity();
-    }
-
 
 
     private void startMainActivity()
     {
-        startActivity(new Intent(SplashScreenActivity.this, SignupActivity.class));
-        finish(); // da nebi mogao da ode back na splash
+        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+        finish();
     }
+
+    private void getFlightsFromNodeServer()
+    {
+        SendToServer server = new SendToServer(this);
+        Session session = new Session(this.getApplicationContext());
+        Integer id = new Integer(session.getId());
+        server.checkFlights(id);
+    }
+
+    @Override
+    public void OnServerResponse(ServerResponse response) {
+        JSONArray array = response.responseArray;
+        FlightDAO dao = new FlightDAO(this);
+
+    }
+
 }

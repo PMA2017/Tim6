@@ -9,22 +9,22 @@ import android.os.Parcelable;
 
 public class Flight implements Parcelable {
 
-    private int id;
-    private String townFrom;
-    private String townTo;
-    private String townFromMark;
-    private String townToMark;
-    private String price;
-    private String company;
-    private String date1;
-    private String date2;
-    private String time1;
-    private String time2;
-    private String duration;
-    private int townFromLatitude;
-    private int townToLatitude;
-    private int townFromLongitude;
-    private int townToLongitude;
+    public int id;
+    public String townFrom;
+    public String townTo;
+    public String townFromMark;
+    public String townToMark;
+    public String price;
+    public String company;
+    public String date1;
+    public String date2;
+    public String time1;
+    public String time2;
+    public String duration;
+    public int townFromLatitude;
+    public int townToLatitude;
+    public int townFromLongitude;
+    public int townToLongitude;
 
 
     public Flight() {
