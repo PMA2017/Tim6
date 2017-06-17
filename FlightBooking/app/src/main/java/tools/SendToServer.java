@@ -34,7 +34,7 @@ public class SendToServer {
     public void checkFlights(int id)
     {
         log.w("usao81","usao81");
-        HttpUtils.get("/api/User/getFlights/"+2 ,null, jsonHttpHandler);
+        HttpUtils.get("/api/User/getFlights/"+id ,null, jsonHttpHandler);
         log.w("usao82","usao82");
     }
 
