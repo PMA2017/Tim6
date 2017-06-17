@@ -32,9 +32,9 @@ public class RequestParamParser {
         RequestParams rp = new RequestParams();
         rp.add("MarkTownFrom",townFrom);
         rp.add("MarkTownTo",townTo);
-        rp.add("DateTo",dateFrom);
+        rp.add("DateFrom",dateFrom);
         if(dateTo != null) {
-            rp.add("DateFrom", dateTo);
+            rp.add("DateTo", dateTo);
         }
         rp.add("Passengers",passengers);
         return rp;

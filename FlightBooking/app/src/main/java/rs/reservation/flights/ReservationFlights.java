@@ -11,16 +11,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.loopj.android.http.RequestParams;
+
+import parsers.JSONParser;
+import parsers.RequestParamParser;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 import rs.flightbooking.R;
 import rs.reservation.ticket.Ticket;
 import tools.DateUtil;
+import tools.IServerCaller;
 import tools.SendToServer;
+import tools.response.ServerResponse;
+
 import java.util.Calendar;
 
-public class ReservationFlights extends Fragment {
+public class ReservationFlights extends Fragment implements IServerCaller {
 
     private SendToServer _server;
     private View _rootView;
@@ -34,8 +42,11 @@ public class ReservationFlights extends Fragment {
     private boolean _isReturn;
     private String _from;
     private String _to;
+    private String _fromName;
+    private String _toName;
     private String _depart;
     private String _return;
+    private String _passangers;
 
     private Date _departDate;
     private Date _returnDate;
@@ -45,16 +56,15 @@ public class ReservationFlights extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         _rootView = inflater.inflate(R.layout.activity_reservation_flights, container, false);
         _flightList = (ListView) _rootView.findViewById(R.id.flightList);
         reloadData();
-        mainMock();
-        setChangeDateButtons(0);
-        _flightAdapter = new FlightAdapter(this,R.layout.reservation_flights_one_row,_flights.get(2));
-        _flightList.setAdapter(_flightAdapter);
+        RequestParams params = RequestParamParser.makeRequestParamsGetAroundDateCriteria(_from, _to, _depart, _return, _passangers);
+        _server = new SendToServer(this);
+        _server.getDrivesAroundDate(params);
+        //mainMock();
         return _rootView;
     }
 
@@ -63,14 +73,17 @@ public class ReservationFlights extends Fragment {
         Bundle bundle = this.getArguments();
 
         _isReturn = bundle.getBoolean("isReturn");
-        _from = bundle.getString("from");
-        _to = bundle.getString("to");
+        _from = bundle.getString("from").split("\\(")[1].split("\\)")[0];
+        _to = bundle.getString("to").split("\\(")[1].split("\\)")[0];
+        _fromName = bundle.getString("from").split("\\(")[0].trim();
+        _toName = bundle.getString("to").split("\\(")[0].trim();
         _depart = bundle.getString("depart");
         _return = bundle.getString("return");
         _departDate = convertStringDateFromFormIntoDate(_depart);
         if(_return != null) {
             _returnDate = convertStringDateFromFormIntoDate(_return);
         }
+        _passangers = bundle.getString("passangers");
     }
 
     public void setChangeDateButtons(int start)
@@ -145,16 +158,6 @@ public class ReservationFlights extends Fragment {
         return new Integer(date.getMonth()).toString() + "/" + new Integer(dayOfMonth).toString();
     }
 
-    /*private String makeStringForDayNicer(int number)
-    {
-        String ret = new Integer(number).toString();
-        if(ret.length() < 2)
-        {
-            ret = "0" + ret;
-        }
-        return ret;
-    }*/
-
     private Date convertStringDateFromFormIntoDate(String dateFromForm)
     {
         Integer month = new Integer(dateFromForm.split("/")[0]);
@@ -190,6 +193,28 @@ public class ReservationFlights extends Fragment {
         t.replace(R.id.main_content,fragment);
         t.addToBackStack(null);
         t.commit();
+    }
+
+    private void reloadAfterServerCall()
+    {
+        for(int i = 0; i < _flights.size(); i++) {
+            ArrayList<FlightView> flightsInDay = _flights.get(i);
+            for(int j = 0; j < flightsInDay.size(); j++) {
+                flightsInDay.get(j).townFrom = _from;
+                flightsInDay.get(j).townFromName = _fromName;
+                flightsInDay.get(j).townTo = _to;
+                flightsInDay.get(j).townToName = _toName;
+            }
+        }
+    }
+
+    @Override
+    public void OnServerResponse(ServerResponse response) {
+        _flights = JSONParser.getAllFlightsFromGetAroungDateResponse(response.responseObject, _isReturn);
+        setChangeDateButtons(0);
+        reloadAfterServerCall();
+        _flightAdapter = new FlightAdapter(this,R.layout.reservation_flights_one_row,_flights.get(2));
+        _flightList.setAdapter(_flightAdapter);
     }
 
     private void mainMock()
@@ -272,4 +297,5 @@ public class ReservationFlights extends Fragment {
         flights.add(flight2);
         return flights;
     }
+
 }
