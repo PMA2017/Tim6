@@ -101,9 +101,9 @@ public class MainActivity extends ActionBarActivity {
         //testRest();
 
 
-        Session session = new Session(this.getApplicationContext());
+        /*Session session = new Session(this.getApplicationContext());
         session.setUsername("nemanja");
-        String username = session.getUsername();
+        String username = session.getUsername();*/
 
 
     }

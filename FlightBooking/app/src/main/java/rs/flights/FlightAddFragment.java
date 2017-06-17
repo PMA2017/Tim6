@@ -263,10 +263,10 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     flight = new Flight();
 
 
-                    SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(this.getContext());
+                    //SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(this.getContext());
 
-                    String ide = preferences2.getString("flightId", "");
-                    int ide1 = Integer.parseInt(ide);
+                    //String ide = preferences2.getString("flightId", "");
+                    //int ide1 = Integer.parseInt(ide);
 
                     flight.setId(id);
                     flight.setTownFrom(json_data.getString("townFrom"));
