@@ -79,7 +79,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         //i have no idea how to get current location
         if (ContextCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            map.setMyLocationEnabled(true);
+            //map.setMyLocationEnabled(true);
         } else {
 
             // Show rationale and request permission.
