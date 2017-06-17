@@ -33,7 +33,7 @@ import rs.flightbooking.R;
 
 
 import rs.SQLite.CustomInterface;
-import rs.SQLite.Flight;
+import model.Flight;
 import rs.flightbooking.R;
 
 

@@ -21,6 +21,11 @@ public class Flight implements Parcelable {
     private String time1;
     private String time2;
     private String duration;
+    private int townFromLatitude;
+    private int townToLatitude;
+    private int townFromLongitude;
+    private int townToLongitude;
+
 
     public Flight() {
         super();
@@ -40,10 +45,14 @@ public class Flight implements Parcelable {
         this.time1 = in.readString();
         this.time2 = in.readString();
         this.duration = in.readString();
+        this.townFromLatitude = in.readInt();
+        this.townToLatitude = in.readInt();
+        this.townFromLongitude = in.readInt();
+        this.townToLongitude = in.readInt();
 
     }
 
-    public Flight(int id, String townFrom, String townTo, String townFromMark, String townToMark, String price, String company, String date1, String date2, String time1, String time2, String duration) {
+    public Flight(int id, String townFrom, String townTo, String townFromMark, String townToMark, String price, String company, String date1, String date2, String time1, String time2, String duration, int townFromLatitude, int townToLatitude, int townFromLongitude, int townToLongitude) {
         this.id = id;
         this.townFrom = townFrom;
         this.townTo = townTo;
@@ -56,6 +65,10 @@ public class Flight implements Parcelable {
         this.time1 = time1;
         this.time2 = time2;
         this.duration = duration;
+        this.townFromLatitude = townFromLatitude;
+        this.townToLatitude = townToLatitude;
+        this.townFromLongitude = townFromLongitude;
+        this.townToLongitude = townToLongitude;
     }
 
     public int getId() {
@@ -154,6 +167,47 @@ public class Flight implements Parcelable {
         this.duration = duration;
     }
 
+    public int getTownFromLatitude() {
+        return townFromLatitude;
+    }
+
+    public void setTownFromLatitude(int townFromLatitude) {
+        this.townFromLatitude = townFromLatitude;
+    }
+
+    public int getTownToLatitude() {
+        return townToLatitude;
+    }
+
+    public void setTownToLatitude(int townToLatitude) {
+        this.townToLatitude = townToLatitude;
+    }
+
+    public int getTownFromLongitude() {
+        return townFromLongitude;
+    }
+
+    public void setTownFromLongitude(int townFromLongitude) {
+        this.townFromLongitude = townFromLongitude;
+    }
+
+    public int getTownToLongitude() {
+        return townToLongitude;
+    }
+
+    public void setTownToLongitude(int townToLongitude) {
+        this.townToLongitude = townToLongitude;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+
     @Override
     public String toString() {
         return "Flight{" +
@@ -169,15 +223,11 @@ public class Flight implements Parcelable {
                 ", time1='" + time1 + '\'' +
                 ", time2='" + time2 + '\'' +
                 ", duration='" + duration + '\'' +
+                ", townFromLatitude=" + townFromLatitude +
+                ", townToLatitude=" + townToLatitude +
+                ", townFromLongitude=" + townFromLongitude +
+                ", townToLongitude=" + townToLongitude +
                 '}';
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
     }
 
     @Override

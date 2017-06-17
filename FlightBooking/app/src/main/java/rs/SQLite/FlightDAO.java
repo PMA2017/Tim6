@@ -14,7 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import model.Flight;
+
 import static com.loopj.android.http.AsyncHttpClient.log;
+import static rs.flights.FlightAddFragment.list_integer;
 
 
 public class FlightDAO extends FlightDBDAO {
@@ -67,23 +70,27 @@ public class FlightDAO extends FlightDBDAO {
                 null, null,null);
 
         while (cursor.moveToNext()) {
-            Flight flight = new Flight();
-            flight.setId(cursor.getInt(0));
-            flight.setTownFrom(cursor.getString(1));
-            flight.setTownTo(cursor.getString(2));
-            flight.setTownFromMark(cursor.getString(3));
-            flight.setTownToMark(cursor.getString(4));
-            flight.setPrice(cursor.getString(5));
-            flight.setCompany(cursor.getString(6));
-            flight.setDate1(cursor.getString(7));
-            flight.setDate2(cursor.getString(8));
-            flight.setTime1(cursor.getString(9));
-            flight.setTime2(cursor.getString(10));
-            flight.setDuration(cursor.getString(11));
 
+                Flight flight = new Flight();
+                flight.setId(cursor.getInt(0));
+                flight.setTownFrom(cursor.getString(1));
+                flight.setTownTo(cursor.getString(2));
+                flight.setTownFromMark(cursor.getString(3));
+                flight.setTownToMark(cursor.getString(4));
+                flight.setPrice(cursor.getString(5));
+                flight.setCompany(cursor.getString(6));
+                flight.setDate1(cursor.getString(7));
+                flight.setDate2(cursor.getString(8));
+                flight.setTime1(cursor.getString(9));
+                flight.setTime2(cursor.getString(10));
+                flight.setDuration(cursor.getString(11));
 
+            for(int i=0;i<list_integer.size();i++){
+                if(list_integer.get(i)==cursor.getInt(0)) {
+                    flights.add(flight);
+                }
+            }
 
-            flights.add(flight);
         }
         return flights;
     }
