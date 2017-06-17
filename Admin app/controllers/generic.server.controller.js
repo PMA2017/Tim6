@@ -248,7 +248,7 @@ function checkIfFree(drives,index,passengers,response){
 					realIndex++;
 					if(realIndex==data.length)
 					{
-						if(currentPassengers+passengers<capacity)
+						if(currentPassengers+passengers>capacity)
 						{
 							response({index:index,free:false});
 						}

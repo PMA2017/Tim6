@@ -32,7 +32,6 @@ public class RegistrationSubmitButtonClickListener implements View.OnClickListen
     private String _password;
     private String _repeat;
 
-
     public RegistrationSubmitButtonClickListener(RegistrationActivity registrationActivity)
     {
         _registrationActivity = registrationActivity;

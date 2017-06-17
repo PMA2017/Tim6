@@ -8,12 +8,15 @@ import java.io.Serializable;
 
 public class FlightView implements Serializable {
 
+    public Integer id;
     public String townFrom;
     public String townFromName;
     public String timeFrom;
+    public String dateFrom;
     public String townTo;
     public String townToName;
     public String timeTo;
+    public String dateTo;
     public String type;
     public String duration;
     public String company;

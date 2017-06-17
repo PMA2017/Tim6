@@ -51,11 +51,6 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
         _server.checkIsLoginCorrect(params);
     }
 
-    private boolean doValidationAndCheckIsValid()
-    {
-        return true;
-    }
-
     @Override
     public void OnServerResponse(ServerResponse response)
     {
