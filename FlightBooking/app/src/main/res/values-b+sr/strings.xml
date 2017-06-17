@@ -62,6 +62,13 @@
     <string name="reservations_form_depart_date_error">Unos za datum putovanja je obavezan</string>
     <string name="reservations_form_return_date_error">Unos za datum povratka je obavezan</string>
 
+
+    <string name="reservations">Rezervacije</string>
+    <string name="information">Informacije</string>
+    <string name="flights">Letovi</string>
+    <string name="map">Mapa</string>
+
     <string name="make_reservation">Rezervisi</string>
+
 
 </resources>
