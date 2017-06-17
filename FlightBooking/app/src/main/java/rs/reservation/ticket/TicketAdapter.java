@@ -63,11 +63,11 @@ public class TicketAdapter extends BaseAdapter {
         TextView townToMark = (TextView) itemView.findViewById(R.id.townToMark);
         townToMark.setText(flight.townTo);
 
+        TextView townFromName = (TextView) itemView.findViewById(R.id.townFromName);
+        townFromName.setText(flight.townFromName);
+
         TextView townToName = (TextView) itemView.findViewById(R.id.townToName);
         townToName.setText(flight.townToName);
-
-        /*TextView text = (TextView) itemView.findViewById(R.id.townFromMark);
-        text.setText(flight.townFrom);*/
 
         return itemView;
     }

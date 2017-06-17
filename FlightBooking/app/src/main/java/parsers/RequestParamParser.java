@@ -27,4 +27,17 @@ public class RequestParamParser {
         return rp;
     }
 
+    public static RequestParams makeRequestParamsGetAroundDateCriteria(String townFrom, String townTo, String dateFrom, String dateTo, String passengers)
+    {
+        RequestParams rp = new RequestParams();
+        rp.add("MarkTownFrom",townFrom);
+        rp.add("MarkTownTo",townTo);
+        rp.add("DateTo",dateFrom);
+        if(dateTo != null) {
+            rp.add("DateFrom", dateTo);
+        }
+        rp.add("Passengers",passengers);
+        return rp;
+    }
+
 }

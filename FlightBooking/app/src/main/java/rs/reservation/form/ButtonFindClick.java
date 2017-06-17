@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,22 +49,26 @@ public class ButtonFindClick implements View.OnClickListener {
         Button departButton = (Button) _activity.findViewById(R.id.dateDepart);
         Button returnButton = (Button) _activity.findViewById(R.id.dateReturn);
 
+        Spinner passangersSpinner = (Spinner) _activity.findViewById(R.id.personsSpinner);
+
         boolean isReturn = returnCheck.isChecked();
         String from = fromTown.getText().toString();
         String to = toTown.getText().toString();
         String depart = (String) departButton.getTag();
         String returnn = (String) returnButton.getTag();
+        String passangers = passangersSpinner.getSelectedItem().toString();
 
-        /*boolean result = doValidationAndCheckIsCorrect(isReturn, from, to, depart, returnn);
+        boolean result = doValidationAndCheckIsCorrect(isReturn, from, to, depart, returnn);
         if(!result) {
             return;
-        }*/
+        }
 
         bundle.putBoolean("isReturn",isReturn);
         bundle.putString("from",from);
         bundle.putString("to",to);
         bundle.putString("depart", depart);
         bundle.putString("return", returnn);
+        bundle.putString("passangers",passangers);
 
         fragment.setArguments(bundle);
         FragmentManager fm= _activity.getFragmentManager();

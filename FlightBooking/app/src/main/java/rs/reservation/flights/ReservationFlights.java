@@ -68,7 +68,9 @@ public class ReservationFlights extends Fragment {
         _depart = bundle.getString("depart");
         _return = bundle.getString("return");
         _departDate = convertStringDateFromFormIntoDate(_depart);
-        _returnDate = convertStringDateFromFormIntoDate(_return);
+        if(_return != null) {
+            _returnDate = convertStringDateFromFormIntoDate(_return);
+        }
     }
 
     public void setChangeDateButtons(int start)

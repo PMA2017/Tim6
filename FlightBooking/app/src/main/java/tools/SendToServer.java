@@ -43,6 +43,11 @@ public class SendToServer {
         HttpUtils.post("/api/User/postLoginData", params, jsonHttpHandler);
     }
 
+    public void getDrivesAroundDate(RequestParams params)
+    {
+        HttpUtils.post("/api/generic/getDrivesAroundDate", params, jsonHttpHandler);
+    }
+
     private ServerResponse makeServerResponse(int statusCode, Header[] headers, JSONObject response, JSONArray array)
     {
         ServerResponse retVal = new ServerResponse();

@@ -36,7 +36,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/dateDepart"
+        android:id="@+id/dateDepartReservation"
         android:layout_width="130dp"
         android:layout_height="28dp"
         android:layout_alignParentLeft="true"
@@ -98,16 +98,16 @@
         android:id="@+id/townToName" />
 
     <TextView
-        android:id="@+id/dateReturn"
+        android:id="@+id/dateReturnReservation"
         android:layout_width="130dp"
         android:layout_height="28dp"
-        android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
-        android:gravity="right"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="106dp"
-        android:textSize="22dp"
+        android:gravity="right"
         android:text="22.02.2017"
-        android:textColor="#2f7efc" />
+        android:textColor="#2f7efc"
+        android:textSize="22dp" />
 
     <TextView
         android:id="@+id/timeReturn"
