@@ -1,8 +1,11 @@
+/*
 package rs.flights;
 
+*/
 /**
  * Created by Rale on 6/11/2017.
- */
+ *//*
+
 
 
 import android.app.AlertDialog;
@@ -157,3 +160,4 @@ if (fragment != null) {
 
 }
 
+*/
