@@ -54,6 +54,11 @@ public class SendToServer {
         HttpUtils.post("/api/generic/getDrivesAroundDate", params, jsonHttpHandler);
     }
 
+    public void reserveTickets(RequestParams params)
+    {
+        HttpUtils.post("/api/reserveTicket", params, jsonHttpHandler);
+    }
+
     private ServerResponse makeServerResponse(int statusCode, Header[] headers, JSONObject response, JSONArray array)
     {
         ServerResponse retVal = new ServerResponse();

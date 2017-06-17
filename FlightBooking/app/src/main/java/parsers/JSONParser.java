@@ -140,7 +140,7 @@ public class JSONParser {
                 ArrayList<FlightView> flights = new ArrayList<FlightView>();
                 for(int j = 0; j < array.length(); j++) {
                     JSONObject flightObject = array.getJSONObject(j);
-                    flightObject.getInt("id");
+                    Integer id = flightObject.getInt("id");
                     String price = flightObject.getString("Price");
                     String duration = flightObject.getString("duration");
                     String company = flightObject.getString("company");
@@ -151,6 +151,7 @@ public class JSONParser {
                     String endTimeDTime = flightObject.getString("EndTimeTime");
 
                     FlightView flightView = new FlightView();
+                    flightView.id = id;
                     flightView.price = price + " €";
                     flightView.duration = duration;
                     flightView.company = company;

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Button;
 
 import rs.flightbooking.R;
 import rs.reservation.flights.FlightAdapter;
@@ -21,6 +22,7 @@ public class Ticket extends Fragment {
 
     private FlightView _flightDepart;
     private FlightView _flightReturn;
+    private Integer _passangers;
 
     private ListView _ticketList;
     private TicketAdapter _ticketAdapter;
@@ -31,6 +33,7 @@ public class Ticket extends Fragment {
         Bundle bundle = getArguments();
         _flightDepart = (FlightView) bundle.getSerializable("departFlight");
         _flightReturn = (FlightView) bundle.getSerializable("returnFlight");
+        _passangers = bundle.getInt("passangers");
 
         _flights = new ArrayList<FlightView>();
         _flights.add(_flightDepart);
@@ -41,6 +44,9 @@ public class Ticket extends Fragment {
         _ticketList = (ListView) _rootView.findViewById(R.id.ticketList);
         _ticketAdapter = new TicketAdapter(this,_flights);
         _ticketList.setAdapter(_ticketAdapter);
+
+        Button reservation = (Button) _rootView.findViewById(R.id.reservation);
+        reservation.setOnClickListener(new MakeReservationClickListener(this,_flights,_passangers));
 
         return _rootView;
     }

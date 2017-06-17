@@ -69,6 +69,30 @@ public class TicketAdapter extends BaseAdapter {
         TextView townToName = (TextView) itemView.findViewById(R.id.townToName);
         townToName.setText(flight.townToName);
 
+        TextView type = (TextView) itemView.findViewById(R.id.type);
+        type.setText(flight.type);
+
+        TextView duration = (TextView) itemView.findViewById(R.id.duration);
+        duration.setText(flight.duration);
+
+        TextView dateDepartReservation = (TextView) itemView.findViewById(R.id.dateDepartReservation);
+        dateDepartReservation.setText(flight.dateFrom);
+
+        TextView dateReturnReservation = (TextView) itemView.findViewById(R.id.dateReturnReservation);
+        dateReturnReservation.setText(flight.dateTo);
+
+        TextView timeDepart = (TextView) itemView.findViewById(R.id.timeDepart);
+        timeDepart.setText(flight.timeFrom);
+
+        TextView timeReturn = (TextView) itemView.findViewById(R.id.timeReturn);
+        timeReturn.setText(flight.timeTo);
+
+        TextView company = (TextView) itemView.findViewById(R.id.company);
+        company.setText(flight.company);
+
+        TextView price = (TextView) itemView.findViewById(R.id.price);
+        price.setText(flight.price);
+
         return itemView;
     }
 }

@@ -186,6 +186,7 @@ public class ReservationFlights extends Fragment implements IServerCaller {
             bundle.putSerializable("departFlight",flight);
             bundle.putSerializable("returnFlight",null);
         }
+        bundle.putInt("passangers", Integer.parseInt(_passangers));
 
         fragment.setArguments(bundle);
         FragmentManager fm= this.getFragmentManager();
@@ -200,10 +201,17 @@ public class ReservationFlights extends Fragment implements IServerCaller {
         for(int i = 0; i < _flights.size(); i++) {
             ArrayList<FlightView> flightsInDay = _flights.get(i);
             for(int j = 0; j < flightsInDay.size(); j++) {
-                flightsInDay.get(j).townFrom = _from;
-                flightsInDay.get(j).townFromName = _fromName;
-                flightsInDay.get(j).townTo = _to;
-                flightsInDay.get(j).townToName = _toName;
+                if(i < 5) {
+                    flightsInDay.get(j).townFrom = _from;
+                    flightsInDay.get(j).townFromName = _fromName;
+                    flightsInDay.get(j).townTo = _to;
+                    flightsInDay.get(j).townToName = _toName;
+                } else {
+                    flightsInDay.get(j).townFrom = _to;
+                    flightsInDay.get(j).townFromName = _toName;
+                    flightsInDay.get(j).townTo = _from;
+                    flightsInDay.get(j).townToName = _fromName;
+                }
             }
         }
     }

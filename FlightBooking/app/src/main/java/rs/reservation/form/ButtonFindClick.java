@@ -94,7 +94,7 @@ public class ButtonFindClick implements View.OnClickListener {
             error = _activity.getResources().getString(R.string.reservations_form_depart_date_error);
             errors.add(error);
         }
-        if(returnn == null) {
+        if(returnn == null && isReturn) {
             error = _activity.getResources().getString(R.string.reservations_form_return_date_error);
             errors.add(error);
         }

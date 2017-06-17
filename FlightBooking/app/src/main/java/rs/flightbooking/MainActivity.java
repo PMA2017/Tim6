@@ -102,54 +102,11 @@ public class MainActivity extends ActionBarActivity {
 
 
         Session session = new Session(this.getApplicationContext());
-        session.setUsername("username");
+        session.setUsername("nemanja");
         String username = session.getUsername();
 
 
     }
-
-    /*private void testRest(){
-        RequestParams rp = new RequestParams();
-        // rp.add("username", "aaa"); rp.add("password", "aaa@123");
-
-        HttpUtils.get("api/get/Country", null, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the responseObject is JSONObject instead of expected JSONArray
-                testResponse = response.toString();
-                displayResult();
-
-                try {
-                    JSONObject serverResp = new JSONObject(response.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse){
-                //if the responseObject is JSONArray
-                testResponse = arrayResponse.toString();
-                displayResult();
-            }
-
-            @Override
-             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                System.out.println("CALL FAILED:" +responseString);
-                System.out.println("STATUS CODE:" + statusCode);
-            }
-            //@Override
-            // public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-            //    // Pull out the first event on the public timeline
-            //
-            //}
-        });
-
-    }
-
-    public void displayResult(){
-        Toast.makeText(this,testResponse,Toast.LENGTH_LONG).show();
-    }*/
 
 
 
