@@ -147,7 +147,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3 = (Button) convertView
                     .findViewById(R.id.imageButton3);
 
-            holder.star1 = (Button) convertView.findViewById(R.id.star1);
+        /*    holder.star1 = (Button) convertView.findViewById(R.id.star1);
             holder.star2 = (Button) convertView.findViewById(R.id.star2);
             holder.star3 = (Button) convertView.findViewById(R.id.star3);
             holder.star4 = (Button) convertView.findViewById(R.id.star4);
@@ -155,7 +155,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.arrowUp = (Button) convertView.findViewById(R.id.arrowUp);
 
 
-            holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);
+            holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);*/
 
             final LinearLayout starsLayout = holder.stars;
             final Button star1 = holder.star1;
