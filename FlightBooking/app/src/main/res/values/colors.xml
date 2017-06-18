@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#061780</color>
-    <color name="colorAccent">#FF4081</color>
+<color name="colorPrimary">#3F51B5</color>
+<color name="colorPrimaryDark">#303F9F</color>
+<color name="colorAccent">#FF4081</color>
 
-    <color name="transparent">#00000000</color>
-    <color name="list_item_bg">#ffffff</color>
-    <color name="view_divider_color">#BABABA</color>
-    <color name="change_flight_day_color">#f4e542</color>
-    <color name="selected_flight">#e80243</color>
+<color name="transparent">#00000000</color>
+<color name="list_item_bg">#ffffff</color>
+<color name="view_divider_color">#BABABA</color>
+<color name="change_flight_day_color">#f4e542</color>
+<color name="selected_flight">#e80243</color>
 </resources>
 
 

@@ -1,6 +1,9 @@
 package rs.flightbooking;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -48,6 +51,8 @@ public class MainActivity extends ActionBarActivity {
         listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.information)));
         listSliding.add(new ItemSlideMenu(R.drawable.map,getResources().getString(R.string.map)));
         listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.add)));
+
+
 
         adapter= new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
@@ -140,6 +145,8 @@ public class MainActivity extends ActionBarActivity {
 
     private void replaceFragment(int pos) {
         android.support.v4.app.Fragment v4Fragment = null;
+        Fragment fragment = null;
+
         switch (pos) {
             case 0:
                 v4Fragment = new Reservations();
@@ -182,5 +189,15 @@ public class MainActivity extends ActionBarActivity {
             t.addToBackStack(null);
             t.commit();
         }
+
+        if(null!=fragment){
+            FragmentManager fm= getFragmentManager();
+            FragmentTransaction t=fm.beginTransaction();
+            t.replace(R.id.main_content,fragment);
+            t.addToBackStack(null);
+            t.commit();
+        }
+
+
     }
 }
