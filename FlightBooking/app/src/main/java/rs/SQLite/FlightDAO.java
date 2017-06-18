@@ -94,10 +94,10 @@ public class FlightDAO extends FlightDBDAO {
                 flight.setTime1(cursor.getString(9));
                 flight.setTime2(cursor.getString(10));
                 flight.setDuration(cursor.getString(11));
-            flight.setTownFromLatitude(cursor.getInt(12));
-            flight.setTownToLatitude(cursor.getInt(13));
-            flight.setTownFromLongitude(cursor.getInt(14));
-            flight.setTownToLongitude(cursor.getInt(15));
+            flight.setTownFromLatitude(cursor.getDouble(12));
+            flight.setTownToLatitude(cursor.getDouble(13));
+            flight.setTownFromLongitude(cursor.getDouble(14));
+            flight.setTownToLongitude(cursor.getDouble(15));
 
             for(int i=0;i<list_integer.size();i++){
                 if(list_integer.get(i)==cursor.getInt(0)) {
@@ -165,10 +165,10 @@ public class FlightDAO extends FlightDBDAO {
             flight.setTime1(cursor.getString(9));
             flight.setTime2(cursor.getString(10));
             flight.setDuration(cursor.getString(11));
-            flight.setTownFromLatitude(cursor.getInt(12));
-            flight.setTownToLatitude(cursor.getInt(13));
-            flight.setTownFromLongitude(cursor.getInt(14));
-            flight.setTownToLongitude(cursor.getInt(15));
+            flight.setTownFromLatitude(cursor.getDouble(12));
+            flight.setTownToLatitude(cursor.getDouble(13));
+            flight.setTownFromLongitude(cursor.getDouble(14));
+            flight.setTownToLongitude(cursor.getDouble(15));
 
         }
         return flight;

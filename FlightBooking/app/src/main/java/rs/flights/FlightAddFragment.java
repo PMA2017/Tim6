@@ -183,10 +183,10 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     flight.setTime1(time11[0]);
                     flight.setTime2(end_time11[0]);
                     flight.setDuration(duration);
-                    flight.setTownFromLatitude(json_data.getInt("townFromLatitude"));
-                    flight.setTownToLatitude( json_data.getInt("townToLatitude"));
-                    flight.setTownFromLongitude(json_data.getInt("townFromLongitude"));
-                    flight.setTownToLongitude(json_data.getInt("townToLongitude"));
+                    flight.setTownFromLatitude(json_data.getDouble("townFromLatitude"));
+                    flight.setTownToLatitude( json_data.getDouble("townToLatitude"));
+                    flight.setTownFromLongitude(json_data.getDouble("townFromLongitude"));
+                    flight.setTownToLongitude(json_data.getDouble("townToLongitude"));
 
 
 

@@ -7,11 +7,14 @@ package rs.flights;
 import android.app.Activity;
 
 import android.graphics.drawable.Drawable;
+import android.media.Rating;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.DialogFragment;
 import android.content.Context;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +27,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.loopj.android.http.RequestParams;
+
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
+import parsers.JSONParser;
 import rs.flightbooking.R;
 
 
@@ -37,12 +47,18 @@ import rs.SQLite.CustomInterface;
 import model.Flight;
 import rs.flightbooking.R;
 import rs.maps.MapFragment;
+import tools.IServerCaller;
+import tools.SendToServer;
+import tools.Session;
+import tools.response.ServerResponse;
 
 
-public class FlightListAdapter extends ArrayAdapter<Flight> {
+public class FlightListAdapter extends ArrayAdapter<Flight>{
 
     private Context context;
+
     List<Flight> flights;
+
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat(
             "yyyy-MM-dd", Locale.ENGLISH);
@@ -55,7 +71,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         this.context = context;
         this.flights = flights;
         this.mListener = mListener;
+        getRatings();
     }
+
+
 
     private class ViewHolder {
         TextView flightIdTxt;
@@ -86,6 +105,8 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         Button star5;
         Button arrowUp;
 
+        Flight flight;
+
     }
 
     @Override
@@ -104,8 +125,11 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         ViewHolder holder = null;
+
+        System.out.println("position"+ position);
+
         if (convertView == null) {
 
             LayoutInflater inflater = (LayoutInflater) context
@@ -138,8 +162,6 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
                     .findViewById(R.id.date2);
 
 
-
-
             holder.imgbt1 = (Button) convertView
                     .findViewById(R.id.imageButton1);
             holder.imgbt2 = (Button) convertView
@@ -156,6 +178,9 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
 
 
             holder.stars = (LinearLayout) convertView.findViewById(R.id.stars);
+            holder.flight = new Flight();
+
+
 
             final LinearLayout starsLayout = holder.stars;
             final Button star1 = holder.star1;
@@ -163,6 +188,9 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             final Button star3 = holder.star3;
             final Button star4 = holder.star4;
             final Button star5 = holder.star5;
+
+            final Flight flight1 = holder.flight;
+
 
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {
 
@@ -189,15 +217,27 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.imgbt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    ActionBarActivity thisActivity = (ActionBarActivity) context;
                     android.support.v4.app.Fragment v4Fragment = new MapFragment();
                     Bundle bundle = new Bundle();
-                    bundle.putString("nameA", "New York");
-                    bundle.putString("nameB","Serbia");
-                    bundle.putDouble("latA",45.7128);
-                    bundle.putDouble("latB",45.35);
-                    bundle.putDouble("lonA",20);
-                    bundle.putDouble("lonB",0);
+
+                    bundle.putString("nameA",flight1.getTownFrom());
+                    bundle.putString("nameB",flight1.getTownTo());
+                    bundle.putDouble("latA",flight1.getTownFromLongitude());
+                    bundle.putDouble("latB",flight1.getTownToLongitude());
+                    bundle.putDouble("lonA",flight1.getTownFromLatitude());
+                    bundle.putDouble("lonB",flight1.getTownToLatitude());
                     v4Fragment.setArguments(bundle);
+                    if(null!=v4Fragment){
+                        android.support.v4.app.FragmentManager fm= thisActivity.getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction t=fm.beginTransaction();
+                        t.replace(R.id.main_content,v4Fragment);
+                        t.addToBackStack(null);
+                        t.commit();
+
+
+                    }
 
                 }
             });
@@ -206,11 +246,34 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                       v.setBackgroundResource(R.drawable.staryellow);
-                       star2.setBackgroundResource(R.drawable.star_empty);
-                        star3.setBackgroundResource(R.drawable.star_empty);
-                        star4.setBackgroundResource(R.drawable.star_empty);
-                        star5.setBackgroundResource(R.drawable.star_empty);
+
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                view.setBackgroundResource(R.drawable.staryellow);
+                                star2.setBackgroundResource(R.drawable.star_empty);
+                                star3.setBackgroundResource(R.drawable.star_empty);
+                                star4.setBackgroundResource(R.drawable.star_empty);
+                                star5.setBackgroundResource(R.drawable.star_empty);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
+
+                    RequestParams params = new RequestParams();
+
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight1.getId());
+                    params.put("Rating",1);
+
+                    System.out.println("Params");
+                    System.out.println(flight1.getId());
+                    System.out.println(session.getId());
+                    sts.post("Rating",params);
 
 
                 }
@@ -219,12 +282,33 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                star1.setBackgroundResource(R.drawable.staryellow);
+                                view.setBackgroundResource(R.drawable.staryellow);
+                                star3.setBackgroundResource(R.drawable.star_empty);
+                                star4.setBackgroundResource(R.drawable.star_empty);
+                                star5.setBackgroundResource(R.drawable.star_empty);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
 
-                    star1.setBackgroundResource(R.drawable.staryellow);
-                    v.setBackgroundResource(R.drawable.staryellow);
-                    star3.setBackgroundResource(R.drawable.star_empty);
-                    star4.setBackgroundResource(R.drawable.star_empty);
-                    star5.setBackgroundResource(R.drawable.star_empty);
+                    RequestParams params = new RequestParams();
+
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight1.getId());
+                    params.put("Rating",2);
+
+                    System.out.println("Params");
+                    System.out.println(flight1.getId());
+                    System.out.println(session.getId());
+                    sts.post("Rating",params);
 
                 }
             });
@@ -232,12 +316,33 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                star1.setBackgroundResource(R.drawable.staryellow);
+                                star2.setBackgroundResource(R.drawable.staryellow);
+                                view.setBackgroundResource(R.drawable.staryellow);
+                                star4.setBackgroundResource(R.drawable.star_empty);
+                                star5.setBackgroundResource(R.drawable.star_empty);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
 
-                    star1.setBackgroundResource(R.drawable.staryellow);
-                    star2.setBackgroundResource(R.drawable.staryellow);
-                    v.setBackgroundResource(R.drawable.staryellow);
-                    star4.setBackgroundResource(R.drawable.star_empty);
-                    star5.setBackgroundResource(R.drawable.star_empty);
+                    RequestParams params = new RequestParams();
+
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight1.getId());
+                    params.put("Rating",3);
+
+                    System.out.println("Params");
+                    System.out.println(flight1.getId());
+                    System.out.println(session.getId());
+                    sts.post("Rating",params);
 
                 }
             });
@@ -245,12 +350,33 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                star1.setBackgroundResource(R.drawable.staryellow);
+                                star2.setBackgroundResource(R.drawable.staryellow);
+                                star3.setBackgroundResource(R.drawable.staryellow);
+                                view.setBackgroundResource(R.drawable.staryellow);
+                                star5.setBackgroundResource(R.drawable.star_empty);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
 
-                    star1.setBackgroundResource(R.drawable.staryellow);
-                    star2.setBackgroundResource(R.drawable.staryellow);
-                    star3.setBackgroundResource(R.drawable.staryellow);
-                    v.setBackgroundResource(R.drawable.staryellow);
-                    star5.setBackgroundResource(R.drawable.star_empty);
+                    RequestParams params = new RequestParams();
+
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight1.getId());
+                    params.put("Rating",4);
+
+                    System.out.println("Params");
+                    System.out.println(flight1.getId());
+                    System.out.println(session.getId());
+                    sts.post("Rating",params);
 
                 }
             });
@@ -258,12 +384,34 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             holder.star5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final View view = v;
+                    Activity thisActivity = (Activity) context;
+                    SendToServer sts = new SendToServer(new IServerCaller() {
+                        @Override
+                        public void OnServerResponse(ServerResponse response) {
+                            if(response.statusCode==200)
+                            {
+                                star1.setBackgroundResource(R.drawable.staryellow);
+                                star2.setBackgroundResource(R.drawable.staryellow);
+                                star3.setBackgroundResource(R.drawable.staryellow);
+                                star4.setBackgroundResource(R.drawable.staryellow);
+                                view.setBackgroundResource(R.drawable.staryellow);
+                            }
+                        }
+                    });
+                    Session session = new Session(thisActivity.getApplicationContext());
 
-                    star1.setBackgroundResource(R.drawable.staryellow);
-                    star2.setBackgroundResource(R.drawable.staryellow);
-                    star3.setBackgroundResource(R.drawable.staryellow);
-                    star4.setBackgroundResource(R.drawable.staryellow);
-                    v.setBackgroundResource(R.drawable.staryellow);
+                    RequestParams params = new RequestParams();
+
+                    params.put("User_ID",Integer.parseInt(session.getId()));
+                    params.put("Drive_ID",flight1.getId());
+                    params.put("Rating",5);
+
+                    System.out.println("Params");
+                    System.out.println(flight1.getId());
+                    System.out.println(session.getId());
+                    sts.post("Rating",params);
+
 
                 }
             });
@@ -280,6 +428,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+
         }
 
         Flight flight = (Flight) getItem(position);
@@ -295,8 +444,55 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         holder.durationTxt.setText(flight.getDuration() + "");
         holder.date1Txt.setText(flight.getDate1() + "");
         holder.date2Txt.setText(flight.getDate2() + "");
+        holder.flight.setTownFrom(flight.getTownFrom());
+        holder.flight.setTownTo(flight.getTownTo());
+        holder.flight.setTownFromLatitude(flight.getTownFromLatitude());
+        holder.flight.setTownFromLongitude(flight.getTownFromLongitude());
+        holder.flight.setTownToLatitude(flight.getTownToLatitude());
+        holder.flight.setTownToLongitude(flight.getTownToLongitude());
+        holder.flight.setId(flight.getId());
+        holder.flight.setRating(flight.getRating());
 
+        holder.star1.setBackgroundResource(R.drawable.star_empty);
+        holder.star2.setBackgroundResource(R.drawable.star_empty);
+        holder.star3.setBackgroundResource(R.drawable.star_empty);
+        holder.star4.setBackgroundResource(R.drawable.star_empty);
+        holder.star5.setBackgroundResource(R.drawable.star_empty);
+        switch (holder.flight.getRating()) {
+            case 0:
+                break;
+            case 1:
+                holder.star1.setBackgroundResource(R.drawable.staryellow);
 
+                break;
+            case 2:
+                holder.star1.setBackgroundResource(R.drawable.staryellow);
+                holder.star2.setBackgroundResource(R.drawable.staryellow);
+                break;
+            case 3:
+                holder.star1.setBackgroundResource(R.drawable.staryellow);
+                holder.star2.setBackgroundResource(R.drawable.staryellow);
+                holder.star3.setBackgroundResource(R.drawable.staryellow);
+                //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                break;
+            case 4:
+                holder.star1.setBackgroundResource(R.drawable.staryellow);
+                holder.star2.setBackgroundResource(R.drawable.staryellow);
+                holder.star3.setBackgroundResource(R.drawable.staryellow);
+                holder.star4.setBackgroundResource(R.drawable.staryellow);
+                break;
+
+            case 5:
+                holder.star1.setBackgroundResource(R.drawable.staryellow);
+                holder.star2.setBackgroundResource(R.drawable.staryellow);
+                holder.star3.setBackgroundResource(R.drawable.staryellow);
+                holder.star4.setBackgroundResource(R.drawable.staryellow);
+                holder.star5.setBackgroundResource(R.drawable.staryellow);
+                break;
+
+            default:
+                break;
+        }
 
         return convertView;
     }
@@ -314,4 +510,37 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
         notifyDataSetChanged();
         super.remove(flight);
     }
+
+    public void getRatings(){
+        JSONArray array = new JSONArray();
+        for(int i=0; i<flights.size(); i++)
+        {
+            array.put(flights.get(i).getId());
+        }
+        SendToServer sendToServer = new SendToServer(new IServerCaller() {
+            @Override
+            public void OnServerResponse(ServerResponse response) {
+                ArrayList<Integer> ratings = JSONParser.getAllRatings(response.responseArray);
+                ArrayList<Integer> driveIds = JSONParser.getAllDriveIds(response.responseArray);
+                for(int i=0; i<driveIds.size(); i++)
+                {
+                    for(int j=0; j<flights.size(); j++)
+                    {
+                       if(driveIds.get(i)==flights.get(j).getId())
+                       {
+                           flights.get(j).setRating(ratings.get(i));
+                           break;
+                       }
+                    }
+                }
+            }
+        });
+        Session session = new Session(context.getApplicationContext());
+        RequestParams params = new RequestParams();
+        params.put("driveIds",array);
+        sendToServer.getRatingsForFlights(Integer.parseInt(session.getId()),params);
+    }
+
+
+
 }

@@ -55,7 +55,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
     @Override
     public void OnServerResponse(ServerResponse response)
     {
-        ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
+       ArrayList<String> errors = JSONParser.getErrorsFromUserResponse(response.responseObject);
         if(response.statusCode == 200) {
             String username = JSONParser.getUsername(response.responseObject);
             int id = JSONParser.getUserId(response.responseObject);

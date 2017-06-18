@@ -1,5 +1,7 @@
 package tools;
 
+import android.content.Intent;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -57,6 +59,15 @@ public class SendToServer {
     public void reserveTickets(RequestParams params)
     {
         HttpUtils.post("/api/reserveTicket", params, jsonHttpHandler);
+    }
+
+    public void getRatingForFlight(Integer flightId, Integer userId)
+    {
+        HttpUtils.get("/api/getRatingForFlight/"+flightId.toString()+"/"+userId.toString(),null,jsonHttpHandler);
+    }
+
+    public void getRatingsForFlights(Integer userId,RequestParams params){
+        HttpUtils.post("/api/getRatingsForFlights/"+userId.toString(),params,jsonHttpHandler);
     }
 
     private ServerResponse makeServerResponse(int statusCode, Header[] headers, JSONObject response, JSONArray array)

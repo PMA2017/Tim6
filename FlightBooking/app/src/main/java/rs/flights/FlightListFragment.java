@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.zip.Inflater;
 
+import parsers.JSONParser;
 import rs.SQLite.CustomCommentDialogFragment;
 import rs.SQLite.CustomFlightDialogFragment;
 import rs.SQLite.CustomInterface;
@@ -52,6 +53,7 @@ import rs.flightbooking.R;
 import tools.DateUtil;
 import tools.IServerCaller;
 import tools.SendToServer;
+import tools.Session;
 import tools.response.ServerResponse;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -98,23 +100,16 @@ public  class FlightListFragment extends Fragment  {
     Activity activity;
     ListView flightListView;
     ArrayList<Flight> flights;
-
     FlightListAdapter flightListAdapter;
     FlightDAO flightDAO;
     ImageButton comment;
-
     private ArrayList<HashMap<String,String>> list;
-
     private Context context;
     public static RemoteViews remoteViews;
     private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
     private int notification_id;
-
-
-
     private GetFlightTask task;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,11 +118,6 @@ public  class FlightListFragment extends Fragment  {
         activity = getActivity();
         flightDAO = new FlightDAO(activity);
     }
-
-
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,64 +131,12 @@ public  class FlightListFragment extends Fragment  {
 
         task.execute((Void) null);
 
-
-
-
-
-        /*flightListView.setOnItemClickListener(this);
-
-        flightListView.setOnItemLongClickListener(this);
-*/
-
-
         return view;
     }
-
     private void findViewsById(View view) {
-
         flightListView = (ListView) view.findViewById(R.id.list_flight);
-
-
-
     }
 
-
-  /*  @Override
-    public void onResume() {
-        getActivity().setTitle(R.string.app_name);
-        getActivity().getActionBar().setTitle(R.string.app_name);
-        super.onResume();
-    }*/
-
-
-
-/*    @Override
-    public void onItemClick(AdapterView<?> list, View arg1, int position,
-                            long arg3) {
-        Flight flight = (Flight) list.getItemAtPosition(position);
-
-        if (flight != null) {
-
-            Bundle arguments = new Bundle();
-            arguments.putParcelable("selectedFlight", flight);
-            CustomFlightDialogFragment customEmpDialogFragment = new CustomFlightDialogFragment();
-            customEmpDialogFragment.setArguments(arguments);
-
-            customEmpDialogFragment.show(getFragmentManager(),
-                    CustomFlightDialogFragment.ARG_ITEM_ID);
-
-        }
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                   int position, long arg3) {
-        Flight flight = (Flight) parent.getItemAtPosition(position);
-        // Use AsyncTask to delete from database
-        flightDAO.delete(flight);
-        flightListAdapter.remove(flight);
-        return true;
-    }*/
     CustomInterface mListener;
     ArrayList<Flight> flightList;
 
@@ -223,6 +161,7 @@ public  class FlightListFragment extends Fragment  {
                     && !activityWeakRef.get().isFinishing()) {
 
                 flights = flightList;
+
                 if (flightList != null) {
                     if (flightList.size() != 0) {
 
@@ -353,11 +292,6 @@ public  class FlightListFragment extends Fragment  {
 
         }
 
-
-
-
     }
-
-
 
 }
