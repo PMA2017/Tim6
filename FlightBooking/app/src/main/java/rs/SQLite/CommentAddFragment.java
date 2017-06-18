@@ -81,15 +81,6 @@ public class CommentAddFragment  extends Fragment implements View.OnClickListene
         comment = new Comment();
 
     }
-   /* @Override
-    public void onResume() {
-        log.w("res","res");
-        getActivity().setTitle(R.string.add_emp);
-        getActivity().getActionBar().setTitle(R.string.add_emp);
-        super.onResume();
-        log.w("res1","res1");
-    }*/
-
 
 
     private void findViewsById(View rootView) {

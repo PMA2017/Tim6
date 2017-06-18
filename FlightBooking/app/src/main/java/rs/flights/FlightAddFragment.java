@@ -164,7 +164,7 @@ public class FlightAddFragment extends Fragment implements OnClickListener, ISer
                     long diffSeconds = diff / 1000 % 60;
                     long diffMinutes = diff / (60 * 1000) % 60;
                     long diffHours = diff / (60 * 60 * 1000);
-                    String duration = diffHours + ":" + diffMinutes + ":" + diffSeconds;
+                    String duration = diffHours + "h :" + diffMinutes + "m :" + diffSeconds+ "s";
                     log.w("usao20", String.valueOf(duration));
 
 

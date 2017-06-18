@@ -21,9 +21,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -32,6 +35,7 @@ import com.loopj.android.http.RequestParams;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,6 +80,8 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
 
 
 
+
+
     private class ViewHolder {
         TextView flightIdTxt;
         TextView flightTownFromTxt;
@@ -93,6 +99,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
         Button imgbt1;
         Button imgbt2;
         Button imgbt3;
+        ListView listaKom;
+       ArrayList<String> arrayList;
+        ArrayAdapter<String> adapter;
+        EditText txtinput;
 
         /*ImageButton imgbt1;
         ImageButton imgbt2;
@@ -182,6 +192,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
 
 
 
+
             final LinearLayout starsLayout = holder.stars;
             final Button star1 = holder.star1;
             final Button star2 = holder.star2;
@@ -191,15 +202,29 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
 
             final Flight flight1 = holder.flight;
 
+            //COMMENT
 
+
+            holder.listaKom=(ListView) convertView.findViewById(R.id.listaa);
+            String[] comments ={"Comment1","Comment2"};
+            holder.arrayList = new ArrayList<>(Arrays.asList(comments));
+            holder.adapter = new ArrayAdapter<String>(this.getContext(),R.layout.comment_item,R.id.commentItem,holder.arrayList);
+            holder.listaKom.setAdapter(holder.adapter);
+            holder.txtinput=(EditText) convertView.findViewById(R.id.txtinput);
+
+
+            final ViewHolder finalHolder = holder;
             holder.imgbt1.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View v) {
 
-                    if(mListener != null)
-                        mListener.Dialog1();
+                  /*  if(mListener != null)
+                        mListener.Dialog1();*/
+                   String new_item = finalHolder.txtinput.getText().toString();
+                    finalHolder.arrayList.add(new_item);
+                    finalHolder.adapter.notifyDataSetChanged();
                 }
             });
 
