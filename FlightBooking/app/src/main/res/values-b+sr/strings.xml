@@ -32,6 +32,7 @@
     <string name="reset">Reset</string>
     <string name="cancel">Odustanak</string>
 
+    <string name="comment">Komentar</string>
 
     <string name="address">Adresa</string>
     <string name="city">Grad</string>
@@ -69,10 +70,16 @@
     <string name="flights">Letovi</string>
     <string name="map">Mapa</string>
 
+    <string name="reservation_successfully">Reservation is complated successfully</string>
+
     <string name="make_reservation">Rezervisi</string>
 
     <string name="departUpper">POLAZAK</string>
     <string name="returnUpper">POVRATAK</string>
+
+    <string name="company">Kompanija</string>
+    <string name="mark">Ocena</string>
+    <string name="price">Cena</string>
 
 
 </resources>

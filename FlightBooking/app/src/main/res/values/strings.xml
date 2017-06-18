@@ -67,6 +67,7 @@
     <string name="reservations_form_depart_date_error">Daprt date is required</string>
     <string name="reservations_form_return_date_error">Return date is required</string>
 
+    <string name="reservation_successfully">Reservation is complated successfully</string>
 
     <string name="reservations">Reservations</string>
     <string name="information">Information</string>
@@ -77,5 +78,9 @@
 
     <string name="departUpper">DEPART</string>
     <string name="returnUpper">RETURN</string>
+
+    <string name="company">Company</string>
+    <string name="mark">Mark</string>
+    <string name="price">Price</string>
 
 </resources>

@@ -176,7 +176,7 @@ public class JSONParser {
         return array1;
     }
 
-    public static ArrayList<ArrayList<FlightView>> getAllFlightsFromGetAroungDateResponse(JSONObject object, boolean isReturn)
+    public static ArrayList<ArrayList<FlightView>> getAllFlightsFromGetAroungDateResponse(JSONObject object, boolean isReturn, int persons)
     {
         ArrayList<ArrayList<FlightView>> allFlights = new ArrayList<ArrayList<FlightView>>();
         int counter = 10;
@@ -204,9 +204,11 @@ public class JSONParser {
                     String startTimeTime = flightObject.getString("StartTimeTime");
                     String endTimeDTime = flightObject.getString("EndTimeTime");
 
+                    Integer finalPrice = new Integer(price) * persons;
+
                     FlightView flightView = new FlightView();
                     flightView.id = id;
-                    flightView.price = price + " €";
+                    flightView.price = finalPrice.toString() + " €";
                     flightView.duration = duration;
                     flightView.company = company;
                     flightView.isFree = free;

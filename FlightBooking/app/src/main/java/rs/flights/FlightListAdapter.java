@@ -54,6 +54,7 @@ import rs.maps.MapFragment;
 import tools.IServerCaller;
 import tools.SendToServer;
 import tools.Session;
+import tools.ToastTool;
 import tools.response.ServerResponse;
 
 
@@ -284,6 +285,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                                 star3.setBackgroundResource(R.drawable.star_empty);
                                 star4.setBackgroundResource(R.drawable.star_empty);
                                 star5.setBackgroundResource(R.drawable.star_empty);
+                            }else{
+
+                                ToastTool tool = new ToastTool((Activity)context);
+                                tool.showString("You cannot rate a flight which hasn't started yet");
                             }
                         }
                     });
@@ -319,6 +324,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                                 star3.setBackgroundResource(R.drawable.star_empty);
                                 star4.setBackgroundResource(R.drawable.star_empty);
                                 star5.setBackgroundResource(R.drawable.star_empty);
+                            }else{
+
+                                ToastTool tool = new ToastTool((Activity)context);
+                                tool.showString("You cannot rate a flight which hasn't started yet");
                             }
                         }
                     });
@@ -353,6 +362,10 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                                 view.setBackgroundResource(R.drawable.staryellow);
                                 star4.setBackgroundResource(R.drawable.star_empty);
                                 star5.setBackgroundResource(R.drawable.star_empty);
+                            }else{
+
+                                ToastTool tool = new ToastTool((Activity)context);
+                                tool.showString("You cannot rate a flight which hasn't started yet");
                             }
                         }
                     });
@@ -387,7 +400,12 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                                 star3.setBackgroundResource(R.drawable.staryellow);
                                 view.setBackgroundResource(R.drawable.staryellow);
                                 star5.setBackgroundResource(R.drawable.star_empty);
+                            }else{
+
+                                ToastTool tool = new ToastTool((Activity)context);
+                                tool.showString("You cannot rate a flight which hasn't started yet");
                             }
+
                         }
                     });
                     Session session = new Session(thisActivity.getApplicationContext());
@@ -402,6 +420,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                     System.out.println(flight1.getId());
                     System.out.println(session.getId());
                     sts.post("Rating",params);
+
 
                 }
             });
@@ -421,6 +440,11 @@ public class FlightListAdapter extends ArrayAdapter<Flight>{
                                 star3.setBackgroundResource(R.drawable.staryellow);
                                 star4.setBackgroundResource(R.drawable.staryellow);
                                 view.setBackgroundResource(R.drawable.staryellow);
+                            }
+                            else{
+
+                                ToastTool tool = new ToastTool((Activity)context);
+                                tool.showString("You cannot rate a flight which hasn't started yet");
                             }
                         }
                     });

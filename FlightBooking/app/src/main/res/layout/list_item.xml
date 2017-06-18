@@ -131,7 +131,7 @@ android:background="#e8e8e7">
     android:gravity="right"
     android:layout_marginTop="175dp"
     android:textSize="24dp"
-    android:text="Price"
+    android:text="@string/price"
     android:textColor="#f73337"
     android:textStyle="bold"/>
 
@@ -151,7 +151,7 @@ android:background="#e8e8e7">
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="175dp"
-    android:text="Company"
+    android:text="@string/company"
     android:textColor="#2f7efc"
     android:textSize="23dp" />
 
@@ -181,11 +181,11 @@ android:background="#e8e8e7">
         android:textSize="10dp"
         android:clickable="true"
         android:onClick="onClick"
-        android:text="Comment" />
+        android:text="@string/comment" />
 
     <Button
         android:id="@+id/imageButton2"
-        android:text="Mark"
+        android:text="@string/mark"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="10dp"
@@ -195,7 +195,7 @@ android:background="#e8e8e7">
 
     <Button
         android:id="@+id/imageButton3"
-        android:text="Map"
+        android:text="@string/map"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="10dp"

@@ -34,4 +34,9 @@ public class ToastTool {
         }
         return retVal;
     }
+
+    public void showString(String error)
+    {
+        Toast.makeText(_activity, error, Toast.LENGTH_LONG).show();
+    }
 }

@@ -1,7 +1,11 @@
 package rs.reservation.ticket;
 
 import android.app.Activity;
+import rs.flightbooking.R;
+
+import android.graphics.Color;
 import android.view.View;
+import android.widget.Button;
 
 import com.loopj.android.http.RequestParams;
 
@@ -11,6 +15,7 @@ import parsers.RequestParamParser;
 import rs.reservation.flights.FlightView;
 import tools.IServerCaller;
 import tools.SendToServer;
+import tools.ToastTool;
 import tools.response.ServerResponse;
 import tools.Session;
 
@@ -44,6 +49,13 @@ public class MakeReservationClickListener implements View.OnClickListener, IServ
 
     @Override
     public void OnServerResponse(ServerResponse response) {
-
+        if(response.statusCode == 200) {
+            Button button = (Button) _activity.findViewById(R.id.reservation);
+            button.setEnabled(false);
+            button.setBackgroundColor(Color.GRAY);
+            ToastTool tool = new ToastTool(_activity);
+            String display = _activity.getResources().getString(R.string.reservation_successfully);
+            tool.showString(display);
+        }
     }
 }

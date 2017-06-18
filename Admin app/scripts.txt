@@ -1,3 +1,7 @@
+insert into Users values('milos','milos','savic','milosmilos',1,GETDATE(),GETDATE());
+insert into Users values('rale','rale','ilic','ralerale',1,GETDATE(),GETDATE());
+insert into Users values('nemanja','nemanja','starcev','nemanja',1,GETDATE(),GETDATE());
+
 insert into Country values('Srb','Serbija', GETDATE(), GETDATE());
 insert into Country values('Ita','Italia', GETDATE(), GETDATE());
 insert into Country values('Ger','Germany', GETDATE(), GETDATE());
