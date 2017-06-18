@@ -79,4 +79,8 @@
     <string name="departUpper">DEPART</string>
     <string name="returnUpper">RETURN</string>
 
+    <string name="company">Company</string>
+    <string name="mark">Mark</string>
+    <string name="price">Price</string>
+
 </resources>
