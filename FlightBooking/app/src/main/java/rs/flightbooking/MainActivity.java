@@ -4,7 +4,15 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.AsyncTask;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,21 +22,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 
+import model.Flight;
+import rs.SQLite.FlightDAO;
 import rs.authentification.SignupActivity;
-import rs.flights.FlightAddFragment;
 import rs.contact.ContactFragment;
 import rs.flights.FlightListFragment;
 import rs.maps.MapFragment;
 import rs.reservation.form.Reservations;
 import rs.settings.SettingsFragment;
+import tools.IServerCaller;
+import tools.SendToServer;
 import tools.Session;
+import tools.response.ServerResponse;
 
-public class MainActivity extends ActionBarActivity {
+import static com.loopj.android.http.AsyncHttpClient.log;
+
+public class MainActivity extends ActionBarActivity{
     private List<ItemSlideMenu> listSliding;
     private SlidingMenuAdapter adapter;
     private ListView listViewSliding;
@@ -39,6 +57,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
+        startService(new Intent(this,DatabaseSync.class));
         setContentView(R.layout.activity_main);
 
         listViewSliding= (android.widget.ListView)findViewById(R.id.lv_sliding_menu);
@@ -49,7 +69,6 @@ public class MainActivity extends ActionBarActivity {
         listSliding.add(new ItemSlideMenu(R.drawable.flights,getResources().getString(R.string.flights)));
         listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.information)));
         listSliding.add(new ItemSlideMenu(R.drawable.map,getResources().getString(R.string.map)));
-        listSliding.add(new ItemSlideMenu(R.drawable.information,getResources().getString(R.string.add)));
 
 
 
@@ -136,6 +155,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -156,9 +177,6 @@ public class MainActivity extends ActionBarActivity {
             case 2:
 
                 v4Fragment = new ContactFragment();
-                break;
-            case 4:
-                v4Fragment = new FlightAddFragment();
                 break;
             case 3:
                 v4Fragment = new MapFragment();

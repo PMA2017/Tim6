@@ -13,7 +13,6 @@ import parsers.RequestParamParser;
 
 
 import rs.flightbooking.SplashScreenActivity;
-import rs.flights.FlightAddFragment;
 import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
 import tools.IServerCaller;

@@ -115,6 +115,7 @@ public  class FlightListFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("ACTIVITY3:"+getActivity());
         activity = getActivity();
         flightDAO = new FlightDAO(activity);
     }

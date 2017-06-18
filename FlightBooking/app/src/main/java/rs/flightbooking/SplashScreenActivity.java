@@ -32,7 +32,7 @@ public class SplashScreenActivity extends Activity implements IServerCaller {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        getFlightsFromNodeServer();
+        //getFlightsFromNodeServer();
         // uradi inicijalizaciju u pozadinksom threadu
         new InitTask().execute();
     }
@@ -84,7 +84,7 @@ public class SplashScreenActivity extends Activity implements IServerCaller {
     public void OnServerResponse(ServerResponse response) {
         JSONArray array = response.responseArray;
         FlightDAO dao = new FlightDAO(this);
-
+       // startMainActivity();
     }
 
 }

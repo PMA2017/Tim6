@@ -17,7 +17,7 @@ import java.util.Locale;
 import model.Flight;
 
 import static com.loopj.android.http.AsyncHttpClient.log;
-import static rs.flights.FlightAddFragment.list_integer;
+import static rs.flightbooking.DatabaseSync.list_integer;
 
 
 public class FlightDAO extends FlightDBDAO {
