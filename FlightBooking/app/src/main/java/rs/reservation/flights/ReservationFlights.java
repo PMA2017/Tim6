@@ -218,7 +218,7 @@ public class ReservationFlights extends Fragment implements IServerCaller {
 
     @Override
     public void OnServerResponse(ServerResponse response) {
-        _flights = JSONParser.getAllFlightsFromGetAroungDateResponse(response.responseObject, _isReturn);
+        _flights = JSONParser.getAllFlightsFromGetAroungDateResponse(response.responseObject, _isReturn, new Integer(_passangers));
         setChangeDateButtons(0);
         reloadAfterServerCall();
         _flightAdapter = new FlightAdapter(this,R.layout.reservation_flights_one_row,_flights.get(2));
