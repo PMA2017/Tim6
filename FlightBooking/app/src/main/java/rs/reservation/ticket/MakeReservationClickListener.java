@@ -1,8 +1,11 @@
 package rs.reservation.ticket;
 
 import android.app.Activity;
+
+import rs.flightbooking.DatabaseSync;
 import rs.flightbooking.R;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +57,9 @@ public class MakeReservationClickListener implements View.OnClickListener, IServ
             button.setEnabled(false);
             button.setBackgroundColor(Color.GRAY);
             ToastTool tool = new ToastTool(_activity);
+            DatabaseSync.list_integer.clear();
+            _activity.stopService(new Intent(_activity, DatabaseSync.class));
+            _activity.startService(new Intent(_activity, DatabaseSync.class));
             String display = _activity.getResources().getString(R.string.reservation_successfully);
             tool.showString(display);
         }
