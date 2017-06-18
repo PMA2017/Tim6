@@ -120,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
                 setTitle(R.string.log_out);
                 Session session = new Session(activity.getApplicationContext());
                 session.setUsername(null);
-                startActivity(new Intent(MainActivity.this, SplashScreenActivity.class));
+                startActivity(new Intent(MainActivity.this, SignupActivity.class));
                 return true;
             }
         });
