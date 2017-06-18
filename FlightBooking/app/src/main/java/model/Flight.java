@@ -37,6 +37,7 @@ public class Flight implements Parcelable {
     private Integer rating = 0;
 
 
+
     public Flight() {
         super();
 

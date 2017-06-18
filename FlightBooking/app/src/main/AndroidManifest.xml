@@ -34,10 +34,16 @@
 
         <activity
             android:name="rs.authentification.SignupActivity"
-            android:label="FlightBooking" />
-        <activity
+            android:label="FlightBooking">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- <activity
             android:name="rs.authentification.Initt"
-            android:label="FlightBooking" />
+            android:label="FlightBooking" /> -->
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -47,11 +53,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -76,7 +78,7 @@
         </receiver>
 
         <activity android:name="rs.authentification.RegistrationActivity" />
-        <activity android:name="rs.reservation.ticket.Ticket"></activity>
+        <!-- <activity android:name="rs.reservation.ticket.Ticket"></activity> -->
     </application>
 
 </manifest>

@@ -87,6 +87,7 @@ app.use(morgan(":date :remote-addr :remote-user :method :url HTTP/:http-version 
 //ovako ucitavas rute...
 
 var Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 const sequelize = new Sequelize('pmadatabase', 'pmadatabase', 'Zn0i?efat?8Q', {
   host: 'mssql2.gear.host',
   dialect: 'mssql',

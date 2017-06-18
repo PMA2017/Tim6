@@ -12,7 +12,8 @@ public class HttpUtils {
 
     //private static final String BASE_URL = "http://10.0.2.2:3000/";
     private static final String BASE_URL = "http://192.168.1.33:3000/";
-  //   private static final String BASE_URL = "http://1c61e9d1.ngrok.io/";
+  // private static final String BASE_URL = "http://1c61e9d1.ngrok.io/";
+
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

@@ -12,6 +12,7 @@ import parsers.JSONParser;
 import parsers.RequestParamParser;
 
 
+import rs.flightbooking.SplashScreenActivity;
 import rs.flights.FlightAddFragment;
 import rs.flightbooking.MainActivity;
 import rs.flightbooking.R;
@@ -61,7 +62,7 @@ public class SignupSubmitButtonClickListener implements View.OnClickListener, IS
             Session session = new Session(_signupActivity.getApplicationContext());
             session.setUsername(username);
             session.setId(String.valueOf(id));
-            _signupActivity.startActivity((new Intent(_signupActivity, MainActivity.class)));
+            _signupActivity.startActivity((new Intent(_signupActivity, SplashScreenActivity.class)));
         } else {
             _toastTool.showList(errors);
         }

@@ -225,4 +225,35 @@ public class JSONParser {
         return allFlights;
     }
 
+    public static ArrayList<Flight> getFlightsFromArray(JSONArray array)
+    {
+        ArrayList<Flight> flights = new ArrayList<Flight>();
+        for(int i = 0; i < array.length(); i++) {
+            try {
+                JSONObject object = (JSONObject) array.getJSONObject(i);
+                Flight flight = new Flight();
+
+                Integer id = object.getInt("id");
+                String price = object.getString("Price");
+                String company = object.getString("company");
+                String townFrom = object.getString("townFrom");
+                String townFromMark = object.getString("townFromMark");
+                Double townFromLatitude = object.getDouble("townFromLatitude");
+                Double townFromLongitude = object.getDouble("townFromLongitude");
+                String townToMark = object.getString("townToMark");
+                String townTo = object.getString("townTo");
+                Double townToLatitude = object.getDouble("townToLatitude");
+                Double townToLongitude = object.getDouble("townToLongitude");
+
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return flights;
+    }
+
 }
