@@ -122,6 +122,60 @@ public class JSONParser {
         return id;
     }
 
+    public static int getRating(JSONObject object)
+    {
+        int rating = 0;
+        try {
+            rating = object.getInt("Rating");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return rating;
+    }
+
+    public static int getDriveIdFromRating(JSONObject object)
+    {
+        int driveId = 0;
+        try {
+            driveId = object.getInt("Drive_ID");
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return driveId;
+    }
+
+    public static ArrayList getAllRatings(JSONArray array)
+    {
+        ArrayList array1 = new ArrayList<Integer>();
+        for(int i=0; i<array.length(); i++)
+        {
+            try {
+                array1.add(((JSONObject)array.get(i)).getInt("Rating"));
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return array1;
+    }
+
+    public static ArrayList getAllDriveIds(JSONArray array)
+    {
+        ArrayList array1 = new ArrayList<Integer>();
+        for(int i=0; i<array.length(); i++)
+        {
+            try {
+                array1.add(((JSONObject)array.get(i)).getInt("Drive_ID"));
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return array1;
+    }
+
     public static ArrayList<ArrayList<FlightView>> getAllFlightsFromGetAroungDateResponse(JSONObject object, boolean isReturn)
     {
         ArrayList<ArrayList<FlightView>> allFlights = new ArrayList<ArrayList<FlightView>>();

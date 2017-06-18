@@ -4,8 +4,16 @@ package model;
  * Created by Rale on 6/11/2017.
  */
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import parsers.JSONParser;
+import rs.flightbooking.R;
+import tools.IServerCaller;
+import tools.SendToServer;
+import tools.Session;
+import tools.response.ServerResponse;
 
 public class Flight implements Parcelable {
 
@@ -26,10 +34,14 @@ public class Flight implements Parcelable {
     private Double townFromLongitude;
     private Double townToLongitude;
 
+    private Integer rating = 0;
+
 
     public Flight() {
         super();
+
     }
+
 
     private Flight(Parcel in) {
         super();
@@ -279,4 +291,11 @@ public class Flight implements Parcelable {
         }
     };
 
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 }

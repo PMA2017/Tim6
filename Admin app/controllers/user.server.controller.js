@@ -7,7 +7,8 @@ Sequelize = require('sequelize');
 
 module.exports.postLoginData = postLoginData;
 module.exports.getFlights = getFlights;
-
+module.exports.getRatingForFlight = getRatingForFlight;
+module.exports.getRatingsForFlights = getRatingsForFlights;
 
 function postLoginData(req,res,next){
 
@@ -143,5 +144,24 @@ User.sync({force: false}).then(() => {
     lastName: 'Hancock'
   });
 });
+}
+
+
+function getRatingForFlight(req,res,next){
+	var userId = req.params.userRatingId;
+	var driveId = req.params.driveId;
+
+	sequelize.model('Rating').findOne({where:{User_ID:userId, Drive_ID:driveId}}).then(rating=>{
+		res.status(200).send(rating)
+	})
+}
+
+function getRatingsForFlights(req,res,next){
+	var userId = req.params.userAllFlights;
+	var driveIds = JSON.parse("[" + req.body.driveIds + "]");
+
+	sequelize.model('Rating').findAll({where:{Drive_ID:{$or:driveIds},User_ID:userId}}).then(data=>{
+		res.status(200).send(data);
+	})
 }
 

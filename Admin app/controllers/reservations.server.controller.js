@@ -38,9 +38,14 @@ function findReservations(req,res,next){
 //i jos jedna stvar, moguce je da ti posaljem oznaku koja ne postoji, pa u tom slucaju vratis 400
 
 function reserveTicket(req,res,next){
-	var driveIds = req.body.drives;
+	var driveIds = JSON.parse("[" + req.body.drives + "]")
 	var username = req.body.username;
 	var passengers = req.body.passengers;
+	for(var i=0; i<driveIds.length; i++)
+	{
+		console.log(driveIds[0]);
+	}
+	console.log(passengers);
 	var userId;
 	var ticketPrice = 0;
 	sequelize.model('User').findOne({where:{Username:username}}).then(user=>{

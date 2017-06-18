@@ -52,21 +52,56 @@ function postToTable(req,res,next){
 	sequelize.model(tableNameId).findOne({where:{Drive_ID: driveId,User_ID:userId}})
 	  .then(data=>{
 	  	if(data){
-	  		data.update(req.body).then(updatedInstance=>{
-	  			res.status(200).send(updatedInstance);
+	  		sequelize.model("Drive").findOne({where:{id:driveId}}).then(drive=>{
+	  			var flightDate = new Date(drive.StartTime);
+	  			var currentDate = new Date();
+	  			console.log(flightDate);
+	  			console.log(currentDate);
+
+	  			if(flightDate>currentDate)
+	  			{
+	  				console.log("You cant rate this flight yet");
+	  				res.status(400).send({message:"You can't rate this flight yet!"});
+	  				return;
+	  			}
+	  			else {
+						data.update(req.body).then(updatedInstance=>{
+							  	res.status(200).send(updatedInstance);
+							  })
+							.catch(error => {
+								res.status(400).send({message:error});
+							 })
+						}
 	  		})
-	  		.catch(error => {
-	  			res.status(400).send({message:error});
-	  		})
+
+
+	  		
 	  	}
 	  	else {
-			  	var instance = sequelize.model(req.params.tableToPost).build(req.body);
-				instance.save().then(anotherInstance => {
-			    	res.status(200).send(anotherInstance);
+
+	  			sequelize.model("Drive").findOne({where:{id:driveId}}).then(drive=>{
+	  			var flightDate = new Date(drive.StartTime);
+	  			var currentDate = new Date();
+	  			console.log(flightDate);
+	  			console.log(currentDate);
+	  			if(flightDate>currentDate)
+	  			{
+
+	  				console.log("You cant rate this flight yet");
+	  				res.status(400).send({message:"You can't rate this flight yet!"});
+	  				return;
+	  			}
+	  			else{
+		  			var instance = sequelize.model(req.params.tableToPost).build(req.body);
+					instance.save().then(anotherInstance => {
+				    res.status(200).send(anotherInstance);
 			 	})
-			  .catch(error => {
+			 	 .catch(error => {
 			    res.status(400).send({message:error});
-			})
+				})
+	  			}
+	  		})
+			  	
 	  	}
 	  }).catch(error=>{
 	  	res.status(400).send({message:error});
