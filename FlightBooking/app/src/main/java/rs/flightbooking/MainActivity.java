@@ -29,7 +29,6 @@ import rs.settings.SettingsFragment;
 import tools.Session;
 
 public class MainActivity extends ActionBarActivity {
-
     private List<ItemSlideMenu> listSliding;
     private SlidingMenuAdapter adapter;
     private ListView listViewSliding;
@@ -163,15 +162,6 @@ public class MainActivity extends ActionBarActivity {
                 break;
             case 3:
                 v4Fragment = new MapFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("nameA", "New York");
-                bundle.putString("nameB", "Serbia");
-                bundle.putDouble("latA", 45.7128);
-                bundle.putDouble("latB", 45.35);
-                bundle.putDouble("lonA", 20);
-                bundle.putDouble("lonB", 0);
-                v4Fragment.setArguments(bundle);
-
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case 10:
@@ -200,4 +190,5 @@ public class MainActivity extends ActionBarActivity {
 
 
     }
+
 }

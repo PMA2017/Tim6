@@ -4,32 +4,45 @@ package model;
  * Created by Rale on 6/11/2017.
  */
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import parsers.JSONParser;
+import rs.flightbooking.R;
+import tools.IServerCaller;
+import tools.SendToServer;
+import tools.Session;
+import tools.response.ServerResponse;
+
 public class Flight implements Parcelable {
 
-    public int id;
-    public String townFrom;
-    public String townTo;
-    public String townFromMark;
-    public String townToMark;
-    public String price;
-    public String company;
-    public String date1;
-    public String date2;
-    public String time1;
-    public String time2;
-    public String duration;
-    public int townFromLatitude;
-    public int townToLatitude;
-    public int townFromLongitude;
-    public int townToLongitude;
+    private int id;
+    private String townFrom;
+    private String townTo;
+    private String townFromMark;
+    private String townToMark;
+    private String price;
+    private String company;
+    private String date1;
+    private String date2;
+    private String time1;
+    private String time2;
+    private String duration;
+    private Double townFromLatitude;
+    private Double townToLatitude;
+    private Double townFromLongitude;
+    private Double townToLongitude;
+
+    private Integer rating = 0;
+
 
 
     public Flight() {
         super();
+
     }
+
 
     private Flight(Parcel in) {
         super();
@@ -45,14 +58,14 @@ public class Flight implements Parcelable {
         this.time1 = in.readString();
         this.time2 = in.readString();
         this.duration = in.readString();
-        this.townFromLatitude = in.readInt();
-        this.townToLatitude = in.readInt();
-        this.townFromLongitude = in.readInt();
-        this.townToLongitude = in.readInt();
+        this.townFromLatitude = in.readDouble();
+        this.townToLatitude = in.readDouble();
+        this.townFromLongitude = in.readDouble();
+        this.townToLongitude = in.readDouble();
 
     }
 
-    public Flight(int id, String townFrom, String townTo, String townFromMark, String townToMark, String price, String company, String date1, String date2, String time1, String time2, String duration, int townFromLatitude, int townToLatitude, int townFromLongitude, int townToLongitude) {
+    public Flight(int id, String townFrom, String townTo, String townFromMark, String townToMark, String price, String company, String date1, String date2, String time1, String time2, String duration, Double townFromLatitude, Double townToLatitude, Double townFromLongitude, Double townToLongitude) {
         this.id = id;
         this.townFrom = townFrom;
         this.townTo = townTo;
@@ -167,35 +180,35 @@ public class Flight implements Parcelable {
         this.duration = duration;
     }
 
-    public int getTownFromLatitude() {
+    public Double getTownFromLatitude() {
         return townFromLatitude;
     }
 
-    public void setTownFromLatitude(int townFromLatitude) {
+    public void setTownFromLatitude(Double townFromLatitude) {
         this.townFromLatitude = townFromLatitude;
     }
 
-    public int getTownToLatitude() {
+    public Double getTownToLatitude() {
         return townToLatitude;
     }
 
-    public void setTownToLatitude(int townToLatitude) {
+    public void setTownToLatitude(Double townToLatitude) {
         this.townToLatitude = townToLatitude;
     }
 
-    public int getTownFromLongitude() {
+    public Double getTownFromLongitude() {
         return townFromLongitude;
     }
 
-    public void setTownFromLongitude(int townFromLongitude) {
+    public void setTownFromLongitude(Double townFromLongitude) {
         this.townFromLongitude = townFromLongitude;
     }
 
-    public int getTownToLongitude() {
+    public Double getTownToLongitude() {
         return townToLongitude;
     }
 
-    public void setTownToLongitude(int townToLongitude) {
+    public void setTownToLongitude(Double townToLongitude) {
         this.townToLongitude = townToLongitude;
     }
 
@@ -279,4 +292,11 @@ public class Flight implements Parcelable {
         }
     };
 
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 }

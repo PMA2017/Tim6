@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.zip.Inflater;
 
+import parsers.JSONParser;
 import rs.SQLite.CustomCommentDialogFragment;
 import rs.SQLite.CustomFlightDialogFragment;
 import rs.SQLite.CustomInterface;
@@ -52,6 +53,7 @@ import rs.flightbooking.R;
 import tools.DateUtil;
 import tools.IServerCaller;
 import tools.SendToServer;
+import tools.Session;
 import tools.response.ServerResponse;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -159,6 +161,7 @@ public  class FlightListFragment extends Fragment  {
                     && !activityWeakRef.get().isFinishing()) {
 
                 flights = flightList;
+
                 if (flightList != null) {
                     if (flightList.size() != 0) {
 
