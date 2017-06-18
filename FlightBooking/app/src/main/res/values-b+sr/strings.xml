@@ -32,6 +32,7 @@
     <string name="reset">Reset</string>
     <string name="cancel">Odustanak</string>
 
+    <string name="comment">Komentar</string>
 
     <string name="address">Adresa</string>
     <string name="city">Grad</string>
@@ -68,6 +69,8 @@
     <string name="information">Informacije</string>
     <string name="flights">Letovi</string>
     <string name="map">Mapa</string>
+
+    <string name="reservation_successfully">Reservation is complated successfully</string>
 
     <string name="make_reservation">Rezervisi</string>
 
