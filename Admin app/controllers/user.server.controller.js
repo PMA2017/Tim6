@@ -41,6 +41,7 @@ function getFlights(req,res,next){
 					{
 						
 						sequelize.model('Flight').findById(drives[i].Flight_ID).then(flight=>{
+							drives[timeIndex].dataValues.duration = flight.FlightDuration;
 							drives[timeIndex].dataValues.endTime = new Date(drives[timeIndex].StartTime);
 							drives[timeIndex].dataValues.endTime.setMinutes(drives[timeIndex].dataValues.endTime.getMinutes()+flight.FlightDuration);
 							timeIndex++;
